@@ -1,8 +1,10 @@
-package com.example.melnyk_sportea_app.di
+package com.example.melnyk_sportea_app
 
 import android.app.Application
+import com.example.melnyk_sportea_app.di.AppComponent
+import com.example.melnyk_sportea_app.di.DaggerAppComponent
 
-class ComponentApp : Application() {
+class App : Application() {
     private lateinit var appComponent: AppComponent
 
     override fun onCreate() {

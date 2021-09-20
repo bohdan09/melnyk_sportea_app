@@ -3,9 +3,10 @@ package com.example.melnyk_sportea_app.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.melnyk_sportea_app.enum.Measure
+import com.example.melnyk_sportea_app.db.room.database.AppDatabase
+import com.example.melnyk_sportea_app.utils.Measure
 
-@Entity
+@Entity(tableName = AppDatabase.STATISTICS_TABLE_NAME)
 data class Statistics(
     @PrimaryKey(autoGenerate = true)
     val id: Int,

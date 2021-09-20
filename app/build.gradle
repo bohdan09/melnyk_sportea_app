@@ -17,8 +17,6 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        buildConfigField 'String', 'STATISTICS_TABLE_NAME', '"Statistics"'
-        buildConfigField 'String', 'APP_DATABASE_NAME', '"AppDatabase"'
     }
 
     buildTypes {

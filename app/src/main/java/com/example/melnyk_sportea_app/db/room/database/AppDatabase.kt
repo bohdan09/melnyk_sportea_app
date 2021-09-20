@@ -14,13 +14,15 @@ abstract class AppDatabase : RoomDatabase() {
 
     companion object {
         private var DATABASE_INSTANCE: AppDatabase? = null
+        private const val APP_DATABASE_NAME = "AppDatabase"
+        const val STATISTICS_TABLE_NAME = "Statistics"
 
         fun getAppDatabaseInstance(context: Context): AppDatabase {
             if (DATABASE_INSTANCE == null) {
                 DATABASE_INSTANCE = Room.databaseBuilder(
                     context,
                     AppDatabase::class.java,
-                    BuildConfig.APP_DATABASE_NAME
+                    APP_DATABASE_NAME
                 ).build()
             }
             return DATABASE_INSTANCE!!
