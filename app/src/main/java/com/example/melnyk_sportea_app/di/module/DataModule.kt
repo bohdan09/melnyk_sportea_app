@@ -17,8 +17,8 @@ class DataModule(val application: Application) {
 
 
     @Provides
-    fun provideAppDatabase(context: Context): AppDatabase {
-        return AppDatabase.getAppDatabaseInstance(context)
+    fun provideAppDatabase(): AppDatabase {
+        return AppDatabase.getAppDatabaseInstance(application.applicationContext)
     }
 
 }

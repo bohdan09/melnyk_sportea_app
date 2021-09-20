@@ -1,9 +1,7 @@
 package com.example.melnyk_sportea_app.utils
 
-enum class Measure {
-    KG, TIMES, SEC;
+import com.example.melnyk_sportea_app.R
 
-    override fun toString(): String {
-        return super.toString()
-    }
+enum class Measure(val res : Int) {
+    KG(R.string.KG), TIMES(R.string.TIMES), SEC(R.string.SEC);
 }
