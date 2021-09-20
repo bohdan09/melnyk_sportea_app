@@ -16,6 +16,9 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField 'String', 'STATISTICS_TABLE_NAME', '"Statistics"'
+        buildConfigField 'String', 'APP_DATABASE_NAME', '"AppDatabase"'
     }
 
     buildTypes {
@@ -34,8 +37,14 @@ android {
 }
 
 def daggerVersion = "2.36"
+def room_version = "2.3.0"
 
 dependencies {
+
+    // Room
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.3.1"
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
 
     // Dagger
     implementation("com.google.dagger:dagger:$daggerVersion")
