@@ -8,12 +8,11 @@ import javax.inject.Singleton
 
 @Singleton
 @Component(
-    modules =
-    [
+    modules = [
         ApiModule::class,
         DataModule::class
     ]
 )
 interface AppComponent {
-fun inject(mainActivity: MainActivity)
+    fun inject(mainActivity: MainActivity)
 }

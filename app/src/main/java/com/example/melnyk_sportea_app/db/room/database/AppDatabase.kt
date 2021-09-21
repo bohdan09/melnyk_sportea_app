@@ -7,9 +7,10 @@ import com.example.melnyk_sportea_app.db.room.Converter
 import com.example.melnyk_sportea_app.db.room.dao.StatisticsDao
 import com.example.melnyk_sportea_app.model.Statistics
 
-@Database(entities = arrayOf(Statistics::class), version = 1)
+@Database(entities = [Statistics::class], version = 1)
 @TypeConverters(value = [Converter::class])
 abstract class AppDatabase : RoomDatabase() {
+
     abstract fun getStatisticsDao(): StatisticsDao
 
     companion object {
@@ -21,12 +22,9 @@ abstract class AppDatabase : RoomDatabase() {
                     context.applicationContext,
                     AppDatabase::class.java,
                     APP_DATABASE_NAME
-                )
-                    .build()
+                ).build()
             }
             return databaseInstance!!
         }
     }
-
-
 }

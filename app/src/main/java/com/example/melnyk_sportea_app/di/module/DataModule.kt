@@ -8,7 +8,7 @@ import dagger.Module
 import dagger.Provides
 
 @Module
-class DataModule(val application: Application) {
+class DataModule(private val application: Application) {
 
     @Provides
     fun provideStatisticsDao(database: AppDatabase): StatisticsDao {
