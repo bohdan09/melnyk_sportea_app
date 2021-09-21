@@ -1,4 +1,4 @@
-package com.example.melnyk_sportea_app.converter
+package com.example.melnyk_sportea_app.db.room
 
 import androidx.room.TypeConverter
 import com.example.melnyk_sportea_app.utils.Measure

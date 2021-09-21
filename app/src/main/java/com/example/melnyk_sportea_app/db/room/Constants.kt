@@ -1,0 +1,6 @@
+package com.example.melnyk_sportea_app.db.room
+
+object Constants {
+    const val STATISTICS_TABLE_NAME = "statistics"
+    const val APP_DATABASE_NAME = "app_database"
+}
