@@ -11,16 +11,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Melnyk_sportea_app">
         <activity
-            android:name=".navigation.StatisticsActivity"
-            android:exported="true" />
-        <activity
-            android:name=".navigation.ProfileActivity"
-            android:exported="true" />
-        <activity
-            android:name=".navigation.HomeActivity"
-            android:exported="true"
-            android:parentActivityName=".MainActivity"/>
-        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

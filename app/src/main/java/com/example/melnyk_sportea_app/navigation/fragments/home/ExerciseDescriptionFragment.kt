@@ -22,4 +22,5 @@ class ExerciseDescriptionFragment : Fragment() {
         super.onDestroy()
         binding = null
     }
+
 }

@@ -17,6 +17,7 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentHomeBinding.inflate(inflater)
+        setToolbar()
         binding?.go?.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_home_nav_graph)
         }
@@ -26,5 +27,10 @@ class HomeFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         binding = null
+    }
+
+    private fun setToolbar() {
+        val toolbar = binding?.toolBar?.toolBar
+        toolbar?.setTitle(R.string.home_toolbar)
     }
 }

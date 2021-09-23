@@ -8,6 +8,16 @@
     <string name="profile_name_button">Profile</string>
     <string name="maps_name_button">Maps</string>
     <string name="statistics_name_button">Statistics</string>
+    <!--  Toolbar name  -->
+    <string name="home_toolbar">Home</string>
+    <string name="profile_toolbar">Profile</string>
+    <string name="statistics_toolbar">Statistics</string>
+    <string name="maps_toolbar">Maps</string>
+    <string name="program_toolbar">Programs</string>
+    <string name="exercises_toolbar">Exercises</string>
+    <string name="description_toolbar">Exercise description</string>
+
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
