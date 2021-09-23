@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <include app:graph="@navigation/home_nav_graph" />
+    <include app:graph="@navigation/maps_nav_graph" />
+    <include app:graph="@navigation/profile_nav_graph" />
+    <include app:graph="@navigation/statistics_nav_graph" />
+
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="com.example.melnyk_sportea_app.navigation.fragments.maps.MapsFragment"
+        android:label="MapsFragment" >
+        <action
+            android:id="@+id/action_mapsFragment_to_maps_nav_graph"
+            app:destination="@id/maps_nav_graph" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.melnyk_sportea_app.navigation.fragments.profile.ProfileFragment"
+        android:label="ProfileFragment" >
+        <action
+            android:id="@+id/action_profileFragment_to_profile_nav_graph"
+            app:destination="@id/profile_nav_graph" />
+    </fragment>
+    <fragment
+        android:id="@+id/statisticsFragment"
+        android:name="com.example.melnyk_sportea_app.navigation.fragments.statistics.StatisticsFragment"
+        android:label="StatisticsFragment" >
+        <action
+            android:id="@+id/action_statisticsFragment_to_statistics_nav_graph"
+            app:destination="@id/statistics_nav_graph" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.melnyk_sportea_app.navigation.fragments.home.HomeFragment"
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_home_nav_graph"
+            app:destination="@id/home_nav_graph" />
+    </fragment>
+
+
+</navigation>

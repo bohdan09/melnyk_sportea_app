@@ -1,7 +1,10 @@
 package com.example.melnyk_sportea_app.db.room.database
 
 import android.content.Context
-import androidx.room.*
+import androidx.room.Database
+import androidx.room.Room
+import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import com.example.melnyk_sportea_app.db.room.Constants.APP_DATABASE_NAME
 import com.example.melnyk_sportea_app.db.room.Converter
 import com.example.melnyk_sportea_app.db.room.dao.StatisticsDao
