@@ -25,15 +25,15 @@ class MainActivity : AppCompatActivity() {
 
     private fun bottomNavigationViewVisibility(
         navController: NavController,
-        bottomNavigationView: BottomNavigationView
+        bottomNavigation: BottomNavigationView
     ) {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                R.id.homeFragment -> showBottomNavigationView(bottomNavigationView)
-                R.id.mapsFragment -> showBottomNavigationView(bottomNavigationView)
-                R.id.profileFragment -> showBottomNavigationView(bottomNavigationView)
-                R.id.statisticsFragment -> showBottomNavigationView(bottomNavigationView)
-                else -> hideBottomNavigationView(bottomNavigationView)
+                R.id.homeFragment,
+                R.id.mapsFragment,
+                R.id.profileFragment,
+                R.id.statisticsFragment -> showBottomNavigationView(bottomNavigation)
+                else -> hideBottomNavigationView(bottomNavigation)
             }
         }
     }
