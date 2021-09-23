@@ -3,4 +3,12 @@
     <string name="KG">kg</string>
     <string name="TIMES">times</string>
     <string name="SEC">sec</string>
+    <!--  Navigation button name  -->
+    <string name="home_name_button">Home</string>
+    <string name="profile_name_button">Profile</string>
+    <string name="maps_name_button">Maps</string>
+    <string name="statistics_name_button">Statistics</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

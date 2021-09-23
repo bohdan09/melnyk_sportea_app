@@ -1,7 +1,6 @@
 package com.example.melnyk_sportea_app.di.module
 
 import android.app.Application
-import android.content.Context
 import com.example.melnyk_sportea_app.db.room.dao.StatisticsDao
 import com.example.melnyk_sportea_app.db.room.database.AppDatabase
 import dagger.Module
