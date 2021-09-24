@@ -22,7 +22,6 @@ class MainActivity : AppCompatActivity() {
         bottomNavigationView.setupWithNavController(navigationController)
     }
 
-
     private fun bottomNavigationViewVisibility(
         navController: NavController,
         bottomNavigation: BottomNavigationView
