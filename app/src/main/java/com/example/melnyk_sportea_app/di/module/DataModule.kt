@@ -14,10 +14,8 @@ class DataModule(private val application: Application) {
         return database.getStatisticsDao()
     }
 
-
     @Provides
     fun provideAppDatabase(): AppDatabase {
         return AppDatabase.getAppDatabaseInstance(application.applicationContext)
     }
-
 }

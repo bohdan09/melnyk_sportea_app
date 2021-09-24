@@ -3,6 +3,7 @@ package com.example.melnyk_sportea_app.di
 import com.example.melnyk_sportea_app.MainActivity
 import com.example.melnyk_sportea_app.di.module.ApiModule
 import com.example.melnyk_sportea_app.di.module.DataModule
+import com.example.melnyk_sportea_app.di.module.PrefsModule
 import dagger.Component
 import javax.inject.Singleton
 
@@ -10,7 +11,8 @@ import javax.inject.Singleton
 @Component(
     modules = [
         ApiModule::class,
-        DataModule::class
+        DataModule::class,
+        PrefsModule::class
     ]
 )
 interface AppComponent {
