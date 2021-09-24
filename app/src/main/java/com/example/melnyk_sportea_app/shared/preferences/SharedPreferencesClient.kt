@@ -35,24 +35,24 @@ class SharedPreferencesClient {
             .apply()
     }
 
-    fun getLong(context: Context, key: String): Long {
+    fun getLong(context: Context, key: String, defaultValue: Long): Long {
         return context.getSharedPreferences(PREF_KEY, Context.MODE_PRIVATE)
-            .getLong(key, -1)
+            .getLong(key, defaultValue)
     }
 
-    fun getInteger(context: Context, key: String): Int {
+    fun getInteger(context: Context, key: String, defaultValue: Int): Int {
         return context.getSharedPreferences(PREF_KEY, Context.MODE_PRIVATE)
-            .getInt(key, -1)
+            .getInt(key, defaultValue)
     }
 
-    fun getFloat(context: Context, key: String): Float {
+    fun getFloat(context: Context, key: String, defaultValue: Float): Float {
         return context.getSharedPreferences(PREF_KEY, Context.MODE_PRIVATE)
-            .getFloat(key, -1F)
+            .getFloat(key, defaultValue)
     }
 
-    fun getString(context: Context, key: String): String? {
+    fun getString(context: Context, key: String, defaultValue: String): String? {
         return context.getSharedPreferences(PREF_KEY, Context.MODE_PRIVATE)
-            .getString(key, null)
+            .getString(key, defaultValue)
     }
 
     fun dropPrefs(context: Context) {

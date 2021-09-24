@@ -3,6 +3,7 @@ package com.example.melnyk_sportea_app.di.module
 import android.app.Application
 import com.example.melnyk_sportea_app.db.room.dao.StatisticsDao
 import com.example.melnyk_sportea_app.db.room.database.AppDatabase
+import com.example.melnyk_sportea_app.shared.preferences.SharedPreferencesClient
 import dagger.Module
 import dagger.Provides
 
@@ -17,5 +18,10 @@ class DataModule(private val application: Application) {
     @Provides
     fun provideAppDatabase(): AppDatabase {
         return AppDatabase.getAppDatabaseInstance(application.applicationContext)
+    }
+
+    @Provides
+    fun provideSharedPreferences(): SharedPreferencesClient {
+        return SharedPreferencesClient()
     }
 }
