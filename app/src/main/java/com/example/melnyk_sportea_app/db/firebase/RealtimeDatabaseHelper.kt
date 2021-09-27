@@ -6,7 +6,7 @@ import com.google.firebase.database.FirebaseDatabase
 class RealtimeDatabaseHelper {
     companion object {
         private var databaseInstance: DatabaseReference? = null
-        const val REFERENCE_KEY = "json"
+        const val REFERENCE_KEY = "programs"
 
         fun getRealtimeDatabaseInstance(): DatabaseReference {
             if (databaseInstance == null) {

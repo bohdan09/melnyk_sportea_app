@@ -7,4 +7,5 @@ enum class MuscleGroup {
     LEGS,
     SHOULDERS,
     CHEST,
+    TRICEPS
 }
