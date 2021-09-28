@@ -11,7 +11,6 @@ import com.example.melnyk_sportea_app.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
     private var binding: FragmentHomeBinding? = null
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
