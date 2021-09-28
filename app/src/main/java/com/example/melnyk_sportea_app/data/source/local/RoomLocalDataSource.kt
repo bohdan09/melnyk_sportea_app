@@ -1,12 +1,12 @@
 package com.example.melnyk_sportea_app.data.source.local
 
-import com.example.melnyk_sportea_app.data.source.Local
+import com.example.melnyk_sportea_app.data.source.LocalDataSource
 import com.example.melnyk_sportea_app.db.room.dao.StatisticsDao
 import com.example.melnyk_sportea_app.model.Statistics
 
-class LocalDataSource(
+class RoomLocalDataSource(
     private val statisticsDao: StatisticsDao
-) : Local {
+) : LocalDataSource {
     override suspend fun addStatisticsRecord(statisticsRecord: Statistics) {
         statisticsDao.addStatisticsRecord(statisticsRecord)
     }
