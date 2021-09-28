@@ -1,19 +1,20 @@
 package com.example.melnyk_sportea_app.data.source.local
 
+import com.example.melnyk_sportea_app.data.source.Local
 import com.example.melnyk_sportea_app.db.room.dao.StatisticsDao
 import com.example.melnyk_sportea_app.model.Statistics
 
 class LocalDataSource(
-    val statisticsDao: StatisticsDao
-) {
-    suspend fun addStatisticsRecord(statisticsRecord: Statistics) {
+    private val statisticsDao: StatisticsDao
+) : Local {
+    override suspend fun addStatisticsRecord(statisticsRecord: Statistics) {
         statisticsDao.addStatisticsRecord(statisticsRecord)
     }
 
-    suspend fun removeAllStatistics() {
+    override suspend fun removeAllStatistics() {
         statisticsDao.removeAllStatistics()
     }
 
-    val getAllStatisticsRecords: List<Statistics> =
+    override fun getAllStatisticsRecords(): List<Statistics> =
         statisticsDao.getAllStatisticsRecords()
 }
