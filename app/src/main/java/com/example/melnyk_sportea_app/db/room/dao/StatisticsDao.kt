@@ -1,6 +1,5 @@
 package com.example.melnyk_sportea_app.db.room.dao
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
@@ -14,7 +13,7 @@ interface StatisticsDao {
     suspend fun addStatisticsRecord(statisticsRecord: Statistics)
 
     @Query("DELETE FROM $STATISTICS_TABLE_NAME")
-    suspend fun removeAllStatistics()
+    suspend fun clearAllStatistics()
 
     @Query("SELECT * FROM $STATISTICS_TABLE_NAME")
     fun getAllStatisticsRecords(): List<Statistics>

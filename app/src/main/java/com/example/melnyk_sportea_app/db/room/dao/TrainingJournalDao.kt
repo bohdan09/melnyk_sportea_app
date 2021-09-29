@@ -15,6 +15,6 @@ interface TrainingJournalDao {
     fun getTrainingJournal(): List<TrainingJournal>
 
     @Query("DELETE FROM $JOURNAL_TABLE_NAME")
-    suspend fun removeTrainingJournal()
+    suspend fun clearTrainingJournal()
 
 }

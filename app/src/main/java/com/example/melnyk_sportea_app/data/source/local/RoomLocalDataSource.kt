@@ -17,19 +17,19 @@ class RoomLocalDataSource(
         statisticsDao.addStatisticsRecord(statisticsRecord)
     }
 
-    override suspend fun removeAllStatistics() {
-        statisticsDao.removeAllStatistics()
+    override suspend fun clearAllStatistics() {
+        statisticsDao.clearAllStatistics()
     }
 
-    override suspend fun removeTrainingJournal() {
-        trainingJournalDao.removeTrainingJournal()
+    override suspend fun clearTrainingJournal() {
+        trainingJournalDao.clearTrainingJournal()
     }
 
     override fun getAllStatisticsRecords(): List<Statistics> =
         statisticsDao.getAllStatisticsRecords()
 
-    override fun getQuote(): List<Quote> =
-        quoteDao.getQuote()
+    override fun getQuotes(): List<Quote> =
+        quoteDao.getQuotes()
 
     override fun getTrainingJournal(): List<TrainingJournal> =
         trainingJournalDao.getTrainingJournal()
@@ -41,5 +41,9 @@ class RoomLocalDataSource(
 
     override suspend fun addTraining(training: TrainingJournal) {
         trainingJournalDao.addTraining(training)
+    }
+
+    override suspend fun removeQuote(quote: Quote) {
+        quoteDao.removeQuote(quote)
     }
 }

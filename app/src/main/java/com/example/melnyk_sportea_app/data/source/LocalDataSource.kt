@@ -11,15 +11,16 @@ interface LocalDataSource {
 
     suspend fun addTraining(training: TrainingJournal)
 
-    suspend fun removeAllStatistics()
+    suspend fun clearAllStatistics()
 
-    suspend fun removeTrainingJournal()
+    suspend fun clearTrainingJournal()
 
     fun getAllStatisticsRecords(): List<Statistics>
 
-    fun getQuote() : List<Quote>
+    fun getQuotes(): List<Quote>
 
-    fun getTrainingJournal() : List<TrainingJournal>
+    fun getTrainingJournal(): List<TrainingJournal>
 
+    suspend fun removeQuote(quote: Quote)
 
 }
