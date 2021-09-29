@@ -10,7 +10,10 @@ import com.example.melnyk_sportea_app.model.Statistics
 interface StatisticsDao {
 
     @Insert
-    fun addStatisticsRecord(statisticsRecord: Statistics)
+    suspend fun addStatisticsRecord(statisticsRecord: Statistics)
+
+    @Query("DELETE FROM $STATISTICS_TABLE_NAME")
+    suspend fun clearAllStatistics()
 
     @Query("SELECT * FROM $STATISTICS_TABLE_NAME")
     fun getAllStatisticsRecords(): List<Statistics>

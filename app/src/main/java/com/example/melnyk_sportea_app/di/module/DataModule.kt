@@ -1,9 +1,12 @@
 package com.example.melnyk_sportea_app.di.module
 
 import android.app.Application
+import com.example.melnyk_sportea_app.data.source.local.RoomLocalDataSource
 import com.example.melnyk_sportea_app.db.firebase.CloudStorageHelper
 import com.example.melnyk_sportea_app.db.firebase.RealtimeDatabaseHelper
+import com.example.melnyk_sportea_app.db.room.dao.QuoteDao
 import com.example.melnyk_sportea_app.db.room.dao.StatisticsDao
+import com.example.melnyk_sportea_app.db.room.dao.TrainingJournalDao
 import com.example.melnyk_sportea_app.db.room.database.AppDatabase
 import com.example.melnyk_sportea_app.shared.preferences.SharedPreferencesClient
 import com.google.firebase.database.DatabaseReference
@@ -17,6 +20,25 @@ class DataModule(private val application: Application) {
     @Provides
     fun provideStatisticsDao(database: AppDatabase): StatisticsDao {
         return database.getStatisticsDao()
+    }
+
+    @Provides
+    fun provideTrainingJournal(database: AppDatabase): TrainingJournalDao {
+        return database.getTrainingJournalDao()
+    }
+
+    @Provides
+    fun provideQuoteDao(database: AppDatabase): QuoteDao {
+        return database.getQuoteDao()
+    }
+
+    @Provides
+    fun providesLocalDataSource(
+        statisticsDao: StatisticsDao,
+        journalDao: TrainingJournalDao,
+        quoteDao: QuoteDao
+    ): RoomLocalDataSource {
+        return RoomLocalDataSource(statisticsDao, quoteDao, journalDao)
     }
 
     @Provides
@@ -35,7 +57,7 @@ class DataModule(private val application: Application) {
     }
 
     @Provides
-    fun provideCloudStorage(): StorageReference{
+    fun provideCloudStorage(): StorageReference {
         return CloudStorageHelper.getCloudStorageInstance()
     }
 }
