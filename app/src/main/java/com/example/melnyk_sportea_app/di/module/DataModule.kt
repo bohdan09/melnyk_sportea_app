@@ -17,6 +17,21 @@ import dagger.Provides
 @Module
 class DataModule(private val application: Application) {
     @Provides
+    fun provideStatisticsDao(database: AppDatabase): StatisticsDao {
+        return database.getStatisticsDao()
+    }
+
+    @Provides
+    fun provideTrainingJournal(database: AppDatabase): TrainingJournalDao {
+        return database.getTrainingJournalDao()
+    }
+
+    @Provides
+    fun provideQuoteDao(database: AppDatabase): QuoteDao {
+        return database.getQuoteDao()
+    }
+
+    @Provides
     fun providesLocalDataSource(
         statisticsDao: StatisticsDao,
         journalDao: TrainingJournalDao,
