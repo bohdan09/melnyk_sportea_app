@@ -12,7 +12,7 @@ import javax.inject.Singleton
 class ApiModule {
     @Provides
     @Singleton
-    fun provideRetrofit() : Retrofit{
+    fun provideRetrofit(): Retrofit {
         return Retrofit.Builder()
             .baseUrl(BuildConfig.QUOTES_URL)
             .addConverterFactory(GsonConverterFactory.create())
@@ -21,7 +21,8 @@ class ApiModule {
 
     @Provides
     @Singleton
-    fun provideApiServiceImpl(retrofit: Retrofit) : ApiService{
+    fun provideApiServiceImpl(retrofit: Retrofit): ApiService {
         return retrofit.create(ApiService::class.java)
     }
+
 }

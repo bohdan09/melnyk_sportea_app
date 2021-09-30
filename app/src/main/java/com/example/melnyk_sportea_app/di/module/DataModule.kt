@@ -1,7 +1,7 @@
 package com.example.melnyk_sportea_app.di.module
 
 import android.app.Application
-import com.example.melnyk_sportea_app.data.source.local.RoomLocalDataSource
+import com.example.melnyk_sportea_app.data.source.local.LocalDataSourceImpl
 import com.example.melnyk_sportea_app.db.firebase.CloudStorageHelper
 import com.example.melnyk_sportea_app.db.firebase.RealtimeDatabaseHelper
 import com.example.melnyk_sportea_app.db.room.dao.QuoteDao
@@ -37,8 +37,8 @@ class DataModule(private val application: Application) {
         statisticsDao: StatisticsDao,
         journalDao: TrainingJournalDao,
         quoteDao: QuoteDao
-    ): RoomLocalDataSource {
-        return RoomLocalDataSource(statisticsDao, quoteDao, journalDao)
+    ): LocalDataSourceImpl {
+        return LocalDataSourceImpl(statisticsDao, quoteDao, journalDao)
     }
 
     @Provides
