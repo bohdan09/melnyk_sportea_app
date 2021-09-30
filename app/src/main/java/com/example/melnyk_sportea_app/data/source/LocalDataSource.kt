@@ -22,5 +22,4 @@ interface LocalDataSource {
     fun getTrainingJournal(): List<TrainingJournal>
 
     suspend fun removeQuote(quote: Quote)
-
 }

@@ -3,6 +3,7 @@ package com.example.melnyk_sportea_app.di
 import com.example.melnyk_sportea_app.MainActivity
 import com.example.melnyk_sportea_app.di.module.ApiModule
 import com.example.melnyk_sportea_app.di.module.DataModule
+import com.example.melnyk_sportea_app.di.module.LocalDataSourceModule
 import com.example.melnyk_sportea_app.di.module.RemoteDataSourceModule
 import com.example.melnyk_sportea_app.navigation.fragments.home.HomeFragment
 import dagger.Component
@@ -13,7 +14,8 @@ import javax.inject.Singleton
     modules = [
         ApiModule::class,
         DataModule::class,
-        RemoteDataSourceModule::class
+        RemoteDataSourceModule::class,
+        LocalDataSourceModule::class
     ]
 )
 interface AppComponent {
