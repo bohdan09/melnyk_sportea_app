@@ -8,7 +8,7 @@ import com.example.melnyk_sportea_app.model.Quote
 import com.example.melnyk_sportea_app.model.Statistics
 import com.example.melnyk_sportea_app.model.TrainingJournal
 
-class RoomLocalDataSource(
+class LocalDataSourceImpl(
     private val statisticsDao: StatisticsDao,
     private val quoteDao: QuoteDao,
     private val trainingJournalDao: TrainingJournalDao
