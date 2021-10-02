@@ -3,6 +3,7 @@ package com.example.melnyk_sportea_app.di.module
 import com.example.melnyk_sportea_app.BuildConfig
 import com.example.melnyk_sportea_app.api.ApiService
 import com.example.melnyk_sportea_app.data.source.remote.RemoteDataSourceImpl
+import com.example.melnyk_sportea_app.repository.TrainingProgramsRepository
 import com.google.firebase.database.DatabaseReference
 import dagger.Module
 import dagger.Provides
@@ -33,5 +34,10 @@ class ApiModule {
         databaseReference: DatabaseReference
     ): RemoteDataSourceImpl {
         return RemoteDataSourceImpl(apiService, databaseReference)
+    }
+
+    @Provides
+    fun provideExerciseRepository(remoteDataSourceImpl: RemoteDataSourceImpl) : TrainingProgramsRepository{
+        return TrainingProgramsRepository(remoteDataSourceImpl)
     }
 }
