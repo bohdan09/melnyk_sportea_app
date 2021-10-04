@@ -22,4 +22,6 @@ interface LocalDataSource {
     fun getTrainingJournal(): List<TrainingJournal>
 
     suspend fun removeQuote(quote: Quote)
+
+    suspend fun getStatisticsRecordByName(name: String): Statistics
 }

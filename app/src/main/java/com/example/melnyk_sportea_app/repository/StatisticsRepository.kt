@@ -18,4 +18,7 @@ class StatisticsRepository(
     fun getAllStatisticsRecords(): List<Statistics> =
         localDataSourceImpl.getAllStatisticsRecords()
 
+    suspend fun getStatisticsRecordByName(name: String): Statistics {
+        return localDataSourceImpl.getStatisticsRecordByName(name)
+    }
 }
