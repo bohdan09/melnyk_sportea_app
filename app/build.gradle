@@ -42,9 +42,12 @@ android {
 def daggerVersion = "2.36"
 def room_version = "2.3.0"
 def nav_version = "2.3.5"
+def work_version = "2.3.4"
 
 dependencies {
 
+    // Kotlin + coroutines
+    implementation "androidx.work:work-runtime-ktx:$work_version"
 
     //material components
     // Kotlin

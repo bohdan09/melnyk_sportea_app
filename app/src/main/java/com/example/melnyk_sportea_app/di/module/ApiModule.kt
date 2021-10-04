@@ -1,5 +1,6 @@
 package com.example.melnyk_sportea_app.di.module
 
+import android.content.Context
 import com.example.melnyk_sportea_app.BuildConfig
 import com.example.melnyk_sportea_app.api.ApiService
 import com.example.melnyk_sportea_app.data.source.local.LocalDataSourceImpl
@@ -13,7 +14,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 @Module
-class ApiModule {
+class ApiModule(var context: Context) {
     @Provides
     @Singleton
     fun provideRetrofit(): Retrofit {
@@ -40,8 +41,9 @@ class ApiModule {
     @Provides
     fun provideQuotesRepository(
         remoteDataSourceImpl: RemoteDataSourceImpl,
-        localDataSourceImpl: LocalDataSourceImpl
+        localDataSourceImpl: LocalDataSourceImpl,
     ): QuotesRepository {
-        return QuotesRepository(remoteDataSourceImpl, localDataSourceImpl)
+        return QuotesRepository(remoteDataSourceImpl, localDataSourceImpl, context)
     }
+
 }
