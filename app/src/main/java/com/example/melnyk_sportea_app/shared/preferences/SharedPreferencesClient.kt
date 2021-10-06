@@ -21,6 +21,13 @@ class SharedPreferencesClient {
             .apply()
     }
 
+    fun saveBoolean(context: Context, key: String, value: Boolean) {
+        context.getSharedPreferences(PREF_KEY, Context.MODE_PRIVATE)
+            .edit()
+            .putBoolean(key, value)
+            .apply()
+    }
+
     fun saveString(context: Context, key: String, value: String) {
         context.getSharedPreferences(PREF_KEY, Context.MODE_PRIVATE)
             .edit()
@@ -48,6 +55,11 @@ class SharedPreferencesClient {
     fun getFloat(context: Context, key: String, defaultValue: Float): Float {
         return context.getSharedPreferences(PREF_KEY, Context.MODE_PRIVATE)
             .getFloat(key, defaultValue)
+    }
+
+    fun getBoolean(context: Context, key: String, defaultValue: Boolean): Boolean {
+        return context.getSharedPreferences(PREF_KEY, Context.MODE_PRIVATE)
+            .getBoolean(key, defaultValue)
     }
 
     fun getString(context: Context, key: String, defaultValue: String): String? {
