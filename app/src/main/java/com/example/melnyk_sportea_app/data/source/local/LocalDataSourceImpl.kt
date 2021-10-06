@@ -46,4 +46,8 @@ class LocalDataSourceImpl(
     override suspend fun removeQuote(quote: Quote) {
         quoteDao.removeQuote(quote)
     }
+
+    override suspend fun getStatisticsRecordByName(name: String): Statistics {
+        return statisticsDao.getStatisticsRecordByName(name)
+    }
 }
