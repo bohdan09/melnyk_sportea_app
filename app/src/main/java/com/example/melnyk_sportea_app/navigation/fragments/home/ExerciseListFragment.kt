@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import com.example.melnyk_sportea_app.R
 import com.example.melnyk_sportea_app.databinding.FragmentExerciseListBinding
@@ -33,7 +34,7 @@ class ExerciseListFragment : Fragment() {
     private fun setToolbar() {
         val toolbar = binding?.exercisesToolbar
         toolbar?.setNavigationOnClickListener{
-
+            findNavController().navigate(R.id.homeFragment)
         }
 
         toolbar?.setTitle(R.string.exercises_toolbar)

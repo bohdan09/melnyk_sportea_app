@@ -24,6 +24,9 @@
         <action
             android:id="@+id/action_exerciseListFragment_to_preparationFragment"
             app:destination="@id/preparationFragment" />
+        <action
+            android:id="@+id/action_exerciseListFragment_to_homeFragment2"
+            app:destination="@id/homeFragment2" />
     </fragment>
     <fragment
         android:id="@+id/finishTrainingFragment"
@@ -64,4 +67,8 @@
             android:id="@+id/action_trainingFragment_to_finishTrainingFragment"
             app:destination="@id/finishTrainingFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/homeFragment2"
+        android:name="com.example.melnyk_sportea_app.navigation.fragments.home.HomeFragment"
+        android:label="HomeFragment" />
 </navigation>
