@@ -24,12 +24,19 @@
         <action
             android:id="@+id/action_exerciseListFragment_to_preparationFragment"
             app:destination="@id/preparationFragment" />
+        <action
+            android:id="@+id/action_exerciseListFragment_to_homeFragment2"
+            app:destination="@id/homeFragment2" />
     </fragment>
     <fragment
         android:id="@+id/finishTrainingFragment"
         android:name="com.example.melnyk_sportea_app.navigation.fragments.home.FinishTrainingFragment"
         android:label="fragment_finish_training"
-        tools:layout="@layout/fragment_finish_training" />
+        tools:layout="@layout/fragment_finish_training" >
+        <action
+            android:id="@+id/action_finishTrainingFragment_to_exerciseListFragment"
+            app:destination="@id/exerciseListFragment" />
+    </fragment>
     <fragment
         android:id="@+id/preparationFragment"
         android:name="com.example.melnyk_sportea_app.navigation.fragments.home.PreparationFragment"
@@ -60,4 +67,8 @@
             android:id="@+id/action_trainingFragment_to_finishTrainingFragment"
             app:destination="@id/finishTrainingFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/homeFragment2"
+        android:name="com.example.melnyk_sportea_app.navigation.fragments.home.HomeFragment"
+        android:label="HomeFragment" />
 </navigation>
