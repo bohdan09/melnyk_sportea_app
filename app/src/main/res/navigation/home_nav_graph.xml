@@ -29,7 +29,11 @@
         android:id="@+id/finishTrainingFragment"
         android:name="com.example.melnyk_sportea_app.navigation.fragments.home.FinishTrainingFragment"
         android:label="fragment_finish_training"
-        tools:layout="@layout/fragment_finish_training" />
+        tools:layout="@layout/fragment_finish_training" >
+        <action
+            android:id="@+id/action_finishTrainingFragment_to_exerciseListFragment"
+            app:destination="@id/exerciseListFragment" />
+    </fragment>
     <fragment
         android:id="@+id/preparationFragment"
         android:name="com.example.melnyk_sportea_app.navigation.fragments.home.PreparationFragment"
