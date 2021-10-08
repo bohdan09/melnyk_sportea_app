@@ -6,6 +6,7 @@ import com.example.melnyk_sportea_app.api.ApiService
 import com.example.melnyk_sportea_app.data.source.local.LocalDataSourceImpl
 import com.example.melnyk_sportea_app.data.source.remote.RemoteDataSourceImpl
 import com.example.melnyk_sportea_app.repository.QuotesRepository
+import com.example.melnyk_sportea_app.repository.TrainingProgramsRepository
 import com.google.firebase.database.DatabaseReference
 import dagger.Module
 import dagger.Provides
@@ -44,6 +45,11 @@ class ApiModule(var context: Context) {
         localDataSourceImpl: LocalDataSourceImpl,
     ): QuotesRepository {
         return QuotesRepository(remoteDataSourceImpl, localDataSourceImpl, context)
+    }
+
+  @Provides
+    fun provideExerciseRepository(remoteDataSourceImpl: RemoteDataSourceImpl) : TrainingProgramsRepository{
+        return TrainingProgramsRepository(remoteDataSourceImpl)
     }
 
 }

@@ -18,4 +18,6 @@ interface StatisticsDao {
     @Query("SELECT * FROM $STATISTICS_TABLE_NAME")
     fun getAllStatisticsRecords(): List<Statistics>
 
+    @Query("SELECT * FROM $STATISTICS_TABLE_NAME WHERE name LIKE :name")
+    suspend fun getStatisticsRecordByName(name: String): Statistics
 }

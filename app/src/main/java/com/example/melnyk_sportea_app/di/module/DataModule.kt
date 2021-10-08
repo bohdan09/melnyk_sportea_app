@@ -8,6 +8,8 @@ import com.example.melnyk_sportea_app.db.room.dao.QuoteDao
 import com.example.melnyk_sportea_app.db.room.dao.StatisticsDao
 import com.example.melnyk_sportea_app.db.room.dao.TrainingJournalDao
 import com.example.melnyk_sportea_app.db.room.database.AppDatabase
+import com.example.melnyk_sportea_app.repository.StatisticsRepository
+import com.example.melnyk_sportea_app.shared.preferences.PreferencesClientImpl
 import com.example.melnyk_sportea_app.shared.preferences.SharedPreferencesClient
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.storage.StorageReference
@@ -58,5 +60,14 @@ class DataModule(private val application: Application) {
     @Provides
     fun provideCloudStorage(): StorageReference {
         return CloudStorageHelper.getCloudStorageInstance()
+    }
+
+    @Provides
+    fun provideStatisticsRepository(localDataSourceImpl: LocalDataSourceImpl) : StatisticsRepository{
+        return StatisticsRepository(localDataSourceImpl)
+        
+    @Provides
+    fun providePreferencesClientImpl(sharedPreferencesClient: SharedPreferencesClient): PreferencesClientImpl {
+        return PreferencesClientImpl(sharedPreferencesClient)
     }
 }
