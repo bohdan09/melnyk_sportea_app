@@ -1,8 +1,11 @@
 package com.example.melnyk_sportea_app.di.module
 
+import android.content.Context
 import com.example.melnyk_sportea_app.BuildConfig
 import com.example.melnyk_sportea_app.api.ApiService
+import com.example.melnyk_sportea_app.data.source.local.LocalDataSourceImpl
 import com.example.melnyk_sportea_app.data.source.remote.RemoteDataSourceImpl
+import com.example.melnyk_sportea_app.repository.QuotesRepository
 import com.example.melnyk_sportea_app.repository.TrainingProgramsRepository
 import com.google.firebase.database.DatabaseReference
 import dagger.Module
@@ -12,7 +15,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 @Module
-class ApiModule {
+class ApiModule(var context: Context) {
     @Provides
     @Singleton
     fun provideRetrofit(): Retrofit {
@@ -29,7 +32,7 @@ class ApiModule {
     }
 
     @Provides
-    fun provideRemoteDataSource(
+    fun provideRemoteDataSourceImpl(
         apiService: ApiService,
         databaseReference: DatabaseReference
     ): RemoteDataSourceImpl {
@@ -37,7 +40,16 @@ class ApiModule {
     }
 
     @Provides
+    fun provideQuotesRepository(
+        remoteDataSourceImpl: RemoteDataSourceImpl,
+        localDataSourceImpl: LocalDataSourceImpl,
+    ): QuotesRepository {
+        return QuotesRepository(remoteDataSourceImpl, localDataSourceImpl, context)
+    }
+
+  @Provides
     fun provideExerciseRepository(remoteDataSourceImpl: RemoteDataSourceImpl) : TrainingProgramsRepository{
         return TrainingProgramsRepository(remoteDataSourceImpl)
     }
+
 }
