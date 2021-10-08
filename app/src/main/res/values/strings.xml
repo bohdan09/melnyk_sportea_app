@@ -20,7 +20,10 @@
     <!--  Gender enum  -->
     <string name="female">Female</string>
     <string name="male">Male</string>
-
+    <!--  Program level enum  -->
+    <string name="newbie">Новичок</string>
+    <string name="amateur">Любитель</string>
+    <string name="professional">Профессионал</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

@@ -1,4 +1,4 @@
-package com.example.melnyk_sportea_app.navigation.fragments.home
+package com.example.melnyk_sportea_app.presentation.navigation.fragments.home
 
 import android.os.Bundle
 import android.view.*

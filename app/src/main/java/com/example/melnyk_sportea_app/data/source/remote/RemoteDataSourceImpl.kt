@@ -27,7 +27,7 @@ class RemoteDataSourceImpl(
         val valueEventListener = object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 for (i in snapshot.children) {
-                    trainingProgramList.add(snapshot.getValue(TrainingProgram::class.java)!!)
+                    trainingProgramList.add(i.getValue(TrainingProgram::class.java)!!)
                 }
                 mutableLiveData.value = trainingProgramList
             }
