@@ -17,6 +17,7 @@ import com.example.melnyk_sportea_app.data.source.remote.RemoteDataSourceImpl
 import com.example.melnyk_sportea_app.databinding.FragmentHomeBinding
 import com.example.melnyk_sportea_app.db.firebase.RealtimeDatabaseHelper
 import com.example.melnyk_sportea_app.model.TrainingProgram
+import com.example.melnyk_sportea_app.viewmodel.TrainingProgramFragmentViewModel
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -24,11 +25,14 @@ import com.google.firebase.database.ValueEventListener
 import javax.inject.Inject
 
 class HomeFragment : Fragment() {
+    @Inject
+    lateinit var trainingProgramFragmentViewModel: TrainingProgramFragmentViewModel
     private var binding: FragmentHomeBinding? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        (activity?.application as App).getAppComponent().inject(this)
         binding = FragmentHomeBinding.inflate(inflater)
         setToolbar()
         binding?.go?.setOnClickListener {
