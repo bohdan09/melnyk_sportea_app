@@ -1,6 +1,7 @@
 package com.example.melnyk_sportea_app.presentation.adapters
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -60,7 +61,7 @@ class TrainingProgramAdapter(var context: Context) :
     inner class LevelHolder(item: View) : RecyclerView.ViewHolder(item) {
         private val binding = ProgramLevelBinding.bind(item)
         fun bind(program: TrainingProgram) {
-            binding.textView.text = program.level?.name
+            binding.textView.text = context.resources.getString(program.level?.res!!)
         }
     }
 }

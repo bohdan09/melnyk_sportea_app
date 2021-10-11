@@ -5,33 +5,34 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.melnyk_sportea_app.App
 import com.example.melnyk_sportea_app.R
 import com.example.melnyk_sportea_app.databinding.FragmentHomeBinding
-import com.example.melnyk_sportea_app.model.Level
-import com.example.melnyk_sportea_app.model.Levels
 import com.example.melnyk_sportea_app.model.Programs
 import com.example.melnyk_sportea_app.model.TrainingProgram
 import com.example.melnyk_sportea_app.presentation.adapters.TrainingProgramAdapter
 import com.example.melnyk_sportea_app.viewmodel.TrainingProgramFragmentViewModel
 import com.google.gson.Gson
-import javax.inject.Inject
 
 class HomeFragment : Fragment() {
-    @Inject
-    lateinit var trainingProgramFragmentViewModel: TrainingProgramFragmentViewModel
+    private val model: TrainingProgramFragmentViewModel by activityViewModels {
+        (activity?.application as App).getAppComponent().trainingProgramFactory()
+    }
     private var binding: FragmentHomeBinding? = null
     private lateinit var adapter: TrainingProgramAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        (activity?.application as App).getAppComponent().inject(this)
         binding = FragmentHomeBinding.inflate(inflater)
         setToolbar()
         adapter = TrainingProgramAdapter(requireContext())
         setAdapters()
+        model.trainingProgramList.observe(viewLifecycleOwner) {
+            adapter.setProgramList(it)
+        }
 //        binding?.button?.setOnClickListener {
 //           // getData()
 //           // findNavController().navigate(R.id.action_homeFragment_to_home_nav_graph)
@@ -64,11 +65,10 @@ class HomeFragment : Fragment() {
         return json
     }
 
-    private fun getProgramList(): List<TrainingProgram>{
+    private fun getProgramList(): List<TrainingProgram> {
         val programs = Gson().fromJson(getJson("MockJson1.json"), Programs::class.java)
         return programs.programs
     }
-
 
 
 }
