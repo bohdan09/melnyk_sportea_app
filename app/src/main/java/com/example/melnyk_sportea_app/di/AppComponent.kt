@@ -3,6 +3,8 @@ package com.example.melnyk_sportea_app.di
 import com.example.melnyk_sportea_app.MainActivity
 import com.example.melnyk_sportea_app.di.module.ApiModule
 import com.example.melnyk_sportea_app.di.module.DataModule
+import com.example.melnyk_sportea_app.di.module.UseCaseModule
+import com.example.melnyk_sportea_app.di.module.ViewModelModule
 import com.example.melnyk_sportea_app.navigation.fragments.home.HomeFragment
 import com.example.melnyk_sportea_app.repository.PeriodicRequest
 import dagger.Component
@@ -12,7 +14,9 @@ import javax.inject.Singleton
 @Component(
     modules = [
         ApiModule::class,
-        DataModule::class
+        DataModule::class,
+        UseCaseModule::class,
+        ViewModelModule::class
     ]
 )
 interface AppComponent {
