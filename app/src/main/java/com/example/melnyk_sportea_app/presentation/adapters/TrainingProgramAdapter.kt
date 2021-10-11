@@ -1,7 +1,6 @@
 package com.example.melnyk_sportea_app.presentation.adapters
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +9,6 @@ import com.bumptech.glide.Glide
 import com.example.melnyk_sportea_app.R
 import com.example.melnyk_sportea_app.databinding.ProgramItemBinding
 import com.example.melnyk_sportea_app.databinding.ProgramLevelBinding
-import com.example.melnyk_sportea_app.model.Level
 import com.example.melnyk_sportea_app.model.TrainingProgram
 
 class TrainingProgramAdapter(var context: Context) :

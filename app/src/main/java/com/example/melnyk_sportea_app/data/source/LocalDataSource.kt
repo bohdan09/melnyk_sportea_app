@@ -1,8 +1,10 @@
 package com.example.melnyk_sportea_app.data.source
 
+import androidx.lifecycle.LiveData
 import com.example.melnyk_sportea_app.model.Quote
 import com.example.melnyk_sportea_app.model.Statistics
 import com.example.melnyk_sportea_app.model.TrainingJournal
+import com.example.melnyk_sportea_app.model.TrainingProgram
 
 interface LocalDataSource {
     suspend fun addStatisticsRecord(statisticsRecord: Statistics)
@@ -24,4 +26,8 @@ interface LocalDataSource {
     suspend fun removeQuote(quote: Quote)
 
     suspend fun getStatisticsRecordByName(name: String): Statistics
+
+    suspend fun addTrainingProgram(program : TrainingProgram)
+
+    fun getTrainingProgramLiveData(): LiveData<List<TrainingProgram>>
 }

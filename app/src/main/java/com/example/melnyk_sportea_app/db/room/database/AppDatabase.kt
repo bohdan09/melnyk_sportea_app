@@ -6,21 +6,26 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.example.melnyk_sportea_app.db.room.Constants.APP_DATABASE_NAME
-import com.example.melnyk_sportea_app.db.room.Converter
+import com.example.melnyk_sportea_app.db.room.ExerciseConverter
+import com.example.melnyk_sportea_app.db.room.MeasureConverter
+import com.example.melnyk_sportea_app.db.room.LevelConverter
 import com.example.melnyk_sportea_app.db.room.dao.QuoteDao
 import com.example.melnyk_sportea_app.db.room.dao.StatisticsDao
 import com.example.melnyk_sportea_app.db.room.dao.TrainingJournalDao
+import com.example.melnyk_sportea_app.db.room.dao.TrainingProgramDao
 import com.example.melnyk_sportea_app.model.Quote
 import com.example.melnyk_sportea_app.model.Statistics
 import com.example.melnyk_sportea_app.model.TrainingJournal
+import com.example.melnyk_sportea_app.model.TrainingProgram
 
-@Database(entities = [Statistics::class, Quote::class, TrainingJournal::class], version = 2)
-@TypeConverters(value = [Converter::class])
+@Database(entities = [Statistics::class, Quote::class, TrainingJournal::class, TrainingProgram::class], version = 2)
+@TypeConverters(value = [MeasureConverter::class, LevelConverter::class, ExerciseConverter::class])
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun getStatisticsDao(): StatisticsDao
     abstract fun getTrainingJournalDao(): TrainingJournalDao
     abstract fun getQuoteDao(): QuoteDao
+    abstract fun getTrainingProgramDao(): TrainingProgramDao
 
     companion object {
         private var databaseInstance: AppDatabase? = null

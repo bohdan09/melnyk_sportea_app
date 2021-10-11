@@ -7,6 +7,7 @@ import com.example.melnyk_sportea_app.db.firebase.RealtimeDatabaseHelper
 import com.example.melnyk_sportea_app.db.room.dao.QuoteDao
 import com.example.melnyk_sportea_app.db.room.dao.StatisticsDao
 import com.example.melnyk_sportea_app.db.room.dao.TrainingJournalDao
+import com.example.melnyk_sportea_app.db.room.dao.TrainingProgramDao
 import com.example.melnyk_sportea_app.db.room.database.AppDatabase
 import com.example.melnyk_sportea_app.repository.StatisticsRepository
 import com.example.melnyk_sportea_app.shared.preferences.PreferencesClientImpl
@@ -24,6 +25,11 @@ class DataModule(private val application: Application) {
     }
 
     @Provides
+    fun provideTrainingProgramDao(database: AppDatabase): TrainingProgramDao {
+        return database.getTrainingProgramDao()
+    }
+
+    @Provides
     fun provideTrainingJournal(database: AppDatabase): TrainingJournalDao {
         return database.getTrainingJournalDao()
     }
@@ -37,9 +43,10 @@ class DataModule(private val application: Application) {
     fun providesLocalDataSource(
         statisticsDao: StatisticsDao,
         journalDao: TrainingJournalDao,
-        quoteDao: QuoteDao
+        quoteDao: QuoteDao,
+        trainingProgramDao: TrainingProgramDao
     ): LocalDataSourceImpl {
-        return LocalDataSourceImpl(statisticsDao, quoteDao, journalDao)
+        return LocalDataSourceImpl(statisticsDao, quoteDao, journalDao, trainingProgramDao)
     }
 
     @Provides

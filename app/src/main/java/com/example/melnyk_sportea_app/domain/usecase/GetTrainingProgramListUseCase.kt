@@ -15,9 +15,9 @@ class GetTrainingProgramListUseCase(
 ) {
     fun execute(): LiveData<List<TrainingProgram>> {
         val connection = internetConnection.checkConnection(context)
-        return if (connection) {
-            remoteDataSourceImpl.getTrainingProgramList()
-        } else preferencesClientImpl.getTrainingProgramLiveData(context)
+        //return if (connection) {
+          return  remoteDataSourceImpl.getTrainingProgramList()
+        //} else preferencesClientImpl.getTrainingProgramLiveData(context)
     }
 
 
