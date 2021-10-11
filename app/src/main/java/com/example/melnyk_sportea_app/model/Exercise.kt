@@ -15,7 +15,6 @@ data class Exercise(
     val weight: Float? = null,
     val workTime: Long? = null,
     val restTime: Long? = null,
-    val difficulty: Difficulty? = null,
     val dayNum: Int? = null,
     val kcal: Int? = null,
 )

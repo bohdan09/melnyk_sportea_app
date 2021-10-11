@@ -6,7 +6,7 @@
     app:startDestination="@id/exerciseListFragment">
     <fragment
         android:id="@+id/exerciseDescriptionFragment"
-        android:name="com.example.melnyk_sportea_app.navigation.fragments.home.ExerciseDescriptionFragment"
+        android:name="com.example.melnyk_sportea_app.presentation.navigation.fragments.home.ExerciseDescriptionFragment"
         android:label="fragment_exercise_description"
         tools:layout="@layout/fragment_exercise_description" >
         <action
@@ -15,7 +15,7 @@
     </fragment>
     <fragment
         android:id="@+id/exerciseListFragment"
-        android:name="com.example.melnyk_sportea_app.navigation.fragments.home.ExerciseListFragment"
+        android:name="com.example.melnyk_sportea_app.presentation.navigation.fragments.home.ExerciseListFragment"
         android:label="fragment_exercise_list"
         tools:layout="@layout/fragment_exercise_list" >
         <action
@@ -30,7 +30,7 @@
     </fragment>
     <fragment
         android:id="@+id/finishTrainingFragment"
-        android:name="com.example.melnyk_sportea_app.navigation.fragments.home.FinishTrainingFragment"
+        android:name="com.example.melnyk_sportea_app.presentation.navigation.fragments.home.FinishTrainingFragment"
         android:label="fragment_finish_training"
         tools:layout="@layout/fragment_finish_training" >
         <action
@@ -39,7 +39,7 @@
     </fragment>
     <fragment
         android:id="@+id/preparationFragment"
-        android:name="com.example.melnyk_sportea_app.navigation.fragments.home.PreparationFragment"
+        android:name="com.example.melnyk_sportea_app.presentation.navigation.fragments.home.PreparationFragment"
         android:label="fragment_preparation"
         tools:layout="@layout/fragment_preparation" >
         <action
@@ -48,7 +48,7 @@
     </fragment>
     <fragment
         android:id="@+id/restFragment"
-        android:name="com.example.melnyk_sportea_app.navigation.fragments.home.RestFragment"
+        android:name="com.example.melnyk_sportea_app.presentation.navigation.fragments.home.RestFragment"
         android:label="fragment_rest"
         tools:layout="@layout/fragment_rest" >
         <action
@@ -57,7 +57,7 @@
     </fragment>
     <fragment
         android:id="@+id/trainingFragment"
-        android:name="com.example.melnyk_sportea_app.navigation.fragments.home.TrainingFragment"
+        android:name="com.example.melnyk_sportea_app.presentation.navigation.fragments.home.TrainingFragment"
         android:label="fragment_training"
         tools:layout="@layout/fragment_training" >
         <action
@@ -69,6 +69,6 @@
     </fragment>
     <fragment
         android:id="@+id/homeFragment2"
-        android:name="com.example.melnyk_sportea_app.navigation.fragments.home.HomeFragment"
+        android:name="com.example.melnyk_sportea_app.presentation.navigation.fragments.home.HomeFragment"
         android:label="HomeFragment" />
 </navigation>

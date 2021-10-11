@@ -6,7 +6,6 @@ import com.example.melnyk_sportea_app.di.DaggerAppComponent
 import com.example.melnyk_sportea_app.di.module.ApiModule
 import com.example.melnyk_sportea_app.di.module.DataModule
 import com.example.melnyk_sportea_app.di.module.UseCaseModule
-import com.example.melnyk_sportea_app.di.module.ViewModelModule
 
 class App : Application() {
     private lateinit var appComponent: AppComponent
@@ -17,7 +16,6 @@ class App : Application() {
             .dataModule(DataModule(this))
             .apiModule(ApiModule(this))
             .useCaseModule(UseCaseModule())
-            .viewModelModule(ViewModelModule())
             .build()
     }
 

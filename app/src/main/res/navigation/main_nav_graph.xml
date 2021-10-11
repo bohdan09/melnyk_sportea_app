@@ -11,7 +11,7 @@
 
     <fragment
         android:id="@+id/mapsFragment"
-        android:name="com.example.melnyk_sportea_app.navigation.fragments.maps.MapsFragment"
+        android:name="com.example.melnyk_sportea_app.presentation.navigation.fragments.maps.MapsFragment"
         android:label="MapsFragment" >
         <action
             android:id="@+id/action_mapsFragment_to_maps_nav_graph"
@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.melnyk_sportea_app.navigation.fragments.profile.ProfileFragment"
+        android:name="com.example.melnyk_sportea_app.presentation.navigation.fragments.profile.ProfileFragment"
         android:label="ProfileFragment" >
         <action
             android:id="@+id/action_profileFragment_to_profile_nav_graph"
@@ -27,7 +27,7 @@
     </fragment>
     <fragment
         android:id="@+id/statisticsFragment"
-        android:name="com.example.melnyk_sportea_app.navigation.fragments.statistics.StatisticsFragment"
+        android:name="com.example.melnyk_sportea_app.presentation.navigation.fragments.statistics.StatisticsFragment"
         android:label="StatisticsFragment" >
         <action
             android:id="@+id/action_statisticsFragment_to_statistics_nav_graph"
@@ -35,7 +35,7 @@
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.melnyk_sportea_app.navigation.fragments.home.HomeFragment"
+        android:name="com.example.melnyk_sportea_app.presentation.navigation.fragments.home.HomeFragment"
         android:label="HomeFragment" >
         <action
             android:id="@+id/action_homeFragment_to_home_nav_graph"

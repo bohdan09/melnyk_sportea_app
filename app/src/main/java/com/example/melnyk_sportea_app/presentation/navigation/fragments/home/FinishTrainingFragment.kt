@@ -1,20 +1,20 @@
-package com.example.melnyk_sportea_app.navigation.fragments.home
+package com.example.melnyk_sportea_app.presentation.navigation.fragments.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.melnyk_sportea_app.databinding.FragmentRestBinding
+import com.example.melnyk_sportea_app.databinding.FragmentFinishTrainingBinding
 
-class RestFragment : Fragment() {
-    private var binding: FragmentRestBinding? = null
+class FinishTrainingFragment : Fragment() {
+    private var binding: FragmentFinishTrainingBinding? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentRestBinding.inflate(inflater)
+        binding = FragmentFinishTrainingBinding.inflate(inflater)
         return binding?.root
     }
 

@@ -9,17 +9,19 @@
     <include
         android:id="@+id/tool_bar"
         layout="@layout/tool_bar"
-        tools:layout_editor_absoluteX="144dp"
-        tools:layout_editor_absoluteY="188dp"></include>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></include>
 
-    <Button
-        android:id="@+id/go"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="176dp"
-        android:layout_marginBottom="488dp"
-        android:text="Button"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/program_recycler"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tool_bar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
