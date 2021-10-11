@@ -3,6 +3,7 @@ package com.example.melnyk_sportea_app.di.module
 import android.content.Context
 import com.example.melnyk_sportea_app.BuildConfig
 import com.example.melnyk_sportea_app.api.ApiService
+import com.example.melnyk_sportea_app.api.InternetConnection
 import com.example.melnyk_sportea_app.data.source.local.LocalDataSourceImpl
 import com.example.melnyk_sportea_app.data.source.remote.RemoteDataSourceImpl
 import com.example.melnyk_sportea_app.repository.QuotesRepository
@@ -50,6 +51,11 @@ class ApiModule(var context: Context) {
   @Provides
     fun provideExerciseRepository(remoteDataSourceImpl: RemoteDataSourceImpl) : TrainingProgramsRepository{
         return TrainingProgramsRepository(remoteDataSourceImpl)
+    }
+
+    @Provides
+    fun provideInternetConnection() : InternetConnection{
+        return InternetConnection()
     }
 
 }

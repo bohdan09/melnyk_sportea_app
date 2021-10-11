@@ -65,10 +65,10 @@ class DataModule(private val application: Application) {
     @Provides
     fun provideStatisticsRepository(localDataSourceImpl: LocalDataSourceImpl): StatisticsRepository {
         return StatisticsRepository(localDataSourceImpl)
+    }
 
-        @Provides
-        fun providePreferencesClientImpl(sharedPreferencesClient: SharedPreferencesClient): PreferencesClientImpl {
-            return PreferencesClientImpl(sharedPreferencesClient)
-        }
+    @Provides
+    fun providePreferencesClientImpl(sharedPreferencesClient: SharedPreferencesClient): PreferencesClientImpl {
+        return PreferencesClientImpl(sharedPreferencesClient)
     }
 }
