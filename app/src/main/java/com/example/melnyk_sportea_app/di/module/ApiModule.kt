@@ -48,13 +48,22 @@ class ApiModule(var context: Context) {
         return QuotesRepository(remoteDataSourceImpl, localDataSourceImpl, context)
     }
 
-  @Provides
-    fun provideExerciseRepository(remoteDataSourceImpl: RemoteDataSourceImpl) : TrainingProgramsRepository{
-        return TrainingProgramsRepository(remoteDataSourceImpl)
+    @Provides
+    fun provideExerciseRepository(
+        remoteDataSourceImpl: RemoteDataSourceImpl,
+        localDataSourceImpl: LocalDataSourceImpl,
+        internetConnection: InternetConnection
+    ): TrainingProgramsRepository {
+        return TrainingProgramsRepository(
+            remoteDataSourceImpl,
+            localDataSourceImpl,
+            context,
+            internetConnection
+        )
     }
 
     @Provides
-    fun provideInternetConnection() : InternetConnection{
+    fun provideInternetConnection(): InternetConnection {
         return InternetConnection()
     }
 

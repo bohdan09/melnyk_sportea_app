@@ -7,25 +7,14 @@ import com.example.melnyk_sportea_app.api.InternetConnection
 import com.example.melnyk_sportea_app.data.source.local.LocalDataSourceImpl
 import com.example.melnyk_sportea_app.data.source.remote.RemoteDataSourceImpl
 import com.example.melnyk_sportea_app.model.TrainingProgram
+import com.example.melnyk_sportea_app.repository.TrainingProgramsRepository
 import com.example.melnyk_sportea_app.shared.preferences.PreferencesClientImpl
 
 class GetTrainingProgramListUseCase(
-    private val remoteDataSourceImpl: RemoteDataSourceImpl,
-    private val localDataSourceImpl: LocalDataSourceImpl,
-    private val context: Context,
-    private val internetConnection: InternetConnection
+    private val trainingProgramsRepository: TrainingProgramsRepository
 ) {
     fun execute(): LiveData<List<TrainingProgram>> {
-        val connection = internetConnection.checkConnection(context)
-        return if (connection) {
-            Log.d("TAG", "connect")
-            val programLiveData =remoteDataSourceImpl.getTrainingProgramList()
-            //cacheProgramsToDB(programLiveData)
-          return  programLiveData
-        } else{
-            Log.d("TAG", "disconnect")
-            localDataSourceImpl.getTrainingProgramLiveData()
-        }
+       return trainingProgramsRepository.getTrainingProgramList()
     }
 
 
