@@ -5,6 +5,7 @@ import com.example.melnyk_sportea_app.api.InternetConnection
 import com.example.melnyk_sportea_app.data.source.local.LocalDataSourceImpl
 import com.example.melnyk_sportea_app.data.source.remote.RemoteDataSourceImpl
 import com.example.melnyk_sportea_app.domain.usecase.CacheTrainingProgramToDbUseCase
+import com.example.melnyk_sportea_app.domain.usecase.CacheTrainingProgramUseCase
 import com.example.melnyk_sportea_app.domain.usecase.GetTrainingProgramListUseCase
 import com.example.melnyk_sportea_app.repository.TrainingProgramsRepository
 import dagger.Module
@@ -22,10 +23,10 @@ class UseCaseModule(val application: Application) {
     }
 
     @Provides
-    fun provideCacheTrainingProgramToDbUseCase(
-        localDataSourceImpl: LocalDataSourceImpl
-    ): CacheTrainingProgramToDbUseCase {
-        return CacheTrainingProgramToDbUseCase(localDataSourceImpl)
+    fun provideCacheTrainingProgramUseCase(
+        trainingProgramsRepository: TrainingProgramsRepository
+    ): CacheTrainingProgramUseCase {
+        return CacheTrainingProgramUseCase(trainingProgramsRepository)
     }
 
 }

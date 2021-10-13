@@ -20,10 +20,23 @@ class TrainingProgramsRepository(
             Log.d("TAG", "connect")
             val programLiveData =remoteDataSourceImpl.getTrainingProgramList()
             //cacheProgramsToDB(programLiveData)
-            programLiveData
+            //programLiveData
+            localDataSourceImpl.getTrainingProgramLiveData()
         } else{
             Log.d("TAG", "disconnect")
             localDataSourceImpl.getTrainingProgramLiveData()
         }
+
+
     }
+
+
+    suspend fun cache(list: List<TrainingProgram>){
+        for (i in list.indices){
+            Log.d("TAG", "Repository cache")
+            localDataSourceImpl.addTrainingProgram(list[i])
+        }
+    }
+
+
 }
