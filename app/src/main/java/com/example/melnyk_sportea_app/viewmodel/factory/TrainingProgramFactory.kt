@@ -1,7 +1,8 @@
-package com.example.melnyk_sportea_app.viewmodel
+package com.example.melnyk_sportea_app.viewmodel.factory
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.melnyk_sportea_app.viewmodel.TrainingProgramFragmentViewModel
 import javax.inject.Inject
 import javax.inject.Provider
 import javax.inject.Singleton

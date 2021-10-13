@@ -13,24 +13,15 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.melnyk_sportea_app.App
 import com.example.melnyk_sportea_app.R
-import com.example.melnyk_sportea_app.data.source.local.LocalDataSourceImpl
 import com.example.melnyk_sportea_app.databinding.FragmentHomeBinding
-import com.example.melnyk_sportea_app.model.Exercise
 import com.example.melnyk_sportea_app.model.TrainingProgram
-import com.example.melnyk_sportea_app.model.wrapper.Programs
 import com.example.melnyk_sportea_app.presentation.adapters.TrainingProgramAdapter
-import com.example.melnyk_sportea_app.utils.MuscleGroup
-import com.example.melnyk_sportea_app.utils.ProgramLevel
 import com.example.melnyk_sportea_app.viewmodel.TrainingProgramFragmentViewModel
-import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.*
-import javax.inject.Inject
 
 class HomeFragment : Fragment(), TrainingProgramAdapter.OnItemClickListener {
-//    @Inject
-//    lateinit var localDataSourceImpl: LocalDataSourceImpl
     private val model: TrainingProgramFragmentViewModel by activityViewModels {
         (activity?.application as App).getAppComponent().trainingProgramFactory()
     }
@@ -95,23 +86,22 @@ class HomeFragment : Fragment(), TrainingProgramAdapter.OnItemClickListener {
             EXERCISE_ARGUMENT,
             programList[position].exercises as ArrayList<out Parcelable>
         )
+
         findNavController().navigate(R.id.action_homeFragment_to_home_nav_graph, exerciseBundle)
     }
 
-    private fun cacheTrainingProgram(list: List<TrainingProgram>){
-        lifecycleScope.launch(Dispatchers.IO){
-            for (i in list.indices){
+    private fun cacheTrainingProgram(list: List<TrainingProgram>) {
+        lifecycleScope.launch(Dispatchers.IO) {
+            for (i in list.indices) {
                 Log.d("TAG", list.toString())
                 //localDataSourceImpl.addTrainingProgram(list[0])
                 model.cash(list)
             }
-        //
+            //
         }
     }
 
     companion object {
-        const val EXERCISE_ARGUMENT = "exercise"
+        const val EXERCISE_ARGUMENT = "exerciseList"
     }
-
-
 }
