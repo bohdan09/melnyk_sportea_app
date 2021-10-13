@@ -11,7 +11,7 @@ import com.example.melnyk_sportea_app.databinding.ProgramItemBinding
 import com.example.melnyk_sportea_app.databinding.ProgramLevelBinding
 import com.example.melnyk_sportea_app.model.TrainingProgram
 
-class TrainingProgramAdapter(var context: Context) :
+class TrainingProgramAdapter(var context: Context, var clickListener: OnItemClickListener) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val LEVEL = 0
@@ -21,10 +21,12 @@ class TrainingProgramAdapter(var context: Context) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return if (viewType == PROGRAM) {
-            val view = LayoutInflater.from(parent.context).inflate(R.layout.program_item, parent, false)
-            ProgramHolder(item = view)
+            val view =
+                LayoutInflater.from(parent.context).inflate(R.layout.program_item, parent, false)
+            ProgramHolder(item = view, clickListener)
         } else {
-            val view = LayoutInflater.from(parent.context).inflate(R.layout.program_level, parent, false)
+            val view =
+                LayoutInflater.from(parent.context).inflate(R.layout.program_level, parent, false)
             LevelHolder(view)
         }
 
@@ -44,15 +46,23 @@ class TrainingProgramAdapter(var context: Context) :
     }
 
     override fun getItemViewType(position: Int): Int {
-        return if (programList[position].level != null) { LEVEL } else PROGRAM
+        return if (programList[position].level != null) {
+            LEVEL
+        } else PROGRAM
     }
 
-    inner class ProgramHolder(item: View) : RecyclerView.ViewHolder(item) {
+    inner class ProgramHolder(var item: View, var clickListener: OnItemClickListener) :
+        RecyclerView.ViewHolder(item), View.OnClickListener {
         private val binding = ProgramItemBinding.bind(item)
         fun bind(program: TrainingProgram) {
+            item.setOnClickListener(this)
             binding.programNameTV.text = program.programName
             Glide.with(binding.imageView).load(program.imageUrl).centerCrop()
                 .into(binding.imageView)
+        }
+
+        override fun onClick(p0: View?) {
+            clickListener.onItemClick(adapterPosition)
         }
     }
 
@@ -61,5 +71,9 @@ class TrainingProgramAdapter(var context: Context) :
         fun bind(program: TrainingProgram) {
             binding.textView.text = context.resources.getString(program.level?.res!!)
         }
+    }
+
+    interface OnItemClickListener {
+        fun onItemClick(position: Int)
     }
 }
