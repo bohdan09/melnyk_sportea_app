@@ -6,7 +6,7 @@ import com.example.melnyk_sportea_app.di.module.DataModule
 import com.example.melnyk_sportea_app.di.module.UseCaseModule
 import com.example.melnyk_sportea_app.presentation.navigation.fragments.home.HomeFragment
 import com.example.melnyk_sportea_app.repository.PeriodicRequest
-import com.example.melnyk_sportea_app.viewmodel.TrainingProgramFactory
+import com.example.melnyk_sportea_app.viewmodel.factory.TrainingProgramFactory
 import com.example.melnyk_sportea_app.viewmodel.TrainingProgramFragmentViewModel
 import dagger.Component
 import javax.inject.Singleton

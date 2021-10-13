@@ -20,8 +20,8 @@ class TrainingProgramsRepository(
             Log.d("TAG", "connect")
             val programLiveData =remoteDataSourceImpl.getTrainingProgramList()
             //cacheProgramsToDB(programLiveData)
-            //programLiveData
-            localDataSourceImpl.getTrainingProgramLiveData()
+            programLiveData
+            //localDataSourceImpl.getTrainingProgramLiveData()
         } else{
             Log.d("TAG", "disconnect")
             localDataSourceImpl.getTrainingProgramLiveData()

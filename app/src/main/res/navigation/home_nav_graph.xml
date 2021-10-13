@@ -11,7 +11,10 @@
         tools:layout="@layout/fragment_exercise_description" >
         <action
             android:id="@+id/action_exerciseDescriptionFragment_to_exerciseListFragment"
-            app:destination="@id/exerciseListFragment" />
+            app:destination="@id/exerciseListFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:launchSingleTop="false"
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/exerciseListFragment"
@@ -20,13 +23,17 @@
         tools:layout="@layout/fragment_exercise_list" >
         <action
             android:id="@+id/action_exerciseListFragment_to_exerciseDescriptionFragment"
-            app:destination="@id/exerciseDescriptionFragment" />
+            app:destination="@id/exerciseDescriptionFragment"
+            app:enterAnim="@android:anim/slide_in_left" />
         <action
             android:id="@+id/action_exerciseListFragment_to_preparationFragment"
             app:destination="@id/preparationFragment" />
         <action
             android:id="@+id/action_exerciseListFragment_to_homeFragment2"
             app:destination="@id/homeFragment2" />
+        <argument
+            android:name="programList"
+            app:argType="com.example.melnyk_sportea_app.model.TrainingProgram[]" />
     </fragment>
     <fragment
         android:id="@+id/finishTrainingFragment"
