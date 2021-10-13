@@ -15,7 +15,7 @@ class App : Application() {
         appComponent = DaggerAppComponent.builder()
             .dataModule(DataModule(this))
             .apiModule(ApiModule(this))
-            .useCaseModule(UseCaseModule())
+            .useCaseModule(UseCaseModule(this))
             .build()
     }
 

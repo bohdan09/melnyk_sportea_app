@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.melnyk_sportea_app.App
 import com.example.melnyk_sportea_app.R
 import com.example.melnyk_sportea_app.databinding.FragmentHomeBinding
-import com.example.melnyk_sportea_app.model.Programs
+import com.example.melnyk_sportea_app.model.wrapper.Programs
 import com.example.melnyk_sportea_app.model.TrainingProgram
 import com.example.melnyk_sportea_app.presentation.adapters.TrainingProgramAdapter
 import com.example.melnyk_sportea_app.viewmodel.TrainingProgramFragmentViewModel

@@ -1,17 +1,21 @@
 package com.example.melnyk_sportea_app.data.source.local
 
+import androidx.lifecycle.LiveData
 import com.example.melnyk_sportea_app.data.source.LocalDataSource
 import com.example.melnyk_sportea_app.db.room.dao.QuoteDao
 import com.example.melnyk_sportea_app.db.room.dao.StatisticsDao
 import com.example.melnyk_sportea_app.db.room.dao.TrainingJournalDao
+import com.example.melnyk_sportea_app.db.room.dao.TrainingProgramDao
 import com.example.melnyk_sportea_app.model.Quote
 import com.example.melnyk_sportea_app.model.Statistics
 import com.example.melnyk_sportea_app.model.TrainingJournal
+import com.example.melnyk_sportea_app.model.TrainingProgram
 
 class LocalDataSourceImpl(
     private val statisticsDao: StatisticsDao,
     private val quoteDao: QuoteDao,
-    private val trainingJournalDao: TrainingJournalDao
+    private val trainingJournalDao: TrainingJournalDao,
+    private val trainingProgramDao: TrainingProgramDao
 ) : LocalDataSource {
     override suspend fun addStatisticsRecord(statisticsRecord: Statistics) {
         statisticsDao.addStatisticsRecord(statisticsRecord)
@@ -49,5 +53,13 @@ class LocalDataSourceImpl(
 
     override suspend fun getStatisticsRecordByName(name: String): Statistics {
         return statisticsDao.getStatisticsRecordByName(name)
+    }
+
+    override suspend fun addTrainingProgram(program: TrainingProgram) {
+        trainingProgramDao.addTrainingProgram(program)
+    }
+
+    override fun getTrainingProgramLiveData(): LiveData<List<TrainingProgram>> {
+        return trainingProgramDao.getTrainingProgramLiveData()
     }
 }

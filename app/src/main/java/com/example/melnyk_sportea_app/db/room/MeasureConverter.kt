@@ -4,7 +4,7 @@ import androidx.room.TypeConverter
 import com.example.melnyk_sportea_app.utils.Measure
 
 
-class Converter {
+class MeasureConverter {
     @TypeConverter
     fun toMeasure(value: String) = enumValueOf<Measure>(value)
 
