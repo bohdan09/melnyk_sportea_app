@@ -5,8 +5,8 @@ import com.example.melnyk_sportea_app.utils.ProgramLevel
 
 class LevelConverter {
     @TypeConverter
-    fun toProgramLevel(value: String) = enumValueOf<ProgramLevel>(value)
+    fun toProgramLevel(value: String?) = enumValueOf<ProgramLevel>(value!!)
 
     @TypeConverter
-    fun fromProgramLevel(value: ProgramLevel) = value.name
+    fun fromProgramLevel(value: ProgramLevel?) = value?.name
 }

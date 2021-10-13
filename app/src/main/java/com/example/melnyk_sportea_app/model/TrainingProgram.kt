@@ -12,5 +12,6 @@ data class TrainingProgram(
     val programName: String? = null,
     val imageUrl: String? = null,
     val level: ProgramLevel? = null,
-    val exercises: List<Exercise>? = null
+    val exercises: List<Exercise>? = null,
+    val updateVersion: Int? = null
 )

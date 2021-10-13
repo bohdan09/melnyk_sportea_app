@@ -2,6 +2,7 @@ package com.example.melnyk_sportea_app.presentation.navigation.fragments.home
 
 import android.os.Bundle
 import android.os.Parcelable
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.melnyk_sportea_app.App
 import com.example.melnyk_sportea_app.R
+import com.example.melnyk_sportea_app.data.source.local.LocalDataSourceImpl
 import com.example.melnyk_sportea_app.databinding.FragmentHomeBinding
 import com.example.melnyk_sportea_app.model.Exercise
 import com.example.melnyk_sportea_app.model.TrainingProgram
@@ -24,8 +26,11 @@ import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.*
+import javax.inject.Inject
 
 class HomeFragment : Fragment(), TrainingProgramAdapter.OnItemClickListener {
+//    @Inject
+//    lateinit var localDataSourceImpl: LocalDataSourceImpl
     private val model: TrainingProgramFragmentViewModel by activityViewModels {
         (activity?.application as App).getAppComponent().trainingProgramFactory()
     }
@@ -39,12 +44,9 @@ class HomeFragment : Fragment(), TrainingProgramAdapter.OnItemClickListener {
         binding = FragmentHomeBinding.inflate(inflater)
         init()
 
-//        val program = TrainingProgram(0, "asjkfdn", "", ProgramLevel.AMATEUR,
-//        listOf(Exercise(0, "afsd", MuscleGroup.ARMS, "", "safd",12,12,2.2F,1L, 3L,12,12)))
-//        lifecycleScope.launch(Dispatchers.IO){
-//
-//        }
         model.trainingProgramList.observe(viewLifecycleOwner) {
+            //cacheTrainingProgram(it)
+            Log.d("TAG", it.toString())
             adapter.setProgramList(it)
             programList = it
         }
@@ -94,6 +96,17 @@ class HomeFragment : Fragment(), TrainingProgramAdapter.OnItemClickListener {
             programList[position].exercises as ArrayList<out Parcelable>
         )
         findNavController().navigate(R.id.action_homeFragment_to_home_nav_graph, exerciseBundle)
+    }
+
+    private fun cacheTrainingProgram(list: List<TrainingProgram>){
+        lifecycleScope.launch(Dispatchers.IO){
+            for (i in list.indices){
+                Log.d("TAG", list.toString())
+                //localDataSourceImpl.addTrainingProgram(list[0])
+                model.cash(list)
+            }
+        //
+        }
     }
 
     companion object {
