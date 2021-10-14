@@ -3,12 +3,15 @@ package com.example.melnyk_sportea_app.presentation.navigation.fragments.home
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.melnyk_sportea_app.R
 import com.example.melnyk_sportea_app.databinding.FragmentExerciseListBinding
 import com.example.melnyk_sportea_app.model.Exercise
 import com.example.melnyk_sportea_app.presentation.adapters.ExerciseAdapter
+import kotlinx.android.synthetic.main.exercise_item.*
+import kotlinx.android.synthetic.main.program_item.*
 
 class ExerciseListFragment : Fragment(), ExerciseAdapter.OnItemClickListener {
     private var binding: FragmentExerciseListBinding? = null
@@ -46,7 +49,7 @@ class ExerciseListFragment : Fragment(), ExerciseAdapter.OnItemClickListener {
 
     override fun onItemClick(position: Int) {
         findNavController().navigate(
-            R.id.exerciseDescriptionFragment,
+            R.id.action_exerciseListFragment_to_exerciseDescriptionFragment,
             getExerciseListBundle(position)
         )
     }
@@ -54,7 +57,7 @@ class ExerciseListFragment : Fragment(), ExerciseAdapter.OnItemClickListener {
     private fun setToolbar() {
         val toolbar = binding?.exercisesToolbar
         toolbar?.setNavigationOnClickListener {
-            findNavController().navigate(R.id.homeFragment)
+            findNavController().navigate(R.id.action_exerciseListFragment_to_homeFragment)
         }
 
         toolbar?.setTitle(R.string.exercises_toolbar)

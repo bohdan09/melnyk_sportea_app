@@ -1,6 +1,8 @@
 package com.example.melnyk_sportea_app.presentation.navigation.fragments.home
 
+import android.animation.ObjectAnimator
 import android.os.Bundle
+import android.transition.TransitionInflater
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,11 +14,13 @@ import com.example.melnyk_sportea_app.model.Exercise
 
 class ExerciseDescriptionFragment : Fragment() {
     private var binding: FragmentExerciseDescriptionBinding? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentExerciseDescriptionBinding.inflate(inflater)
+        setAnimation()
         val exercise: Exercise = arguments?.getParcelable(ExerciseListFragment.EXERCISE)!!
         setExerciseItem(exercise)
         setToolbar()
@@ -39,7 +43,20 @@ class ExerciseDescriptionFragment : Fragment() {
     private fun setExerciseItem(exercise: Exercise) {
         binding?.descriptionTV?.text = exercise.description
         binding?.exerciseNameTV?.text = exercise.name
-        Glide.with(this).load(exercise.imageUrl).centerCrop().into(binding?.descriptionIV!!)
+        binding?.descriptionIV?.apply {
+            transitionName = exercise.imageUrl
+            Glide.with(this@ExerciseDescriptionFragment).load(exercise.imageUrl).centerCrop().into(this!!)
+        }
+
+    }
+
+    private fun setAnimation(){
+        ObjectAnimator.ofFloat(binding?.imageCardView, View.ALPHA, 0.0F, 1.0F).setDuration(1000).start()
+        ObjectAnimator.ofFloat(binding?.imageCardView, View.SCALE_X, 0F, 1F).setDuration(1000).start()
+        ObjectAnimator.ofFloat(binding?.imageCardView, View.SCALE_Y, 0F, 1F).setDuration(1000).start()
+
+        ObjectAnimator.ofFloat(binding?.exerciseNameTV, View.ALPHA, 0F, 1F).setDuration(1000).start()
+        ObjectAnimator.ofFloat(binding?.descriptionTV, View.ALPHA, 0F, 1F).setDuration(1000).start()
     }
 
 }
