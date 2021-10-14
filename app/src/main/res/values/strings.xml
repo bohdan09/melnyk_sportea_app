@@ -24,6 +24,8 @@
     <string name="newbie">Новичок</string>
     <string name="amateur">Любитель</string>
     <string name="professional">Профессионал</string>
+    <!--  Transaction names -->
+    <string name="exerciseTransactionName">exercise</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

@@ -87,7 +87,7 @@ class HomeFragment : Fragment(), TrainingProgramAdapter.OnItemClickListener {
             programList[position].exercises as ArrayList<out Parcelable>
         )
 
-        findNavController().navigate(R.id.action_homeFragment_to_home_nav_graph, exerciseBundle)
+        findNavController().navigate(R.id.action_homeFragment_to_exerciseListFragment, exerciseBundle)
     }
 
     private fun cacheTrainingProgram(list: List<TrainingProgram>) {
