@@ -26,6 +26,14 @@
     <string name="professional">Профессионал</string>
     <!--  Transaction names -->
     <string name="exerciseTransactionName">exercise</string>
+    <!--  Buttons -->
+    <string name="startTraining">Начать</string>
+    <!--  Training mode -->
+    <string name="preparing">Приготовьтесь</string>
+    <string name="pause">Пауза</string>
+    <string name="rest">ОТДЫХ</string>
+    <string name="next">СЛЕДУЮЩЕЕ</string>
+    <string name="done">Готово</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
