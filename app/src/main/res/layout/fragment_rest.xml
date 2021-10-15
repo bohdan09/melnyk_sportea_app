@@ -25,12 +25,10 @@
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="170dp"
         android:layout_height="170dp"
-        android:layout_marginTop="52dp"
         android:indeterminateOnly="false"
-        android:progress="0"
+        android:progress="100"
         android:progressDrawable="@drawable/circle"
         android:rotation="-90"
-        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -72,24 +70,28 @@
 
         <TextView
             android:id="@+id/nextExerciseTV"
+            android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="44dp"
             android:layout_marginEnd="10dp"
-            android:text="TextView"
+            android:text="sdhfasbfuasfcuisafbuiabdcuidabcjbadscjsdcb"
+            android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@+id/nextExerciseIV"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/nextTV" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/repeatesTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:text="TextView"
+            android:textColor="@color/gray"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/nextExerciseTV" />
 
@@ -102,5 +104,18 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/indexExerciseTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="10dp"
+            android:text="TextView"
+            android:textColor="@color/teal_700"
+            android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@+id/nextTV"
+            app:layout_constraintTop_toTopOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
