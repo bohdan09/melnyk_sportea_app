@@ -39,7 +39,11 @@
             app:destination="@id/exerciseDescriptionFragment2" />
         <action
             android:id="@+id/action_exerciseListFragment_to_preparationFragment"
-            app:destination="@id/preparationFragment" />
+            app:destination="@id/preparationFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
         <action
             android:id="@+id/action_exerciseListFragment_to_homeFragment"
             app:destination="@id/homeFragment"
@@ -64,7 +68,11 @@
         tools:layout="@layout/fragment_preparation" >
         <action
             android:id="@+id/action_preparationFragment_to_trainingFragment"
-            app:destination="@id/trainingFragment" />
+            app:destination="@id/trainingFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/trainingFragment"
@@ -73,7 +81,11 @@
         tools:layout="@layout/fragment_training" >
         <action
             android:id="@+id/action_trainingFragment_to_restFragment"
-            app:destination="@id/restFragment" />
+            app:destination="@id/restFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
         <action
             android:id="@+id/action_trainingFragment_to_finishTrainingFragment"
             app:destination="@id/finishTrainingFragment" />
@@ -85,10 +97,18 @@
         tools:layout="@layout/fragment_rest" >
         <action
             android:id="@+id/action_restFragment_to_trainingFragment"
-            app:destination="@id/trainingFragment" />
+            app:destination="@id/trainingFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
         <action
             android:id="@+id/action_restFragment_to_finishTrainingFragment"
-            app:destination="@id/finishTrainingFragment" />
+            app:destination="@id/finishTrainingFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/finishTrainingFragment"

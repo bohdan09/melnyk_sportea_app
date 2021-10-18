@@ -9,6 +9,7 @@ import com.bumptech.glide.Glide
 import com.example.melnyk_sportea_app.R
 import com.example.melnyk_sportea_app.databinding.ExerciseItemBinding
 import com.example.melnyk_sportea_app.model.Exercise
+import com.example.melnyk_sportea_app.utils.TimeFormatter
 
 class ExerciseAdapter(
     var context: Context,
@@ -16,6 +17,7 @@ class ExerciseAdapter(
 ) :
     RecyclerView.Adapter<ExerciseAdapter.Holder>() {
     private var exerciseList = listOf<Exercise>()
+    private val timeFormatter = TimeFormatter()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view =
@@ -37,7 +39,7 @@ class ExerciseAdapter(
         Glide.with(context).load(exercise.imageUrl).centerCrop().into(binding.exerciseIV)
         binding.exerciseNameTV.text = exercise.name
         if (exercise.repeats == 0) {
-            binding.measureTV.text = "00:${exercise.workTime}"
+            binding.measureTV.text = timeFormatter.getTime(exercise.workTime!!)
         } else binding.measureTV.text = "x${exercise.repeats}"
     }
 
