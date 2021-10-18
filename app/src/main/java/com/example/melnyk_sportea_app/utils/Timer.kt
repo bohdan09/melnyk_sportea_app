@@ -8,8 +8,9 @@ import android.widget.TextView
 class Timer {
     private lateinit var timer: CountDownTimer
     private val timeFormatter = TimeFormatter()
-    private var startStopTime = 0L
-    var isStopped = true
+    var startStopTime = 0L
+        private set
+    private var isStopped = true
 
     fun startTimer(
         time: Long,
@@ -23,12 +24,13 @@ class Timer {
         timer = object : CountDownTimer(startStopTime, 1000) {
             override fun onTick(tick: Long) {
                 startStopTime = tick
-                progressBar.progress = progressBar.progress - (100 / (time / 1000 % 60)).toInt()
+                progressBar.progress = progressBar.progress - (100 / ((time / 1000) % 60)).toInt()
                 updateTimer(timerText = timerText)
             }
 
             override fun onFinish() {
                 isStopped = true
+                progressBar.progress = 100
                 setFlag(isStopped)
             }
 
@@ -43,5 +45,9 @@ class Timer {
     fun pauseTimer() {
         isStopped = true
         timer.cancel()
+    }
+
+    fun resetTimer() {
+        startStopTime = 0L
     }
 }

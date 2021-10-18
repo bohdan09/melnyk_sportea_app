@@ -46,9 +46,15 @@ class TrainingFragment : Fragment() {
 
         startDoingExercises()
         workInRepeats()
+    }
 
-        //handleBackPress()
+    override fun onPause() {
+        super.onPause()
+        Log.d("TAG", "onPause:")
+    }
 
+    override fun onStart() {
+        super.onStart()
     }
 
     override fun onDestroy() {
@@ -84,7 +90,7 @@ class TrainingFragment : Fragment() {
             workInTime(exercise)
 
         } else {
-
+            Log.d("TAG", exerciseList.size.toString())
         }
     }
 
@@ -97,7 +103,7 @@ class TrainingFragment : Fragment() {
         }
         // if timer is finished rest fragment starts
         viewModel.isTimerFinished.observe(viewLifecycleOwner) {
-            if(it) {
+            if (it) {
                 startRestFragment(exerciseBundle = getExerciseBundle())
             }
         }
@@ -107,6 +113,11 @@ class TrainingFragment : Fragment() {
     private fun workInRepeats() {
         finishExerciseB.setOnClickListener {
             //startDoingExercises()
+            if (exerciseList[exerciseIndex].repeats == 0) {
+                timer.pauseTimer()
+                timer.resetTimer()
+            }
+            binding?.trainingPB?.progress = 100
             startRestFragment(exerciseBundle = getExerciseBundle())
         }
     }
@@ -120,12 +131,17 @@ class TrainingFragment : Fragment() {
         )
     }
 
+    private fun pauseTimer() {
+        timer.pauseTimer()
+    }
+
     private fun setFinishFlag(flag: Boolean) {
         viewModel.setFinishFlag(flag)
     }
 
     private fun getExerciseBundle(): Bundle {
         val bundle = Bundle()
+
         bundle.putInt(LIST_SIZE, exerciseList.size)
         bundle.putInt(INDEX, exerciseIndex + 1)
         bundle.putParcelable(
@@ -133,6 +149,7 @@ class TrainingFragment : Fragment() {
             exerciseList[exerciseIndex + 1]
         )
         exerciseIndex++
+
         return bundle
     }
 
