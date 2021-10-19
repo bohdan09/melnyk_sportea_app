@@ -21,7 +21,7 @@ interface LocalDataSource {
 
     fun getQuotes(): List<Quote>
 
-    fun getTrainingJournal(): List<TrainingJournal>
+    fun getTrainingJournalLiveData(): LiveData<List<TrainingJournal>>
 
     suspend fun removeQuote(quote: Quote)
 

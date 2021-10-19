@@ -34,6 +34,9 @@ class TrainingFragment : Fragment() {
     private var notificationBinding: ExpandNotificationBinding? = null
     private lateinit var exerciseList: List<Exercise>
     private var exerciseIndex = 0;
+    private val startTime = System.currentTimeMillis()
+    private var programId = 0
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -47,8 +50,7 @@ class TrainingFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        exerciseList =
-            arguments?.getParcelableArrayList<Exercise>(PreparationFragment.EXERCISES) as List<Exercise>
+        deriveBundle(bundle = requireArguments())
 
         startDoingExercises()
         workInRepeats()
@@ -117,16 +119,16 @@ class TrainingFragment : Fragment() {
 
     }
 
+    private fun deriveBundle(bundle: Bundle) {
+        exerciseList =
+            bundle.getParcelableArrayList<Exercise>(PreparationFragment.EXERCISES) as List<Exercise>
+        programId = bundle.getInt(PROGRAM_ID)
+    }
+
     private fun startDoingExercises() {
-        if (exerciseIndex < exerciseList.size) {
-
-            val exercise = exerciseList[exerciseIndex]
-            setExerciseInfo(index = exerciseIndex)
-            workInTime(exercise)
-
-        } else {
-            Log.d("TAG", exerciseList.size.toString())
-        }
+        val exercise = exerciseList[exerciseIndex]
+        setExerciseInfo(index = exerciseIndex)
+        workInTime(exercise)
     }
 
     //managing when exercise have workTime field
@@ -139,7 +141,9 @@ class TrainingFragment : Fragment() {
         // if timer is finished rest fragment starts
         viewModel.isTimerFinished.observe(viewLifecycleOwner) {
             if (it) {
-                startRestFragment(exerciseBundle = getExerciseBundle())
+                if (exerciseIndex >= exerciseList.size - 1) {
+                    trainingFinish()
+                } else startRestFragment(exerciseBundle = getExerciseBundle())
             }
         }
     }
@@ -148,7 +152,6 @@ class TrainingFragment : Fragment() {
     /////shit
     private fun workInRepeats() {
         pauseFinishB.setOnClickListener {
-            //startDoingExercises()
             val exercise = exerciseList[exerciseIndex]
             if (exercise.repeats == 0) {
                 pauseTimerWork()
@@ -156,9 +159,17 @@ class TrainingFragment : Fragment() {
                 //timer.resetTimer()
             } else {
                 binding?.trainingPB?.progress = 100
-                startRestFragment(exerciseBundle = getExerciseBundle())
+                if (exerciseIndex >= exerciseList.size - 1) {
+                    trainingFinish()
+                } else startRestFragment(exerciseBundle = getExerciseBundle())
             }
         }
+    }
+
+
+    private fun trainingFinish() {
+        val bundle = getTrainingResultBundle()
+        findNavController().navigate(R.id.action_trainingFragment_to_finishTrainingFragment, bundle)
     }
 
 
@@ -197,7 +208,6 @@ class TrainingFragment : Fragment() {
 
     private fun getExerciseBundle(): Bundle {
         val bundle = Bundle()
-
         bundle.putInt(LIST_SIZE, exerciseList.size)
         bundle.putInt(INDEX, exerciseIndex + 1)
         bundle.putParcelable(
@@ -210,7 +220,26 @@ class TrainingFragment : Fragment() {
     }
 
     private fun startRestFragment(exerciseBundle: Bundle) {
+
         findNavController().navigate(R.id.action_trainingFragment_to_restFragment, exerciseBundle)
+    }
+
+    private fun getTrainingResultBundle(): Bundle {
+        val bundle = Bundle()
+        bundle.putLong(CURRENT_DATE, System.currentTimeMillis())
+        bundle.putLong(DURATION, System.currentTimeMillis() - startTime)
+        bundle.putInt(PROGRAM_ID, programId)
+        bundle.putInt(EXERCISE_COUNT, exerciseList.size)
+        bundle.putInt(KCAL_COUNT, getGeneralKcal())
+        return bundle
+    }
+
+    fun getGeneralKcal(): Int {
+        var kcal = 0
+        for (i in exerciseList.indices) {
+            kcal += exerciseList[i].kcal!!
+        }
+        return kcal
     }
 
     private fun handleBackPress() {
@@ -242,6 +271,11 @@ class TrainingFragment : Fragment() {
         const val EXERCISE = "exercise"
         const val LIST_SIZE = "size"
         const val INDEX = "index"
+        const val CURRENT_DATE = "date"
+        const val DURATION = "duration"
+        const val PROGRAM_ID = "programId"
+        const val EXERCISE_COUNT = "exerciseCount"
+        const val KCAL_COUNT = "kcal"
     }
 }
 

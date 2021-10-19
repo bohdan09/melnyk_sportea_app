@@ -3,7 +3,6 @@ package com.example.melnyk_sportea_app.presentation.navigation.fragments.home
 import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.os.Parcelable
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -45,7 +44,7 @@ class PreparationFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         exerciseList =
-            arguments?.getParcelableArrayList<Exercise>(HomeFragment.EXERCISE_ARGUMENT) as List<Exercise>
+            arguments?.getParcelableArrayList<Exercise>(HomeFragment.EXERCISE_LIST) as List<Exercise>
 
         setExerciseInfo()
         val duration = (resources.getInteger(R.integer.preparationTimerDuration)).toLong()

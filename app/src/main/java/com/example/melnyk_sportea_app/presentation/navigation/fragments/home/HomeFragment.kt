@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.melnyk_sportea_app.App
@@ -17,8 +16,6 @@ import com.example.melnyk_sportea_app.databinding.FragmentHomeBinding
 import com.example.melnyk_sportea_app.model.TrainingProgram
 import com.example.melnyk_sportea_app.presentation.adapters.TrainingProgramAdapter
 import com.example.melnyk_sportea_app.viewmodel.TrainingProgramFragmentViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import java.util.*
 
 class HomeFragment : Fragment(), TrainingProgramAdapter.OnItemClickListener {
@@ -36,7 +33,6 @@ class HomeFragment : Fragment(), TrainingProgramAdapter.OnItemClickListener {
         init()
 
         model.trainingProgramList.observe(viewLifecycleOwner) {
-            //cacheTrainingProgram(it)
             Log.d("TAG", it.toString())
             adapter.setProgramList(it)
             programList = it
@@ -81,16 +77,18 @@ class HomeFragment : Fragment(), TrainingProgramAdapter.OnItemClickListener {
 //    }
 
     override fun onItemClick(position: Int) {
-        val exerciseBundle = Bundle()
-        exerciseBundle.putParcelableArrayList(
-            EXERCISE_ARGUMENT,
+        val bundle = Bundle()
+        bundle.putInt(PROGRAM_ID, programList[position].id!!)
+        bundle.putParcelableArrayList(
+            EXERCISE_LIST,
             programList[position].exercises as ArrayList<out Parcelable>
         )
 
-        findNavController().navigate(R.id.action_homeFragment_to_exerciseListFragment, exerciseBundle)
+        findNavController().navigate(R.id.action_homeFragment_to_exerciseListFragment, bundle)
     }
 
     companion object {
-        const val EXERCISE_ARGUMENT = "exerciseList"
+        const val EXERCISE_LIST = "exerciseList"
+        const val PROGRAM_ID = "programId"
     }
 }
