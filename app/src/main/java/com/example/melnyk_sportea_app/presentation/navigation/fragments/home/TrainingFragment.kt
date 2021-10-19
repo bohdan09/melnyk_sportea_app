@@ -36,6 +36,7 @@ class TrainingFragment : Fragment() {
     private var exerciseIndex = 0;
     private val startTime = System.currentTimeMillis()
     private var programId = 0
+    private var programName= ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -123,6 +124,7 @@ class TrainingFragment : Fragment() {
         exerciseList =
             bundle.getParcelableArrayList<Exercise>(PreparationFragment.EXERCISES) as List<Exercise>
         programId = bundle.getInt(PROGRAM_ID)
+        programName = bundle.getString(PROGRAM_NAME).toString()
     }
 
     private fun startDoingExercises() {
@@ -210,6 +212,7 @@ class TrainingFragment : Fragment() {
         val bundle = Bundle()
         bundle.putInt(LIST_SIZE, exerciseList.size)
         bundle.putInt(INDEX, exerciseIndex + 1)
+        bundle.putString(PROGRAM_NAME, programName)
         bundle.putParcelable(
             EXERCISE,
             exerciseList[exerciseIndex + 1]
@@ -229,6 +232,7 @@ class TrainingFragment : Fragment() {
         bundle.putLong(CURRENT_DATE, System.currentTimeMillis())
         bundle.putLong(DURATION, System.currentTimeMillis() - startTime)
         bundle.putInt(PROGRAM_ID, programId)
+        bundle.putString(PROGRAM_NAME, programName)
         bundle.putInt(EXERCISE_COUNT, exerciseList.size)
         bundle.putInt(KCAL_COUNT, getGeneralKcal())
         return bundle
@@ -276,6 +280,7 @@ class TrainingFragment : Fragment() {
         const val PROGRAM_ID = "programId"
         const val EXERCISE_COUNT = "exerciseCount"
         const val KCAL_COUNT = "kcal"
+        const val PROGRAM_NAME = "programName"
     }
 }
 

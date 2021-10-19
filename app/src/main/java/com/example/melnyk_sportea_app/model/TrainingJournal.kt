@@ -9,6 +9,7 @@ data class TrainingJournal(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
     val programId: Int,
+    val programName: String,
     val date: Long,
     val duration: Long,
     val kcal: Int

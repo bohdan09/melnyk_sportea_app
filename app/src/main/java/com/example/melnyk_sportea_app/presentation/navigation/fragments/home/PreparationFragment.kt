@@ -29,6 +29,8 @@ class PreparationFragment : Fragment() {
     private val viewModel: PreparationFragmentViewModel by activityViewModels()
     private var binding: FragmentPreparationBinding? = null
     private lateinit var exerciseList: List<Exercise>
+    private var programId = 0
+    private var programName = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,8 +45,7 @@ class PreparationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        exerciseList =
-            arguments?.getParcelableArrayList<Exercise>(HomeFragment.EXERCISE_LIST) as List<Exercise>
+        deriveBundle(requireArguments())
 
         setExerciseInfo()
         val duration = (resources.getInteger(R.integer.preparationTimerDuration)).toLong()
@@ -63,6 +64,13 @@ class PreparationFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         binding = null
+    }
+
+    private fun deriveBundle(bundle: Bundle) {
+        exerciseList =
+            bundle.getParcelableArrayList<Exercise>(HomeFragment.EXERCISE_LIST) as List<Exercise>
+        programId = bundle.getInt(PROGRAM_ID)
+        programName = bundle.getString(PROGRAM_NAME).toString()
     }
 
     private fun setExerciseInfo() {
@@ -89,6 +97,8 @@ class PreparationFragment : Fragment() {
 
     private fun getExerciseListBundle(): Bundle {
         val bundle = Bundle()
+        bundle.putInt(PROGRAM_ID, programId)
+        bundle.putString(PROGRAM_NAME, programName)
         bundle.putParcelableArrayList(
             EXERCISES,
             exerciseList as ArrayList<out Parcelable>
@@ -121,6 +131,8 @@ class PreparationFragment : Fragment() {
 
     companion object {
         const val EXERCISES = "exercisesList"
+        const val PROGRAM_ID = "programId"
+        const val PROGRAM_NAME = "programName"
     }
 }
 

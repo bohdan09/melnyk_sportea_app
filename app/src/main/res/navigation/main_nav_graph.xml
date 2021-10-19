@@ -15,7 +15,7 @@
         android:label="ProfileFragment" />
     <fragment
         android:id="@+id/statisticsFragment"
-        android:name="com.example.melnyk_sportea_app.presentation.navigation.fragments.statistics.StatisticsFragment"
+        android:name="com.example.melnyk_sportea_app.presentation.navigation.fragments.history.HistoryFragment"
         android:label="StatisticsFragment" />
     <fragment
         android:id="@+id/homeFragment"

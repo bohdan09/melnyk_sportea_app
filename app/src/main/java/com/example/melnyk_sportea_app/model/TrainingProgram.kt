@@ -15,15 +15,17 @@ data class TrainingProgram(
     val imageUrl: String? = null,
     var level: ProgramLevel? = null,
     val exercises: List<Exercise>? = null,
-    val updateVersion: Int? = null
-) : Parcelable {
+    val updateVersion: Int? = null,
+    val historyImageUrl: String? = null
+): Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readValue(Int::class.java.classLoader) as? Int,
         parcel.readString(),
         parcel.readString(),
         ProgramLevel.valueOf(parcel.readString()!!),
         parcel.createTypedArrayList(Exercise),
-        parcel.readValue(Int::class.java.classLoader) as? Int
+        parcel.readValue(Int::class.java.classLoader) as? Int,
+        parcel.readString()
     ) {
     }
 
@@ -33,6 +35,7 @@ data class TrainingProgram(
         parcel.writeString(imageUrl)
         parcel.writeTypedList(exercises)
         parcel.writeValue(updateVersion)
+        parcel.writeString(historyImageUrl)
     }
 
     override fun describeContents(): Int {
@@ -49,3 +52,39 @@ data class TrainingProgram(
         }
     }
 }
+
+
+//
+//
+//: Parcelable {
+//    constructor(parcel: Parcel) : this(
+//    parcel.readValue(Int::class.java.classLoader) as? Int,
+//    parcel.readString(),
+//    parcel.readString(),
+//    ProgramLevel.valueOf(parcel.readString()!!),
+//    parcel.createTypedArrayList(Exercise),
+//    parcel.readValue(Int::class.java.classLoader) as? Int
+//    ) {
+//    }
+//
+//    override fun writeToParcel(parcel: Parcel, flags: Int) {
+//        parcel.writeValue(id)
+//        parcel.writeString(programName)
+//        parcel.writeString(imageUrl)
+//        parcel.writeTypedList(exercises)
+//        parcel.writeValue(updateVersion)
+//    }
+//
+//    override fun describeContents(): Int {
+//        return 0
+//    }
+//
+//    companion object CREATOR : Parcelable.Creator<TrainingProgram> {
+//        override fun createFromParcel(parcel: Parcel): TrainingProgram {
+//            return TrainingProgram(parcel)
+//        }
+//
+//        override fun newArray(size: Int): Array<TrainingProgram?> {
+//            return arrayOfNulls(size)
+//        }
+//    }

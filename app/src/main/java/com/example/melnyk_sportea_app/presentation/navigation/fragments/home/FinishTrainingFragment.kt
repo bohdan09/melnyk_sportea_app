@@ -28,6 +28,7 @@ class FinishTrainingFragment : Fragment() {
     private var duration = 0L
     private var programId = 0
     private var currentDate = 0L
+    private var programName = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -56,6 +57,9 @@ class FinishTrainingFragment : Fragment() {
         currentDate = results.getLong(CURRENT_DATE)
         programId = results.getInt(PROGRAM_ID)
         kcalCount = results.getInt(KCAL_COUNT)
+        programName = results.getString(PROGRAM_NAME).toString()
+
+        Log.d("TAG", programId.toString() )
     }
 
     private fun setResultInformation() {
@@ -75,6 +79,7 @@ class FinishTrainingFragment : Fragment() {
         val training = TrainingJournal(
             id = 0,
             programId = programId,
+            programName = programName,
             date = currentDate,
             duration = duration,
             kcal = kcalCount
@@ -89,5 +94,6 @@ class FinishTrainingFragment : Fragment() {
         const val PROGRAM_ID = "programId"
         const val EXERCISE_COUNT = "exerciseCount"
         const val KCAL_COUNT = "kcal"
+        const val PROGRAM_NAME = "programName"
     }
 }
