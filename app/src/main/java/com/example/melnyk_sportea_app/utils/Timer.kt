@@ -10,7 +10,8 @@ class Timer {
     private val timeFormatter = TimeFormatter()
     var startStopTime = 0L
         private set
-    private var isStopped = true
+    var isStopped = true
+    private set
 
     fun startTimer(
         time: Long,
@@ -24,8 +25,12 @@ class Timer {
         timer = object : CountDownTimer(startStopTime, 1000) {
             override fun onTick(tick: Long) {
                 startStopTime = tick
-                progressBar.progress = progressBar.progress - (100 / ((time / 1000) % 60)).toInt()
+                if(tick < 1000) {
+                    progressBar.progress = 0
+                }else progressBar.progress = ((tick * 100) / time).toInt()
                 updateTimer(timerText = timerText)
+                //progressBar.progress - (100 / ((time / 1000) % 60)).toInt()
+
             }
 
             override fun onFinish() {

@@ -31,6 +31,7 @@
     <!--  Training mode -->
     <string name="preparing">Приготовьтесь</string>
     <string name="pause">Пауза</string>
+    <string name="continueB">Продолжить</string>
     <string name="rest">ОТДЫХ</string>
     <string name="next">СЛЕДУЮЩЕЕ</string>
     <string name="done">Готово</string>

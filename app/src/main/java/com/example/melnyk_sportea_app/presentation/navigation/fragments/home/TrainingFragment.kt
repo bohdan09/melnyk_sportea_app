@@ -46,15 +46,21 @@ class TrainingFragment : Fragment() {
 
         startDoingExercises()
         workInRepeats()
+        continueTimerWork()
     }
 
     override fun onPause() {
         super.onPause()
-        Log.d("TAG", "onPause:")
+        val exercise = exerciseList[exerciseIndex]
+        if(exercise.repeats == 0 && !timer.isStopped) {
+            Log.d("TAG", "onPause: ")
+            pauseTimerWork()
+        }
     }
 
-    override fun onStart() {
-        super.onStart()
+    override fun onStop() {
+        super.onStop()
+        Log.d("TAG", "onStop: ")
     }
 
     override fun onDestroy() {
@@ -71,11 +77,11 @@ class TrainingFragment : Fragment() {
             trainingNameTV.text = exercise.name
             timeRepeatsTV.text = if (exercise.repeats == 0) {
                 trainingPB.visibility = View.VISIBLE
-                finishExerciseB.text = resources.getString(R.string.pause)
+                pauseFinishB.text = resources.getString(R.string.pause)
                 exercise.workTime.toString()
             } else {
                 trainingPB.visibility = View.INVISIBLE
-                finishExerciseB.text = resources.getString(R.string.done)
+                pauseFinishB.text = resources.getString(R.string.done)
                 "x${exercise.repeats}"
             }
         }
@@ -110,15 +116,36 @@ class TrainingFragment : Fragment() {
     }
 
     //managing when exercise have repeats field
+    /////shit
     private fun workInRepeats() {
-        finishExerciseB.setOnClickListener {
+        pauseFinishB.setOnClickListener {
             //startDoingExercises()
-            if (exerciseList[exerciseIndex].repeats == 0) {
-                timer.pauseTimer()
-                timer.resetTimer()
+            val exercise = exerciseList[exerciseIndex]
+            if (exercise.repeats == 0) {
+                pauseTimerWork()
+               // timer.pauseTimer()
+                //timer.resetTimer()
+            }else {
+                binding?.trainingPB?.progress = 100
+                startRestFragment(exerciseBundle = getExerciseBundle())
             }
-            binding?.trainingPB?.progress = 100
-            startRestFragment(exerciseBundle = getExerciseBundle())
+        }
+    }
+
+
+    private fun pauseTimerWork(){
+        timer.pauseTimer()
+        pauseFinishB.visibility = View.GONE
+        startB.visibility = View.VISIBLE
+    }
+
+    //start work of timer after pause
+    private fun continueTimerWork(){
+        startB.setOnClickListener{
+            val exercise = exerciseList[exerciseIndex]
+            startTimer(exercise.workTime!!)
+            startB.visibility = View.GONE
+            pauseFinishB.visibility = View.VISIBLE
         }
     }
 
@@ -178,7 +205,7 @@ class TrainingFragment : Fragment() {
             .start()
         ObjectAnimator.ofFloat(binding?.trainingPB, View.SCALE_Y, 0F, 1F).setDuration(duration)
             .start()
-        ObjectAnimator.ofFloat(binding?.finishExerciseB, View.ALPHA, 0F, 1F).setDuration(duration)
+        ObjectAnimator.ofFloat(binding?.pauseFinishB, View.ALPHA, 0F, 1F).setDuration(duration)
             .start()
     }
 
