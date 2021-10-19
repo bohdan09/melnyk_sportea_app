@@ -29,6 +29,9 @@
             android:name=".repository.PeriodicRequest"
             android:exported="true"
             android:permission="android.permission.BIND_JOB_SERVICE" />
+        <service android:name=".service.TrainingService">
+
+        </service>
     </application>
 
 </manifest>
