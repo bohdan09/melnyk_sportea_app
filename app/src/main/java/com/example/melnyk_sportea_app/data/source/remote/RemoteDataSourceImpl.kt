@@ -4,18 +4,19 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.melnyk_sportea_app.api.ApiService
 import com.example.melnyk_sportea_app.data.source.RemoteDataSource
-import com.example.melnyk_sportea_app.model.Quote
 import com.example.melnyk_sportea_app.model.TrainingProgram
+import com.example.melnyk_sportea_app.model.wrapper.Quotes
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
+import io.reactivex.Observable
 
 class RemoteDataSourceImpl(
     private val apiService: ApiService,
     private val dbReference: DatabaseReference,
 ) : RemoteDataSource {
-    override suspend fun getQuotes(): List<Quote> {
+    override fun getQuotes(): Observable<Quotes> {
         return apiService.getQuotesList()
     }
 

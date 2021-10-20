@@ -1,17 +1,22 @@
 package com.example.melnyk_sportea_app
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.melnyk_sportea_app.databinding.ActivityMainBinding
+import com.example.melnyk_sportea_app.model.wrapper.Quotes
+import com.example.melnyk_sportea_app.mvp.MainPresenter
+import com.example.melnyk_sportea_app.mvp.MainViewInterface
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), MainViewInterface {
 
     private lateinit var binding: ActivityMainBinding
+    lateinit var mainPresenter: MainPresenter
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -22,6 +27,9 @@ class MainActivity : AppCompatActivity() {
 
         bottomNavigationViewVisibility(navigationController, bottomNavigationView)
         bottomNavigationView.setupWithNavController(navigationController)
+
+        setupMVP()
+        getQuotes()
     }
 
     private fun bottomNavigationViewVisibility(
@@ -45,6 +53,22 @@ class MainActivity : AppCompatActivity() {
 
     private fun hideBottomNavigationView(bottomNavigationView: BottomNavigationView) {
         bottomNavigationView.visibility = View.GONE
+    }
+
+    private fun setupMVP() {
+        mainPresenter = MainPresenter(this)
+    }
+
+    private fun getQuotes() {
+        mainPresenter.getQuotes()
+    }
+
+    override fun displayQuotes(quotes: Quotes) {
+        Log.d("TAG", quotes.toString())
+    }
+
+    override fun displayError(s: String?) {
+        Log.d("TAG", s!!)
     }
 
 
