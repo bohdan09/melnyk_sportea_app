@@ -6,9 +6,9 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/settingsIcon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/historyItem"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_margin="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,7 +23,7 @@
         android:layout_marginTop="20dp"
         android:textColor="@color/gray"
         android:textSize="11sp"
-        app:layout_constraintStart_toEndOf="@+id/settingsIcon"
+        app:layout_constraintStart_toEndOf="@+id/historyItem"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -31,12 +31,12 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="10dp"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/settingsIcon"
+        app:layout_constraintStart_toEndOf="@+id/historyItem"
         app:layout_constraintTop_toBottomOf="@+id/historyDate" />
 
     <ImageView
@@ -44,8 +44,8 @@
         android:layout_width="14dp"
         android:layout_height="14dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintStart_toEndOf="@+id/settingsIcon"
+        android:layout_marginTop="12dp"
+        app:layout_constraintStart_toEndOf="@+id/historyItem"
         app:layout_constraintTop_toBottomOf="@+id/programName"
         app:srcCompat="@drawable/time_icon" />
 
@@ -54,7 +54,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="12dp"
         android:textColor="@color/gray"
         android:textSize="11sp"
         app:layout_constraintStart_toEndOf="@+id/timeIV"
@@ -65,7 +65,7 @@
         android:layout_width="14dp"
         android:layout_height="14dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="12dp"
         app:layout_constraintStart_toEndOf="@+id/durationHistory"
         app:layout_constraintTop_toBottomOf="@+id/programName"
         app:srcCompat="@drawable/kcal_icon" />
@@ -75,7 +75,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="12dp"
         android:textColor="@color/gray"
         android:textSize="11sp"
         app:layout_constraintStart_toEndOf="@+id/kcalIV"
@@ -86,7 +86,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="2dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="12dp"
         android:text="@string/kcal"
         android:textColor="@color/gray"
         android:textSize="11sp"

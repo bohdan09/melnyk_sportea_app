@@ -21,7 +21,7 @@ class HistoryFragmentViewModel @Inject constructor(
     var trainingJournal: LiveData<List<TrainingJournal>> =
         getTrainingJournalLiveDataUseCase.execute()
 
-    var trainingProgram: LiveData<List<TrainingProgram>> = getTrainingProgramListUseCase.execute()
+//    var trainingProgram: LiveData<List<TrainingProgram>> = getTrainingProgramListUseCase.execute()
 
     fun clearHistory(){
         viewModelScope.launch(Dispatchers.IO){

@@ -1,4 +1,4 @@
-package com.example.melnyk_sportea_app.presentation.navigation.fragments.maps
+package com.example.melnyk_sportea_app.presentation.navigation.fragments.settings
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import com.example.melnyk_sportea_app.R
 import com.example.melnyk_sportea_app.databinding.FragmentMapsBinding
 
-class MapsFragment : Fragment() {
+class SettingsFragment : Fragment() {
     private var binding: FragmentMapsBinding? = null
 
     override fun onCreateView(

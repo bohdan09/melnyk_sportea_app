@@ -10,6 +10,7 @@ data class TrainingJournal(
     val id: Int,
     val programId: Int,
     val programName: String,
+    val imageUrl: String,
     val date: Long,
     val duration: Long,
     val kcal: Int

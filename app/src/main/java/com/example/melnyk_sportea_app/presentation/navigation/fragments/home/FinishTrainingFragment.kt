@@ -77,6 +77,7 @@ class FinishTrainingFragment : Fragment() {
             id = 0,
             programId = trainingProgram.id!!,
             programName = trainingProgram.programName!!,
+            imageUrl = trainingProgram.historyImageUrl!!,
             date = currentDate,
             duration = duration,
             kcal = kcalCount

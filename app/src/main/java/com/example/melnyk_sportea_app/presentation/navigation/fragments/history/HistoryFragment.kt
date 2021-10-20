@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.melnyk_sportea_app.App
 import com.example.melnyk_sportea_app.R
 import com.example.melnyk_sportea_app.databinding.FragmentHistoryBinding
-import com.example.melnyk_sportea_app.model.TrainingJournal
 import com.example.melnyk_sportea_app.presentation.adapters.HistoryAdapter
 import com.example.melnyk_sportea_app.viewmodel.HistoryFragmentViewModel
 
@@ -20,8 +19,7 @@ class HistoryFragment : Fragment() {
         (activity?.application as App).getAppComponent().historyFactory()
     }
     private var binding: FragmentHistoryBinding? = null
-    private val adapter = HistoryAdapter()
-    private val trainingJournalList = emptyList<TrainingJournal>()
+    private lateinit var adapter: HistoryAdapter
     private lateinit var toolbar: androidx.appcompat.widget.Toolbar
 
     override fun onCreateView(
@@ -29,6 +27,8 @@ class HistoryFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentHistoryBinding.inflate(inflater)
+        adapter = HistoryAdapter(requireContext())
+
         setToolbar()
         setAdapter()
         setTrainingJournalList()
@@ -47,7 +47,7 @@ class HistoryFragment : Fragment() {
     }
 
     private fun setToolbar() {
-        toolbar = binding?.historyToolbar!!
+        toolbar = binding?.toolBar?.toolBar!!
         toolbar.inflateMenu(R.menu.settings_menu)
         toolbar.setTitle(R.string.statistics_toolbar)
     }
@@ -73,12 +73,13 @@ class HistoryFragment : Fragment() {
         toolbar.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.clearHistory -> {
-                   clearHistory()
+                    clearHistory()
                     true
                 }
                 else -> false
             }
         }
     }
+
 
 }

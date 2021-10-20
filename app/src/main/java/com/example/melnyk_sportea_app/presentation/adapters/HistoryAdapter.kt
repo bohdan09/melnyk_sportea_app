@@ -1,15 +1,19 @@
 package com.example.melnyk_sportea_app.presentation.adapters
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.melnyk_sportea_app.R
 import com.example.melnyk_sportea_app.databinding.HistoryItemBinding
 import com.example.melnyk_sportea_app.model.TrainingJournal
 import com.example.melnyk_sportea_app.utils.TimeFormatter
 
-class HistoryAdapter : RecyclerView.Adapter<HistoryAdapter.Holder>() {
+class HistoryAdapter(
+    var context: Context
+) : RecyclerView.Adapter<HistoryAdapter.Holder>() {
     private var trainingJournal = listOf<TrainingJournal>()
     private val timeFormatter = TimeFormatter()
 
@@ -33,6 +37,7 @@ class HistoryAdapter : RecyclerView.Adapter<HistoryAdapter.Holder>() {
         val binding = HistoryItemBinding.bind(item)
         fun bind(training: TrainingJournal) {
             with(binding){
+                Glide.with(context).load(training.imageUrl).centerCrop().into(historyItem)
                 historyDate.text = timeFormatter.getDate(training.date)
                 programName.text = training.programName
                 durationHistory.text = timeFormatter.getTime(training.duration)

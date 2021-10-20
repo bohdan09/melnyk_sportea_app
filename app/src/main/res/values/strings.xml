@@ -7,8 +7,8 @@
     <!--  Navigation button name  -->
     <string name="home_name_button">Home</string>
     <string name="profile_name_button">Profile</string>
-    <string name="maps_name_button">Maps</string>
-    <string name="statistics_name_button">Statistics</string>
+    <string name="settings_name_button">Settings</string>
+    <string name="history_name_button">History</string>
     <!--  Toolbar name  -->
     <string name="home_toolbar">Home</string>
     <string name="profile_toolbar">Profile</string>
