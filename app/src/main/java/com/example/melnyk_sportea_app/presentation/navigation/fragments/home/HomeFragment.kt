@@ -78,8 +78,7 @@ class HomeFragment : Fragment(), TrainingProgramAdapter.OnItemClickListener {
 
     override fun onItemClick(position: Int) {
         val bundle = Bundle()
-        bundle.putInt(PROGRAM_ID, programList[position].id!!)
-        bundle.putString(PROGRAM_NAME, programList[position].programName.toString())
+        bundle.putParcelable(PROGRAM, programList[position])
         bundle.putParcelableArrayList(
             EXERCISE_LIST,
             programList[position].exercises as ArrayList<out Parcelable>
@@ -90,7 +89,6 @@ class HomeFragment : Fragment(), TrainingProgramAdapter.OnItemClickListener {
 
     companion object {
         const val EXERCISE_LIST = "exerciseList"
-        const val PROGRAM_ID = "programId"
-        const val PROGRAM_NAME = "programName"
+        const val PROGRAM = "program"
     }
 }

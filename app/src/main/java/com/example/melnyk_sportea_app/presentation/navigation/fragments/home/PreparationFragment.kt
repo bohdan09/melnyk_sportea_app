@@ -14,6 +14,7 @@ import com.example.melnyk_sportea_app.App
 import com.example.melnyk_sportea_app.R
 import com.example.melnyk_sportea_app.databinding.FragmentPreparationBinding
 import com.example.melnyk_sportea_app.model.Exercise
+import com.example.melnyk_sportea_app.model.TrainingProgram
 import com.example.melnyk_sportea_app.utils.Timer
 import com.example.melnyk_sportea_app.viewmodel.PreparationFragmentViewModel
 import kotlinx.android.synthetic.main.exercise_item.*
@@ -29,8 +30,7 @@ class PreparationFragment : Fragment() {
     private val viewModel: PreparationFragmentViewModel by activityViewModels()
     private var binding: FragmentPreparationBinding? = null
     private lateinit var exerciseList: List<Exercise>
-    private var programId = 0
-    private var programName = ""
+    private lateinit var trainingProgram : TrainingProgram
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -69,8 +69,7 @@ class PreparationFragment : Fragment() {
     private fun deriveBundle(bundle: Bundle) {
         exerciseList =
             bundle.getParcelableArrayList<Exercise>(HomeFragment.EXERCISE_LIST) as List<Exercise>
-        programId = bundle.getInt(PROGRAM_ID)
-        programName = bundle.getString(PROGRAM_NAME).toString()
+        trainingProgram = bundle.getParcelable(PROGRAM)!!
     }
 
     private fun setExerciseInfo() {
@@ -97,8 +96,7 @@ class PreparationFragment : Fragment() {
 
     private fun getExerciseListBundle(): Bundle {
         val bundle = Bundle()
-        bundle.putInt(PROGRAM_ID, programId)
-        bundle.putString(PROGRAM_NAME, programName)
+        bundle.putParcelable(PROGRAM, trainingProgram)
         bundle.putParcelableArrayList(
             EXERCISES,
             exerciseList as ArrayList<out Parcelable>
@@ -131,8 +129,7 @@ class PreparationFragment : Fragment() {
 
     companion object {
         const val EXERCISES = "exercisesList"
-        const val PROGRAM_ID = "programId"
-        const val PROGRAM_NAME = "programName"
+        const val PROGRAM = "program"
     }
 }
 
