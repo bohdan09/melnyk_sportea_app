@@ -11,12 +11,12 @@
         android:title="@string/profile_name_button" />
 
     <item
-        android:id="@+id/mapsFragment"
+        android:id="@+id/settingsFragment"
         android:icon="@drawable/maps_icon"
-        android:title="@string/maps_name_button" />
+        android:title="@string/settings_name_button" />
 
     <item
-        android:id="@+id/statisticsFragment"
+        android:id="@+id/historyFragment"
         android:icon="@drawable/statistics_icon"
-        android:title="@string/statistics_name_button" />
+        android:title="@string/history_name_button" />
 </menu>

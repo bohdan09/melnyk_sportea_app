@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/historyItem"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_margin="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_launcher_background" />
+
+    <TextView
+        android:id="@+id/historyDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/gray"
+        android:textSize="11sp"
+        app:layout_constraintStart_toEndOf="@+id/historyItem"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/programName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="10dp"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/historyItem"
+        app:layout_constraintTop_toBottomOf="@+id/historyDate" />
+
+    <ImageView
+        android:id="@+id/timeIV"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintStart_toEndOf="@+id/historyItem"
+        app:layout_constraintTop_toBottomOf="@+id/programName"
+        app:srcCompat="@drawable/time_icon" />
+
+    <TextView
+        android:id="@+id/durationHistory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="12dp"
+        android:textColor="@color/gray"
+        android:textSize="11sp"
+        app:layout_constraintStart_toEndOf="@+id/timeIV"
+        app:layout_constraintTop_toBottomOf="@+id/programName" />
+
+    <ImageView
+        android:id="@+id/kcalIV"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintStart_toEndOf="@+id/durationHistory"
+        app:layout_constraintTop_toBottomOf="@+id/programName"
+        app:srcCompat="@drawable/kcal_icon" />
+
+    <TextView
+        android:id="@+id/kcalHistory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="12dp"
+        android:textColor="@color/gray"
+        android:textSize="11sp"
+        app:layout_constraintStart_toEndOf="@+id/kcalIV"
+        app:layout_constraintTop_toBottomOf="@+id/programName" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="12dp"
+        android:text="@string/kcal"
+        android:textColor="@color/gray"
+        android:textSize="11sp"
+        app:layout_constraintStart_toEndOf="@+id/kcalHistory"
+        app:layout_constraintTop_toBottomOf="@+id/programName" />
+</androidx.constraintlayout.widget.ConstraintLayout>

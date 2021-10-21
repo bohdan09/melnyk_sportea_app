@@ -2,6 +2,7 @@ package com.example.melnyk_sportea_app.di.module
 
 import android.app.Application
 import com.example.melnyk_sportea_app.domain.usecase.AddTrainingUseCase
+import com.example.melnyk_sportea_app.domain.usecase.ClearTrainingJournalUseCase
 import com.example.melnyk_sportea_app.domain.usecase.GetTrainingJournalLiveDataUseCase
 import com.example.melnyk_sportea_app.domain.usecase.GetTrainingProgramListUseCase
 import com.example.melnyk_sportea_app.repository.TrainingJournalRepository
@@ -30,6 +31,13 @@ class UseCaseModule(val application: Application) {
         trainingJournalRepository: TrainingJournalRepository
     ): AddTrainingUseCase {
         return AddTrainingUseCase(trainingJournalRepository)
+    }
+
+    @Provides
+    fun provideClearTrainingJournalUseCase(
+        trainingJournalRepository: TrainingJournalRepository
+    ): ClearTrainingJournalUseCase {
+        return ClearTrainingJournalUseCase(trainingJournalRepository)
     }
 
 }

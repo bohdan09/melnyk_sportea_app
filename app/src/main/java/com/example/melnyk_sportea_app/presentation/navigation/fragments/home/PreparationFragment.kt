@@ -14,6 +14,7 @@ import com.example.melnyk_sportea_app.App
 import com.example.melnyk_sportea_app.R
 import com.example.melnyk_sportea_app.databinding.FragmentPreparationBinding
 import com.example.melnyk_sportea_app.model.Exercise
+import com.example.melnyk_sportea_app.model.TrainingProgram
 import com.example.melnyk_sportea_app.utils.Timer
 import com.example.melnyk_sportea_app.viewmodel.PreparationFragmentViewModel
 import kotlinx.android.synthetic.main.exercise_item.*
@@ -29,6 +30,7 @@ class PreparationFragment : Fragment() {
     private val viewModel: PreparationFragmentViewModel by activityViewModels()
     private var binding: FragmentPreparationBinding? = null
     private lateinit var exerciseList: List<Exercise>
+    private lateinit var trainingProgram : TrainingProgram
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,8 +45,7 @@ class PreparationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        exerciseList =
-            arguments?.getParcelableArrayList<Exercise>(HomeFragment.EXERCISE_LIST) as List<Exercise>
+        deriveBundle(requireArguments())
 
         setExerciseInfo()
         val duration = (resources.getInteger(R.integer.preparationTimerDuration)).toLong()
@@ -63,6 +64,12 @@ class PreparationFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         binding = null
+    }
+
+    private fun deriveBundle(bundle: Bundle) {
+        exerciseList =
+            bundle.getParcelableArrayList<Exercise>(HomeFragment.EXERCISE_LIST) as List<Exercise>
+        trainingProgram = bundle.getParcelable(PROGRAM)!!
     }
 
     private fun setExerciseInfo() {
@@ -89,6 +96,7 @@ class PreparationFragment : Fragment() {
 
     private fun getExerciseListBundle(): Bundle {
         val bundle = Bundle()
+        bundle.putParcelable(PROGRAM, trainingProgram)
         bundle.putParcelableArrayList(
             EXERCISES,
             exerciseList as ArrayList<out Parcelable>
@@ -121,6 +129,7 @@ class PreparationFragment : Fragment() {
 
     companion object {
         const val EXERCISES = "exercisesList"
+        const val PROGRAM = "program"
     }
 }
 

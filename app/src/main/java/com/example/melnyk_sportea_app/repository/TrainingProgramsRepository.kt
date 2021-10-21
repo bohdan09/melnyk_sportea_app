@@ -17,26 +17,35 @@ class TrainingProgramsRepository(
     fun getTrainingProgramList(): LiveData<List<TrainingProgram>> {
         val connection = internetConnection.checkConnection(context)
         return if (connection) {
-            Log.d("TAG", "connect")
-            val programLiveData =remoteDataSourceImpl.getTrainingProgramList()
-            //cacheProgramsToDB(programLiveData)
-            programLiveData
-            //localDataSourceImpl.getTrainingProgramLiveData()
+            remoteDataSourceImpl.getTrainingProgramList()
         } else{
             Log.d("TAG", "disconnect")
             localDataSourceImpl.getTrainingProgramLiveData()
         }
-
-
     }
 
-
-    suspend fun cache(list: List<TrainingProgram>){
-        for (i in list.indices){
-            Log.d("TAG", "Repository cache")
-            localDataSourceImpl.addTrainingProgram(list[i])
-        }
-    }
+//    private suspend fun chooseDataSource() : LiveData<List<TrainingProgram>>{
+//        return if(checkProgramsAvailability()){
+//            localDataSourceImpl.getTrainingProgramLiveData()
+//        }else {
+//            val programs = remoteDataSourceImpl.getTrainingProgramList().value
+//            cacheProgramsToDB(programList = programs)
+//            localDataSourceImpl.getTrainingProgramLiveData()
+//        }
+//    }
+//
+//    private fun checkProgramsAvailability() : Boolean{
+//        val programs = localDataSourceImpl.getTrainingProgramLiveData().value
+//        return programs != null
+//    }
+//
+//
+//    suspend fun cacheProgramsToDB(programList: List<TrainingProgram>){
+//        for (i in programList.indices){
+//            Log.d("TAG", "Repository cache")
+//            localDataSourceImpl.addTrainingProgram(programList[i])
+//        }
+//    }
 
 
 }

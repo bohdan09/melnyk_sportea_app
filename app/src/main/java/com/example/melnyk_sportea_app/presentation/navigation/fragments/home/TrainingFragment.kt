@@ -19,6 +19,7 @@ import com.example.melnyk_sportea_app.R
 import com.example.melnyk_sportea_app.databinding.ExpandNotificationBinding
 import com.example.melnyk_sportea_app.databinding.FragmentTrainingBinding
 import com.example.melnyk_sportea_app.model.Exercise
+import com.example.melnyk_sportea_app.model.TrainingProgram
 import com.example.melnyk_sportea_app.service.TrainingService
 import com.example.melnyk_sportea_app.utils.Timer
 import com.example.melnyk_sportea_app.viewmodel.TrainingFragmentViewModel
@@ -35,7 +36,7 @@ class TrainingFragment : Fragment() {
     private lateinit var exerciseList: List<Exercise>
     private var exerciseIndex = 0;
     private val startTime = System.currentTimeMillis()
-    private var programId = 0
+    private lateinit var trainingProgram : TrainingProgram
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -122,7 +123,7 @@ class TrainingFragment : Fragment() {
     private fun deriveBundle(bundle: Bundle) {
         exerciseList =
             bundle.getParcelableArrayList<Exercise>(PreparationFragment.EXERCISES) as List<Exercise>
-        programId = bundle.getInt(PROGRAM_ID)
+        trainingProgram = bundle.getParcelable(PROGRAM)!!
     }
 
     private fun startDoingExercises() {
@@ -228,7 +229,7 @@ class TrainingFragment : Fragment() {
         val bundle = Bundle()
         bundle.putLong(CURRENT_DATE, System.currentTimeMillis())
         bundle.putLong(DURATION, System.currentTimeMillis() - startTime)
-        bundle.putInt(PROGRAM_ID, programId)
+        bundle.putParcelable(PROGRAM, trainingProgram)
         bundle.putInt(EXERCISE_COUNT, exerciseList.size)
         bundle.putInt(KCAL_COUNT, getGeneralKcal())
         return bundle
@@ -273,9 +274,9 @@ class TrainingFragment : Fragment() {
         const val INDEX = "index"
         const val CURRENT_DATE = "date"
         const val DURATION = "duration"
-        const val PROGRAM_ID = "programId"
         const val EXERCISE_COUNT = "exerciseCount"
         const val KCAL_COUNT = "kcal"
+        const val PROGRAM = "program"
     }
 }
 

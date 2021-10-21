@@ -13,6 +13,7 @@ import com.example.melnyk_sportea_app.App
 import com.example.melnyk_sportea_app.R
 import com.example.melnyk_sportea_app.databinding.FragmentFinishTrainingBinding
 import com.example.melnyk_sportea_app.model.TrainingJournal
+import com.example.melnyk_sportea_app.model.TrainingProgram
 import com.example.melnyk_sportea_app.utils.TimeFormatter
 import com.example.melnyk_sportea_app.viewmodel.FinishFragmentViewModel
 import kotlinx.android.synthetic.main.fragment_finish_training.*
@@ -26,8 +27,8 @@ class FinishTrainingFragment : Fragment() {
     private var exerciseCount = 0
     private var kcalCount = 0
     private var duration = 0L
-    private var programId = 0
     private var currentDate = 0L
+    private lateinit var trainingProgram: TrainingProgram
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,7 +55,7 @@ class FinishTrainingFragment : Fragment() {
         exerciseCount = results.getInt(EXERCISE_COUNT)
         duration = results.getLong(DURATION)
         currentDate = results.getLong(CURRENT_DATE)
-        programId = results.getInt(PROGRAM_ID)
+        trainingProgram = results.getParcelable(PROGRAM)!!
         kcalCount = results.getInt(KCAL_COUNT)
     }
 
@@ -74,7 +75,9 @@ class FinishTrainingFragment : Fragment() {
     private fun saveTraining() {
         val training = TrainingJournal(
             id = 0,
-            programId = programId,
+            programId = trainingProgram.id!!,
+            programName = trainingProgram.programName!!,
+            imageUrl = trainingProgram.historyImageUrl!!,
             date = currentDate,
             duration = duration,
             kcal = kcalCount
@@ -86,8 +89,8 @@ class FinishTrainingFragment : Fragment() {
     companion object {
         const val CURRENT_DATE = "date"
         const val DURATION = "duration"
-        const val PROGRAM_ID = "programId"
         const val EXERCISE_COUNT = "exerciseCount"
         const val KCAL_COUNT = "kcal"
+        const val PROGRAM = "program"
     }
 }

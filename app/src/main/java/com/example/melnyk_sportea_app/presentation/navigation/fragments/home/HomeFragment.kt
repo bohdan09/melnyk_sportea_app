@@ -2,7 +2,6 @@ package com.example.melnyk_sportea_app.presentation.navigation.fragments.home
 
 import android.os.Bundle
 import android.os.Parcelable
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,8 +31,7 @@ class HomeFragment : Fragment(), TrainingProgramAdapter.OnItemClickListener {
         binding = FragmentHomeBinding.inflate(inflater)
         init()
 
-        model.trainingProgramList.observe(viewLifecycleOwner) {
-            Log.d("TAG", it.toString())
+        model.trainingProgramList?.observe(viewLifecycleOwner) {
             adapter.setProgramList(it)
             programList = it
         }
@@ -56,12 +54,11 @@ class HomeFragment : Fragment(), TrainingProgramAdapter.OnItemClickListener {
         toolbar?.setTitle(R.string.home_toolbar)
     }
 
-    fun setAdapters() {
+    private fun setAdapters() {
         binding?.programRecycler?.layoutManager = LinearLayoutManager(requireContext())
         binding?.programRecycler?.adapter = adapter
-
-        //adapter.setProgramList(getProgramList())
     }
+
 //
 //    private fun getJson(jsonName: String): String {
 //        val inputStream = activity?.assets?.open(jsonName)
@@ -78,7 +75,7 @@ class HomeFragment : Fragment(), TrainingProgramAdapter.OnItemClickListener {
 
     override fun onItemClick(position: Int) {
         val bundle = Bundle()
-        bundle.putInt(PROGRAM_ID, programList[position].id!!)
+        bundle.putParcelable(PROGRAM, programList[position])
         bundle.putParcelableArrayList(
             EXERCISE_LIST,
             programList[position].exercises as ArrayList<out Parcelable>
@@ -89,6 +86,6 @@ class HomeFragment : Fragment(), TrainingProgramAdapter.OnItemClickListener {
 
     companion object {
         const val EXERCISE_LIST = "exerciseList"
-        const val PROGRAM_ID = "programId"
+        const val PROGRAM = "program"
     }
 }

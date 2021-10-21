@@ -2,6 +2,7 @@ package com.example.melnyk_sportea_app.presentation.navigation.fragments.home
 
 import android.os.Bundle
 import android.os.Parcelable
+import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -9,31 +10,24 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.melnyk_sportea_app.R
 import com.example.melnyk_sportea_app.databinding.FragmentExerciseListBinding
 import com.example.melnyk_sportea_app.model.Exercise
+import com.example.melnyk_sportea_app.model.TrainingProgram
 import com.example.melnyk_sportea_app.presentation.adapters.ExerciseAdapter
 
 class ExerciseListFragment : Fragment(), ExerciseAdapter.OnItemClickListener {
     private var binding: FragmentExerciseListBinding? = null
     private lateinit var adapter: ExerciseAdapter
     private lateinit var exerciseList: List<Exercise>
-    private var programId = 0
+    private lateinit var trainingProgram : TrainingProgram
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentExerciseListBinding.inflate(inflater)
         init()
-        programId = arguments?.getInt(PROGRAM_ID, 0)!!
-        exerciseList =
-            arguments?.getParcelableArrayList<Exercise>(HomeFragment.EXERCISE_LIST) as List<Exercise>
-
+        deriveBundle(requireArguments())
         setAdapter()
-
-        binding?.startTrainingB?.setOnClickListener {
-            findNavController().navigate(
-                R.id.action_exerciseListFragment_to_preparationFragment,
-                getExerciseListBundle()
-            )
-        }
+        startTraining()
 
         return binding?.root
     }
@@ -59,6 +53,23 @@ class ExerciseListFragment : Fragment(), ExerciseAdapter.OnItemClickListener {
         )
     }
 
+    private fun deriveBundle(bundle: Bundle){
+        trainingProgram = bundle.getParcelable(PROGRAM)!!
+        Log.d("TAG", "trainingProgram: ${trainingProgram}")
+        exerciseList =
+            arguments?.getParcelableArrayList<Exercise>(HomeFragment.EXERCISE_LIST) as List<Exercise>
+
+    }
+
+    private fun startTraining(){
+        binding?.startTrainingB?.setOnClickListener {
+            findNavController().navigate(
+                R.id.action_exerciseListFragment_to_preparationFragment,
+                getExerciseListBundle()
+            )
+        }
+    }
+
     private fun setToolbar() {
         val toolbar = binding?.exercisesToolbar
         toolbar?.setNavigationOnClickListener {
@@ -82,7 +93,7 @@ class ExerciseListFragment : Fragment(), ExerciseAdapter.OnItemClickListener {
 
     private fun getExerciseListBundle(): Bundle {
         val bundle = Bundle()
-        bundle.putInt(PROGRAM_ID, programId)
+        bundle.putParcelable(PROGRAM, trainingProgram)
         bundle.putParcelableArrayList(EXERCISE_LIST, exerciseList as ArrayList<out Parcelable>)
         return bundle
     }
@@ -90,6 +101,6 @@ class ExerciseListFragment : Fragment(), ExerciseAdapter.OnItemClickListener {
     companion object {
         const val EXERCISE = "exercise"
         const val EXERCISE_LIST = "exerciseList"
-        const val PROGRAM_ID = "programId"
+        const val PROGRAM = "program"
     }
 }
