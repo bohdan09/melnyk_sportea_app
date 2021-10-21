@@ -9,7 +9,6 @@ import com.example.melnyk_sportea_app.presentation.navigation.fragments.home.Hom
 import com.example.melnyk_sportea_app.presentation.navigation.fragments.home.PreparationFragment
 import com.example.melnyk_sportea_app.presentation.navigation.fragments.home.RestFragment
 import com.example.melnyk_sportea_app.presentation.navigation.fragments.home.TrainingFragment
-import com.example.melnyk_sportea_app.repository.PeriodicRequest
 import com.example.melnyk_sportea_app.viewmodel.FinishFragmentViewModel
 import com.example.melnyk_sportea_app.viewmodel.HistoryFragmentViewModel
 import com.example.melnyk_sportea_app.viewmodel.TrainingProgramFragmentViewModel
@@ -31,7 +30,6 @@ import javax.inject.Singleton
 interface AppComponent {
     fun inject(mainActivity: MainActivity)
     fun inject(homeFragment: HomeFragment)
-    fun inject(periodicRequest: PeriodicRequest)
     fun inject(preparationFragment: PreparationFragment)
     fun inject(trainingFragment: TrainingFragment)
     fun inject(restFragment: RestFragment)

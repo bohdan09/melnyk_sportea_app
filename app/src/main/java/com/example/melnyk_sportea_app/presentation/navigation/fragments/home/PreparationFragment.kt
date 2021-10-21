@@ -30,7 +30,7 @@ class PreparationFragment : Fragment() {
     private val viewModel: PreparationFragmentViewModel by activityViewModels()
     private var binding: FragmentPreparationBinding? = null
     private lateinit var exerciseList: List<Exercise>
-    private lateinit var trainingProgram : TrainingProgram
+    private lateinit var trainingProgram: TrainingProgram
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -126,102 +126,8 @@ class PreparationFragment : Fragment() {
             .start()
     }
 
-
     companion object {
         const val EXERCISES = "exercisesList"
         const val PROGRAM = "program"
     }
 }
-
-
-/*
-class PreparationFragment : Fragment(), ExerciseManager {
-    private var binding: FragmentPreparationBinding? = null
-    private lateinit var exerciseList: List<Exercise>
-    private lateinit var job: Job
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentPreparationBinding.inflate(inflater)
-        addAnimation()
-        return binding?.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        exerciseList =
-            arguments?.getParcelableArrayList<Exercise>(HomeFragment.EXERCISE_ARGUMENT) as List<Exercise>
-
-        setExerciseInfo()
-        startTimer(2)
-
-        binding!!.skipB.setOnClickListener {
-            job.cancel()
-            startTraining(bundle = getExerciseListBundle())
-        }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        binding = null
-    }
-
-    private suspend fun setProgress(time: Int, progress: Int) {
-        withContext(Dispatchers.Main) {
-            binding?.time?.text = time.toString()
-            progressBar?.progress = progressBar?.progress!! - (100 / progress)
-            if (time == 1) startTraining(bundle = getExerciseListBundle())
-        }
-    }
-
-    private fun startTimer(time: Int) {
-        job = lifecycleScope.launch(Dispatchers.IO) {
-            for (i in time downTo 0) {
-                setProgress(time = i, progress = time)
-                delay(1000)
-            }
-        }
-    }
-
-    override fun setExerciseInfo() {
-        val exercise = exerciseList[0]
-        with(binding) {
-            Glide.with(this@PreparationFragment).load(exercise.imageUrl).centerCrop()
-                .into(this!!.preparationIV)
-            exerciseNameTV.text = exercise.name
-        }
-    }
-
-    private fun getExerciseListBundle(): Bundle {
-        val bundle = Bundle()
-        bundle.putParcelableArrayList(
-            EXERCISES,
-            exerciseList as ArrayList<out Parcelable>
-        )
-        return bundle
-    }
-
-    private fun startTraining(bundle: Bundle) {
-        findNavController().navigate(R.id.action_preparationFragment_to_trainingFragment, bundle)
-    }
-
-    private fun addAnimation() {
-        val duration = resources.getInteger(R.integer.animationDuration).toLong()
-
-        ObjectAnimator.ofFloat(binding?.preparationIV, View.ALPHA, 0F, 1F).setDuration(duration).start()
-        ObjectAnimator.ofFloat(binding?.prepare, View.ALPHA, 0F, 1F).setDuration(duration).start()
-        ObjectAnimator.ofFloat(binding?.exerciseNameTV, View.ALPHA, 0F, 1F).setDuration(duration)
-            .start()
-        ObjectAnimator.ofFloat(binding?.time, View.ALPHA, 0F, 1F).setDuration(duration).start()
-        ObjectAnimator.ofFloat(binding?.progressBar, View.SCALE_X, 0F, 1F).setDuration(duration).start()
-        ObjectAnimator.ofFloat(binding?.progressBar, View.SCALE_Y, 0F, 1F).setDuration(duration).start()
-    }
-
-
-    companion object {
-        const val EXERCISES = "exercisesList"
-    }
-}
- */

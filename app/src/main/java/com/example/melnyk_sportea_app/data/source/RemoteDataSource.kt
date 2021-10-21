@@ -1,12 +1,12 @@
 package com.example.melnyk_sportea_app.data.source
 
-import android.net.Uri
 import androidx.lifecycle.LiveData
-import com.example.melnyk_sportea_app.model.Quote
 import com.example.melnyk_sportea_app.model.TrainingProgram
+import com.example.melnyk_sportea_app.model.wrapper.Quotes
+import io.reactivex.Observable
 
 interface RemoteDataSource {
-    suspend fun getQuotes(): List<Quote>
+    fun getQuotes(): Observable<Quotes>
 
-    fun getTrainingProgramList() : LiveData<List<TrainingProgram>>
+    fun getTrainingProgramList(): LiveData<List<TrainingProgram>>
 }

@@ -1,14 +1,11 @@
 package com.example.melnyk_sportea_app.repository
 
-import android.app.job.JobInfo
-import android.app.job.JobScheduler
-import android.content.ComponentName
 import android.content.Context
-import android.content.Context.JOB_SCHEDULER_SERVICE
-import android.util.Log
 import com.example.melnyk_sportea_app.data.source.local.LocalDataSourceImpl
 import com.example.melnyk_sportea_app.data.source.remote.RemoteDataSourceImpl
 import com.example.melnyk_sportea_app.model.Quote
+import com.example.melnyk_sportea_app.model.wrapper.Quotes
+import io.reactivex.Observable
 
 class QuotesRepository(
     private val remoteDataSourceImpl: RemoteDataSourceImpl,
@@ -16,11 +13,11 @@ class QuotesRepository(
     private val context: Context
 ) {
 
-    init {
-        createJobScheduler()
-    }
+//    init {
+//        createJobScheduler()
+//    }
 
-    suspend fun getQuotesListFromApi(): List<Quote> {
+    fun getQuotesListFromApi(): Observable<Quotes> {
         return remoteDataSourceImpl.getQuotes()
     }
 
@@ -36,13 +33,13 @@ class QuotesRepository(
         localDataSourceImpl.removeQuote(quote)
     }
 
-    private fun createJobScheduler() {
-        val componentName = ComponentName(context, PeriodicRequest::class.java)
-        val builder = JobInfo.Builder(11, componentName)
-            .setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY)
-            .setRequiresCharging(true)
-            .build()
-        val jobScheduler = context.getSystemService(JOB_SCHEDULER_SERVICE) as JobScheduler
-        jobScheduler.schedule(builder)
-    }
+//    private fun createJobScheduler() {
+//        val componentName = ComponentName(context, PeriodicRequest::class.java)
+//        val builder = JobInfo.Builder(11, componentName)
+//            .setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY)
+//            .setRequiresCharging(true)
+//            .build()
+//        val jobScheduler = context.getSystemService(JOB_SCHEDULER_SERVICE) as JobScheduler
+//        jobScheduler.schedule(builder)
+//    }
 }

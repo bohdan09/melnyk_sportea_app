@@ -45,7 +45,12 @@
     <string name="homeB">Домой</string>
     <!--  History fragment -->
     <string name="clearHistory">Clear history</string>
-
+    <!--  Notification channels -->
+    <string name="trainingChannel">Тренировки</string>
+    <string name="reminderChannel">Напоминание</string>
+    <!-- remind notification -->
+    <string name="reminderTitle">Напоминание</string>
+    <string name="reminderContent">Вы давно не тренировались! Нужно это исправить) </string>
 
 
 
