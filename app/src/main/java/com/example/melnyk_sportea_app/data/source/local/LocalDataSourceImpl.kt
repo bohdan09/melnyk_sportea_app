@@ -35,7 +35,7 @@ class LocalDataSourceImpl(
     override fun getQuotes(): List<Quote> =
         quoteDao.getQuotes()
 
-    override fun getTrainingJournal(): List<TrainingJournal> =
+    override fun getTrainingJournalLiveData(): LiveData<List<TrainingJournal>> =
         trainingJournalDao.getTrainingJournal()
 
 

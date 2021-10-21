@@ -15,14 +15,16 @@ class ExerciseListFragment : Fragment(), ExerciseAdapter.OnItemClickListener {
     private var binding: FragmentExerciseListBinding? = null
     private lateinit var adapter: ExerciseAdapter
     private lateinit var exerciseList: List<Exercise>
+    private var programId = 0
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentExerciseListBinding.inflate(inflater)
         init()
+        programId = arguments?.getInt(PROGRAM_ID, 0)!!
         exerciseList =
-            arguments?.getParcelableArrayList<Exercise>(HomeFragment.EXERCISE_ARGUMENT) as List<Exercise>
+            arguments?.getParcelableArrayList<Exercise>(HomeFragment.EXERCISE_LIST) as List<Exercise>
 
         setAdapter()
 
@@ -80,6 +82,7 @@ class ExerciseListFragment : Fragment(), ExerciseAdapter.OnItemClickListener {
 
     private fun getExerciseListBundle(): Bundle {
         val bundle = Bundle()
+        bundle.putInt(PROGRAM_ID, programId)
         bundle.putParcelableArrayList(EXERCISE_LIST, exerciseList as ArrayList<out Parcelable>)
         return bundle
     }
@@ -87,5 +90,6 @@ class ExerciseListFragment : Fragment(), ExerciseAdapter.OnItemClickListener {
     companion object {
         const val EXERCISE = "exercise"
         const val EXERCISE_LIST = "exerciseList"
+        const val PROGRAM_ID = "programId"
     }
 }

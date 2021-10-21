@@ -10,6 +10,7 @@ import com.example.melnyk_sportea_app.db.room.dao.TrainingJournalDao
 import com.example.melnyk_sportea_app.db.room.dao.TrainingProgramDao
 import com.example.melnyk_sportea_app.db.room.database.AppDatabase
 import com.example.melnyk_sportea_app.repository.StatisticsRepository
+import com.example.melnyk_sportea_app.repository.TrainingJournalRepository
 import com.example.melnyk_sportea_app.shared.preferences.PreferencesClientImpl
 import com.example.melnyk_sportea_app.shared.preferences.SharedPreferencesClient
 import com.google.firebase.database.DatabaseReference
@@ -72,6 +73,11 @@ class DataModule(private val application: Application) {
     @Provides
     fun provideStatisticsRepository(localDataSourceImpl: LocalDataSourceImpl): StatisticsRepository {
         return StatisticsRepository(localDataSourceImpl)
+    }
+
+    @Provides
+    fun provideTrainingJournalRepository(localDataSourceImpl: LocalDataSourceImpl): TrainingJournalRepository {
+        return TrainingJournalRepository(localDataSourceImpl)
     }
 
     @Provides

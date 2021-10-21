@@ -44,7 +44,7 @@ class RestFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        getBundle(requireArguments())
+        getBundle(arguments = requireArguments())
         setExerciseInfo()
         startTimer()
         startTraining()
@@ -77,7 +77,7 @@ class RestFragment : Fragment() {
 
     private fun startTimer() {
         timer.startTimer(
-            time = 3000,
+            time = 1000,
             timerText = binding?.restTimerTV,
             setFlag = ::setFinishFlag,
             progressBar = binding?.restPB!!

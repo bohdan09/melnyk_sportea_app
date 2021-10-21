@@ -7,10 +7,9 @@ import com.example.melnyk_sportea_app.db.room.Constants.JOURNAL_TABLE_NAME
 @Entity(tableName = JOURNAL_TABLE_NAME)
 data class TrainingJournal(
     @PrimaryKey(autoGenerate = true)
-    val id : Int,
-    val exerciseId: Int,
+    val id: Int,
     val programId: Int,
-    val startTime: Long,
-    val endTime: Long
-
+    val date: Long,
+    val duration: Long,
+    val kcal: Int
 )
