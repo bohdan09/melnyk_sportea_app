@@ -12,7 +12,7 @@
 
     <item
         android:id="@+id/settingsFragment"
-        android:icon="@drawable/maps_icon"
+        android:icon="@drawable/settings_icon"
         android:title="@string/settings_name_button" />
 
     <item

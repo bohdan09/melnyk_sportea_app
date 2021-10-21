@@ -15,7 +15,8 @@ class App : Application() {
     private lateinit var appComponent: AppComponent
 
     companion object {
-        const val CHANNEL_ID = "trainingMode"
+        const val TRAINING_CHANNEL_ID = "trainingMode"
+        const val REMINDER_CHANNEL_ID = "reminder"
     }
 
     override fun onCreate() {
@@ -33,10 +34,24 @@ class App : Application() {
 
     fun createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val channel =
-                NotificationChannel(CHANNEL_ID, "training", NotificationManager.IMPORTANCE_HIGH)
+            val trainingChannel =
+                NotificationChannel(
+                    TRAINING_CHANNEL_ID,
+                    resources.getString(R.string.trainingChannel),
+                    NotificationManager.IMPORTANCE_HIGH
+                )
+
+            val reminderChannel =
+                NotificationChannel(
+                    REMINDER_CHANNEL_ID,
+                    resources.getString(R.string.reminderChannel),
+                    NotificationManager.IMPORTANCE_HIGH
+                )
+
             val manager = getSystemService(NotificationManager::class.java)
-            manager.createNotificationChannel(channel)
+
+            manager.createNotificationChannel(trainingChannel)
+            manager.createNotificationChannel(reminderChannel)
         }
     }
 }

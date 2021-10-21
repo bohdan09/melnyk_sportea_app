@@ -2,7 +2,6 @@ package com.example.melnyk_sportea_app.presentation.navigation.fragments.home
 
 import android.animation.ObjectAnimator
 import android.os.Bundle
-import android.transition.TransitionInflater
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -45,17 +44,22 @@ class ExerciseDescriptionFragment : Fragment() {
         binding?.exerciseNameTV?.text = exercise.name
         binding?.descriptionIV?.apply {
             transitionName = exercise.imageUrl
-            Glide.with(this@ExerciseDescriptionFragment).load(exercise.imageUrl).centerCrop().into(this!!)
+            Glide.with(this@ExerciseDescriptionFragment).load(exercise.imageUrl).centerCrop()
+                .into(this!!)
         }
 
     }
 
-    private fun setAnimation(){
-        ObjectAnimator.ofFloat(binding?.imageCardView, View.ALPHA, 0.0F, 1.0F).setDuration(1000).start()
-        ObjectAnimator.ofFloat(binding?.imageCardView, View.SCALE_X, 0F, 1F).setDuration(1000).start()
-        ObjectAnimator.ofFloat(binding?.imageCardView, View.SCALE_Y, 0F, 1F).setDuration(1000).start()
+    private fun setAnimation() {
+        ObjectAnimator.ofFloat(binding?.imageCardView, View.ALPHA, 0.0F, 1.0F).setDuration(1000)
+            .start()
+        ObjectAnimator.ofFloat(binding?.imageCardView, View.SCALE_X, 0F, 1F).setDuration(1000)
+            .start()
+        ObjectAnimator.ofFloat(binding?.imageCardView, View.SCALE_Y, 0F, 1F).setDuration(1000)
+            .start()
 
-        ObjectAnimator.ofFloat(binding?.exerciseNameTV, View.ALPHA, 0F, 1F).setDuration(1000).start()
+        ObjectAnimator.ofFloat(binding?.exerciseNameTV, View.ALPHA, 0F, 1F).setDuration(1000)
+            .start()
         ObjectAnimator.ofFloat(binding?.descriptionTV, View.ALPHA, 0F, 1F).setDuration(1000).start()
     }
 

@@ -11,6 +11,7 @@ import com.example.melnyk_sportea_app.databinding.ActivityMainBinding
 import com.example.melnyk_sportea_app.model.wrapper.Quotes
 import com.example.melnyk_sportea_app.mvp.MainPresenter
 import com.example.melnyk_sportea_app.mvp.MainViewInterface
+import com.example.melnyk_sportea_app.utils.Reminder
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity(), MainViewInterface {
@@ -30,6 +31,8 @@ class MainActivity : AppCompatActivity(), MainViewInterface {
 
         setupMVP()
         getQuotes()
+        startReminder()
+
     }
 
     private fun bottomNavigationViewVisibility(
@@ -53,6 +56,10 @@ class MainActivity : AppCompatActivity(), MainViewInterface {
 
     private fun hideBottomNavigationView(bottomNavigationView: BottomNavigationView) {
         bottomNavigationView.visibility = View.GONE
+    }
+
+    private fun startReminder(){
+        Reminder.periodicRequest(this)
     }
 
     private fun setupMVP() {

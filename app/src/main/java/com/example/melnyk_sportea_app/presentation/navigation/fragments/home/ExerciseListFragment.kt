@@ -17,7 +17,7 @@ class ExerciseListFragment : Fragment(), ExerciseAdapter.OnItemClickListener {
     private var binding: FragmentExerciseListBinding? = null
     private lateinit var adapter: ExerciseAdapter
     private lateinit var exerciseList: List<Exercise>
-    private lateinit var trainingProgram : TrainingProgram
+    private lateinit var trainingProgram: TrainingProgram
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -53,7 +53,7 @@ class ExerciseListFragment : Fragment(), ExerciseAdapter.OnItemClickListener {
         )
     }
 
-    private fun deriveBundle(bundle: Bundle){
+    private fun deriveBundle(bundle: Bundle) {
         trainingProgram = bundle.getParcelable(PROGRAM)!!
         Log.d("TAG", "trainingProgram: ${trainingProgram}")
         exerciseList =
@@ -61,7 +61,7 @@ class ExerciseListFragment : Fragment(), ExerciseAdapter.OnItemClickListener {
 
     }
 
-    private fun startTraining(){
+    private fun startTraining() {
         binding?.startTrainingB?.setOnClickListener {
             findNavController().navigate(
                 R.id.action_exerciseListFragment_to_preparationFragment,
