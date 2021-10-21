@@ -90,17 +90,6 @@ class HomeFragment : Fragment(), TrainingProgramAdapter.OnItemClickListener {
         findNavController().navigate(R.id.action_homeFragment_to_exerciseListFragment, exerciseBundle)
     }
 
-    private fun cacheTrainingProgram(list: List<TrainingProgram>) {
-        lifecycleScope.launch(Dispatchers.IO) {
-            for (i in list.indices) {
-                Log.d("TAG", list.toString())
-                //localDataSourceImpl.addTrainingProgram(list[0])
-                model.cash(list)
-            }
-            //
-        }
-    }
-
     companion object {
         const val EXERCISE_ARGUMENT = "exerciseList"
     }

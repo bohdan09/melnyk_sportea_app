@@ -1,17 +1,15 @@
 package com.example.melnyk_sportea_app.presentation.navigation.fragments.home
 
 import android.os.Bundle
+import android.os.Parcelable
 import android.view.*
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.melnyk_sportea_app.R
 import com.example.melnyk_sportea_app.databinding.FragmentExerciseListBinding
 import com.example.melnyk_sportea_app.model.Exercise
 import com.example.melnyk_sportea_app.presentation.adapters.ExerciseAdapter
-import kotlinx.android.synthetic.main.exercise_item.*
-import kotlinx.android.synthetic.main.program_item.*
 
 class ExerciseListFragment : Fragment(), ExerciseAdapter.OnItemClickListener {
     private var binding: FragmentExerciseListBinding? = null
@@ -27,9 +25,14 @@ class ExerciseListFragment : Fragment(), ExerciseAdapter.OnItemClickListener {
             arguments?.getParcelableArrayList<Exercise>(HomeFragment.EXERCISE_ARGUMENT) as List<Exercise>
 
         setAdapter()
-//        binding?.listB?.setOnClickListener {
-//            findNavController().navigate(R.id.action_exerciseListFragment_to_exerciseDescriptionFragment)
-//        }
+
+        binding?.startTrainingB?.setOnClickListener {
+            findNavController().navigate(
+                R.id.action_exerciseListFragment_to_preparationFragment,
+                getExerciseListBundle()
+            )
+        }
+
         return binding?.root
     }
 
@@ -50,7 +53,7 @@ class ExerciseListFragment : Fragment(), ExerciseAdapter.OnItemClickListener {
     override fun onItemClick(position: Int) {
         findNavController().navigate(
             R.id.action_exerciseListFragment_to_exerciseDescriptionFragment,
-            getExerciseListBundle(position)
+            getExerciseBundle(position)
         )
     }
 
@@ -69,13 +72,20 @@ class ExerciseListFragment : Fragment(), ExerciseAdapter.OnItemClickListener {
         adapter.setExerciseList(list = exerciseList)
     }
 
-    private fun getExerciseListBundle(position: Int): Bundle {
+    private fun getExerciseBundle(position: Int): Bundle {
         val bundle = Bundle()
         bundle.putParcelable(EXERCISE, exerciseList[position])
         return bundle
     }
 
+    private fun getExerciseListBundle(): Bundle {
+        val bundle = Bundle()
+        bundle.putParcelableArrayList(EXERCISE_LIST, exerciseList as ArrayList<out Parcelable>)
+        return bundle
+    }
+
     companion object {
         const val EXERCISE = "exercise"
+        const val EXERCISE_LIST = "exerciseList"
     }
 }

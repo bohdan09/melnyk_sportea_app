@@ -4,19 +4,20 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.melnyk_sportea_app.R
 import com.example.melnyk_sportea_app.databinding.ExerciseItemBinding
 import com.example.melnyk_sportea_app.model.Exercise
+import com.example.melnyk_sportea_app.utils.TimeFormatter
 
 class ExerciseAdapter(
     var context: Context,
-    var clickListener: ExerciseAdapter.OnItemClickListener
+    var clickListener: OnItemClickListener
 ) :
     RecyclerView.Adapter<ExerciseAdapter.Holder>() {
     private var exerciseList = listOf<Exercise>()
+    private val timeFormatter = TimeFormatter()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view =
@@ -37,9 +38,9 @@ class ExerciseAdapter(
     private fun setInfo(exercise: Exercise, binding: ExerciseItemBinding) {
         Glide.with(context).load(exercise.imageUrl).centerCrop().into(binding.exerciseIV)
         binding.exerciseNameTV.text = exercise.name
-        if (exercise.repeats == null) {
-            binding.measureTV.text = exercise.workTime.toString()
-        } else binding.measureTV.text = exercise.repeats.toString()
+        if (exercise.repeats == 0) {
+            binding.measureTV.text = timeFormatter.getTime(exercise.workTime!!)
+        } else binding.measureTV.text = "x${exercise.repeats}"
     }
 
     inner class Holder(var item: View, var clickListener: OnItemClickListener) :
