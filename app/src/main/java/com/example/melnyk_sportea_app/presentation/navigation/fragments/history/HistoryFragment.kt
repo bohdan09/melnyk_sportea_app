@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,7 +21,7 @@ class HistoryFragment : Fragment() {
     }
     private var binding: FragmentHistoryBinding? = null
     private lateinit var adapter: HistoryAdapter
-    private lateinit var toolbar: androidx.appcompat.widget.Toolbar
+    private lateinit var toolbar: Toolbar
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,11 +37,6 @@ class HistoryFragment : Fragment() {
         return binding?.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-    }
-
     override fun onDestroy() {
         super.onDestroy()
         binding = null
@@ -48,7 +44,7 @@ class HistoryFragment : Fragment() {
 
     private fun setToolbar() {
         toolbar = binding?.toolBar?.toolBar!!
-        toolbar.inflateMenu(R.menu.settings_menu)
+        toolbar.inflateMenu(R.menu.history_menu)
         toolbar.setTitle(R.string.statistics_toolbar)
     }
 
@@ -80,6 +76,5 @@ class HistoryFragment : Fragment() {
             }
         }
     }
-
 
 }

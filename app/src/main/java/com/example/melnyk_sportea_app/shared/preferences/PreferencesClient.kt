@@ -8,6 +8,10 @@ interface PreferencesClient {
 
     fun setNewEmail(context: Context, email: String)
 
+    fun setNewName(context: Context, name: String)
+
+    fun setNewSurname(context: Context, surname: String)
+
     fun setNewPassword(context: Context, password: String)
 
     fun setNewWeight(context: Context, weight: Float)

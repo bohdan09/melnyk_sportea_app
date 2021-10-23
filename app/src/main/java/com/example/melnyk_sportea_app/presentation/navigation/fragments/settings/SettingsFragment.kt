@@ -1,32 +1,12 @@
 package com.example.melnyk_sportea_app.presentation.navigation.fragments.settings
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import androidx.preference.PreferenceFragmentCompat
 import com.example.melnyk_sportea_app.R
-import com.example.melnyk_sportea_app.databinding.FragmentSettingsBinding
 
-class SettingsFragment : Fragment() {
-    private var binding: FragmentSettingsBinding? = null
+class SettingsFragment : PreferenceFragmentCompat() {
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentSettingsBinding.inflate(inflater)
-        setToolbar()
-        return binding?.root
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        binding = null
-    }
-
-    private fun setToolbar() {
-        val toolbar = binding?.toolBar?.toolBar
-        toolbar?.setTitle(R.string.maps_toolbar)
+    override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
+        setPreferencesFromResource(R.xml.root_preferences, rootKey)
     }
 }

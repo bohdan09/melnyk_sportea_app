@@ -11,8 +11,10 @@ import com.example.melnyk_sportea_app.presentation.navigation.fragments.home.Res
 import com.example.melnyk_sportea_app.presentation.navigation.fragments.home.TrainingFragment
 import com.example.melnyk_sportea_app.viewmodel.FinishFragmentViewModel
 import com.example.melnyk_sportea_app.viewmodel.HistoryFragmentViewModel
+import com.example.melnyk_sportea_app.viewmodel.ProfileViewModel
 import com.example.melnyk_sportea_app.viewmodel.TrainingProgramFragmentViewModel
 import com.example.melnyk_sportea_app.viewmodel.factory.HistoryFragmentFactory
+import com.example.melnyk_sportea_app.viewmodel.factory.ProfileFactory
 import com.example.melnyk_sportea_app.viewmodel.factory.TrainingJournalFactory
 import com.example.melnyk_sportea_app.viewmodel.factory.TrainingProgramFactory
 import dagger.Component
@@ -36,9 +38,11 @@ interface AppComponent {
 
     fun trainingProgramViewModel(): TrainingProgramFragmentViewModel
     fun trainingJournalViewModel(): FinishFragmentViewModel
+    fun profileViewModel(): ProfileViewModel
     fun historyViewModel(): HistoryFragmentViewModel
 
     fun trainingProgramFactory(): TrainingProgramFactory
     fun trainingJournalFactory(): TrainingJournalFactory
     fun historyFactory(): HistoryFragmentFactory
+    fun profileFactory(): ProfileFactory
 }
