@@ -1,7 +1,6 @@
 package com.example.melnyk_sportea_app.utils
 
 import android.os.CountDownTimer
-import android.util.Log
 import android.widget.ProgressBar
 import android.widget.TextView
 
@@ -11,7 +10,7 @@ class Timer {
     var startStopTime = 0L
         private set
     var isStopped = true
-    private set
+        private set
 
     fun startTimer(
         time: Long,
@@ -19,15 +18,16 @@ class Timer {
         setFlag: (Boolean) -> Unit,
         progressBar: ProgressBar
     ) {
-        if (startStopTime == 0L) {
+        if (startStopTime < 1000L) {
             startStopTime = time
         }
+
         timer = object : CountDownTimer(startStopTime, 1000) {
             override fun onTick(tick: Long) {
                 startStopTime = tick
-                if(tick < 1000) {
+                if (tick < 1000) {
                     progressBar.progress = 0
-                }else progressBar.progress = ((tick * 100) / time).toInt()
+                } else progressBar.progress = ((tick * 100) / time).toInt()
                 updateTimer(timerText = timerText)
                 //progressBar.progress - (100 / ((time / 1000) % 60)).toInt()
 

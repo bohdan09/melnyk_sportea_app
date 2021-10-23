@@ -77,7 +77,7 @@ class RestFragment : Fragment() {
 
     private fun startTimer() {
         timer.startTimer(
-            time = 1000,
+            time = 2000,
             timerText = binding?.restTimerTV,
             setFlag = ::setFinishFlag,
             progressBar = binding?.restPB!!
