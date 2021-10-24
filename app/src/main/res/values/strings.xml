@@ -5,18 +5,18 @@
     <string name="times">times</string>
     <string name="sec">sec</string>
     <!--  Navigation button name  -->
-    <string name="home_name_button">Home</string>
-    <string name="profile_name_button">Profile</string>
-    <string name="settings_name_button">Settings</string>
-    <string name="history_name_button">History</string>
+    <string name="home_name_button">Дом</string>
+    <string name="profile_name_button">Профиль</string>
+    <string name="settings_name_button">Настройки</string>
+    <string name="history_name_button">История</string>
     <!--  Toolbar name  -->
-    <string name="home_toolbar">Home</string>
-    <string name="profile_toolbar">Profile</string>
-    <string name="statistics_toolbar">Statistics</string>
+    <string name="home_toolbar">Программы</string>
+    <string name="profile_toolbar">Прфиль</string>
+    <string name="statistics_toolbar">История</string>
     <string name="maps_toolbar">Maps</string>
     <string name="program_toolbar">Programs</string>
-    <string name="exercises_toolbar">Exercises</string>
-    <string name="description_toolbar">Exercise description</string>
+    <string name="exercises_toolbar">Упражнения</string>
+    <string name="description_toolbar">Описания упражнений</string>
     <!--  Gender enum  -->
     <string name="female">Female</string>
     <string name="male">Male</string>
