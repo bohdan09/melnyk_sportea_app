@@ -2,6 +2,7 @@ package com.example.melnyk_sportea_app.presentation.navigation.fragments.home
 
 import android.os.Bundle
 import android.os.Parcelable
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,6 +17,7 @@ import com.example.melnyk_sportea_app.model.TrainingProgram
 import com.example.melnyk_sportea_app.presentation.adapters.TrainingProgramAdapter
 import com.example.melnyk_sportea_app.viewmodel.TrainingProgramFragmentViewModel
 import java.util.*
+import kotlin.math.log
 
 class HomeFragment : Fragment(), TrainingProgramAdapter.OnItemClickListener {
     private val model: TrainingProgramFragmentViewModel by activityViewModels {
@@ -30,11 +32,7 @@ class HomeFragment : Fragment(), TrainingProgramAdapter.OnItemClickListener {
     ): View? {
         binding = FragmentHomeBinding.inflate(inflater)
         init()
-
-        model.trainingProgramList?.observe(viewLifecycleOwner) {
-            adapter.setProgramList(it)
-            programList = it
-        }
+        observeTrainingPrograms()
         return binding?.root
     }
 
@@ -42,6 +40,15 @@ class HomeFragment : Fragment(), TrainingProgramAdapter.OnItemClickListener {
         setToolbar()
         adapter = TrainingProgramAdapter(requireContext(), this)
         setAdapters()
+    }
+
+    private fun observeTrainingPrograms(){
+        model.trainingProgramList.observe(viewLifecycleOwner) {
+            Log.d("TAG", "observeTrainingPrograms: $it")
+            adapter.setProgramList(it)
+            programList = it
+            model.cacheTrainingPrograms(it)
+        }
     }
 
     override fun onDestroy() {
@@ -58,20 +65,6 @@ class HomeFragment : Fragment(), TrainingProgramAdapter.OnItemClickListener {
         binding?.programRecycler?.layoutManager = LinearLayoutManager(requireContext())
         binding?.programRecycler?.adapter = adapter
     }
-
-//
-//    private fun getJson(jsonName: String): String {
-//        val inputStream = activity?.assets?.open(jsonName)
-//        val buffer = inputStream?.readBytes()
-//        val json = String(buffer!!)
-//        inputStream.close()
-//        return json
-//    }
-//
-//    private fun getProgramList(): List<TrainingProgram> {
-//        val programs = Gson().fromJson(getJson("MockJson1.json"), Programs::class.java)
-//        return programs.programs
-//    }
 
     override fun onItemClick(position: Int) {
         val bundle = Bundle()

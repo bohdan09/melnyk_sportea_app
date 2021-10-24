@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import com.example.melnyk_sportea_app.db.room.Constants.JOURNAL_TABLE_NAME
+import com.example.melnyk_sportea_app.db.room.Constant.JOURNAL_TABLE_NAME
 import com.example.melnyk_sportea_app.model.TrainingJournal
 
 @Dao

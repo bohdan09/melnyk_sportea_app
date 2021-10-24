@@ -4,7 +4,7 @@ import android.os.Parcel
 import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.melnyk_sportea_app.db.room.Constants.TRAINING_PROGRAM_TABLE_NAME
+import com.example.melnyk_sportea_app.db.room.Constant.TRAINING_PROGRAM_TABLE_NAME
 import com.example.melnyk_sportea_app.utils.ProgramLevel
 
 @Entity(tableName = TRAINING_PROGRAM_TABLE_NAME)
@@ -17,7 +17,7 @@ data class TrainingProgram(
     val exercises: List<Exercise>? = null,
     val updateVersion: Int? = null,
     val historyImageUrl: String? = null
-): Parcelable {
+) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readValue(Int::class.java.classLoader) as? Int,
         parcel.readString(),

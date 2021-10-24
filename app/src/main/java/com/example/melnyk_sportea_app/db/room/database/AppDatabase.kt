@@ -5,10 +5,10 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.example.melnyk_sportea_app.db.room.Constants.APP_DATABASE_NAME
+import com.example.melnyk_sportea_app.db.room.Constant.APP_DATABASE_NAME
 import com.example.melnyk_sportea_app.db.room.ExerciseConverter
-import com.example.melnyk_sportea_app.db.room.MeasureConverter
 import com.example.melnyk_sportea_app.db.room.LevelConverter
+import com.example.melnyk_sportea_app.db.room.MeasureConverter
 import com.example.melnyk_sportea_app.db.room.dao.QuoteDao
 import com.example.melnyk_sportea_app.db.room.dao.StatisticsDao
 import com.example.melnyk_sportea_app.db.room.dao.TrainingJournalDao
@@ -18,7 +18,10 @@ import com.example.melnyk_sportea_app.model.Statistics
 import com.example.melnyk_sportea_app.model.TrainingJournal
 import com.example.melnyk_sportea_app.model.TrainingProgram
 
-@Database(entities = [Statistics::class, Quote::class, TrainingJournal::class, TrainingProgram::class], version = 2)
+@Database(
+    entities = [Statistics::class, Quote::class, TrainingJournal::class, TrainingProgram::class],
+    version = 2
+)
 @TypeConverters(value = [MeasureConverter::class, LevelConverter::class, ExerciseConverter::class])
 abstract class AppDatabase : RoomDatabase() {
 
