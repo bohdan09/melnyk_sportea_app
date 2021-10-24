@@ -46,7 +46,7 @@ class TrainingProgramAdapter(var context: Context, var clickListener: OnItemClic
     }
 
     override fun getItemViewType(position: Int): Int {
-        return if (programList[position].level != null) {
+        return if (programList[position].imageUrl == null) {
             LEVEL
         } else PROGRAM
     }
@@ -69,7 +69,7 @@ class TrainingProgramAdapter(var context: Context, var clickListener: OnItemClic
     inner class LevelHolder(item: View) : RecyclerView.ViewHolder(item) {
         private val binding = ProgramLevelBinding.bind(item)
         fun bind(program: TrainingProgram) {
-            binding.textView.text = context.resources.getString(program.level?.res!!)
+            binding.textView.text = program.programName
         }
     }
 

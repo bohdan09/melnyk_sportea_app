@@ -21,7 +21,6 @@ class RestFragmentViewModel : ViewModel() {
     val exerciseIndex: LiveData<Int> = _exerciseIndex
 
     private val _exerciseListSize = MutableLiveData(0)
-    val exerciseListSize: LiveData<Int> = _exerciseIndex
 
     fun setExerciseListSize(size: Int) {
         _exerciseListSize.value = size
@@ -60,5 +59,4 @@ class RestFragmentViewModel : ViewModel() {
             progressBar = progressBar
         )
     }
-
 }

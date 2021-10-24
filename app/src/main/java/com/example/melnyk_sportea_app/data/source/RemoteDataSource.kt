@@ -7,6 +7,5 @@ import io.reactivex.Observable
 
 interface RemoteDataSource {
     fun getQuotes(): Observable<Quotes>
-
     fun getTrainingProgramList(): LiveData<List<TrainingProgram>>
 }

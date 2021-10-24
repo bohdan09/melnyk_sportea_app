@@ -1,4 +1,5 @@
 package com.example.melnyk_sportea_app.utils
+
 import com.example.melnyk_sportea_app.R
 
 enum class ProgramLevel(val res: Int) {

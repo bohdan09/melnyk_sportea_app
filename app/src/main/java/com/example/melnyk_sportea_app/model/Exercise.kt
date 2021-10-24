@@ -2,9 +2,7 @@ package com.example.melnyk_sportea_app.model
 
 import android.os.Parcel
 import android.os.Parcelable
-import com.example.melnyk_sportea_app.utils.Difficulty
 import com.example.melnyk_sportea_app.utils.MuscleGroup
-import java.net.URL
 
 data class Exercise(
     val id: Int? = null,

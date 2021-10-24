@@ -27,7 +27,7 @@ interface LocalDataSource {
 
     suspend fun getStatisticsRecordByName(name: String): Statistics
 
-    suspend fun addTrainingProgram(program : TrainingProgram)
+    suspend fun addTrainingProgram(program: TrainingProgram)
 
     fun getTrainingProgramLiveData(): LiveData<List<TrainingProgram>>
 }

@@ -6,7 +6,7 @@ import android.net.NetworkCapabilities
 import android.os.Build
 
 class InternetConnection {
-     fun checkConnection(context: Context): Boolean {
+    fun checkConnection(context: Context): Boolean {
         val connectivityManager =
             context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
@@ -19,7 +19,7 @@ class InternetConnection {
                 activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
                 else -> false
             }
-        }else{
+        } else {
             val networkInfo =
                 connectivityManager.activeNetworkInfo ?: return false
             return networkInfo.isConnected

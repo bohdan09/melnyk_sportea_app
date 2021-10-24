@@ -66,5 +66,4 @@ class ApiModule(var context: Context) {
     fun provideInternetConnection(): InternetConnection {
         return InternetConnection()
     }
-
 }

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">melnyk_sportea_app</string>
+    <string name="app_name">Sportea</string>
     <!--  Measure enum  -->
     <string name="kg">kg</string>
     <string name="times">times</string>
@@ -11,12 +11,13 @@
     <string name="history_name_button">История</string>
     <!--  Toolbar name  -->
     <string name="home_toolbar">Программы</string>
-    <string name="profile_toolbar">Прфиль</string>
+    <string name="profile_toolbar">Профиль</string>
     <string name="statistics_toolbar">История</string>
     <string name="maps_toolbar">Maps</string>
     <string name="program_toolbar">Programs</string>
     <string name="exercises_toolbar">Упражнения</string>
     <string name="description_toolbar">Описания упражнений</string>
+    <string name="exerciseName">Название</string>
     <!--  Gender enum  -->
     <string name="female">Female</string>
     <string name="male">Male</string>
@@ -50,7 +51,7 @@
     <string name="reminderChannel">Напоминание</string>
     <!-- Remind notification -->
     <string name="reminderTitle">Напоминание</string>
-    <string name="reminderContent">Вы давно не тренировались! Нужно это исправить) </string>
+    <string name="reminderContent">Вы давно не тренировались!</string>
     <!-- Settings fragment -->
     <string name="settingsNotification">Уведомления</string>
     <string name="settingsRemindNotify">Напоминание</string>

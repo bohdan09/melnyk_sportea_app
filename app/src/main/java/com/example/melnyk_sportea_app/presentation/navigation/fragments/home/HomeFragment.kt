@@ -2,7 +2,6 @@ package com.example.melnyk_sportea_app.presentation.navigation.fragments.home
 
 import android.os.Bundle
 import android.os.Parcelable
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,7 +16,6 @@ import com.example.melnyk_sportea_app.model.TrainingProgram
 import com.example.melnyk_sportea_app.presentation.adapters.TrainingProgramAdapter
 import com.example.melnyk_sportea_app.viewmodel.TrainingProgramFragmentViewModel
 import java.util.*
-import kotlin.math.log
 
 class HomeFragment : Fragment(), TrainingProgramAdapter.OnItemClickListener {
     private val model: TrainingProgramFragmentViewModel by activityViewModels {
@@ -42,9 +40,8 @@ class HomeFragment : Fragment(), TrainingProgramAdapter.OnItemClickListener {
         setAdapters()
     }
 
-    private fun observeTrainingPrograms(){
+    private fun observeTrainingPrograms() {
         model.trainingProgramList.observe(viewLifecycleOwner) {
-            Log.d("TAG", "observeTrainingPrograms: $it")
             adapter.setProgramList(it)
             programList = it
             model.cacheTrainingPrograms(it)

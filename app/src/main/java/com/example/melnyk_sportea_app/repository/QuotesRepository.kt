@@ -13,10 +13,6 @@ class QuotesRepository(
     private val context: Context
 ) {
 
-//    init {
-//        createJobScheduler()
-//    }
-
     fun getQuotesListFromApi(): Observable<Quotes> {
         return remoteDataSourceImpl.getQuotes()
     }
@@ -33,13 +29,4 @@ class QuotesRepository(
         localDataSourceImpl.removeQuote(quote)
     }
 
-//    private fun createJobScheduler() {
-//        val componentName = ComponentName(context, PeriodicRequest::class.java)
-//        val builder = JobInfo.Builder(11, componentName)
-//            .setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY)
-//            .setRequiresCharging(true)
-//            .build()
-//        val jobScheduler = context.getSystemService(JOB_SCHEDULER_SERVICE) as JobScheduler
-//        jobScheduler.schedule(builder)
-//    }
 }
