@@ -20,7 +20,6 @@ class TrainingFragmentViewModel : ViewModel() {
     private val _exerciseIndex = MutableLiveData(0)
     val exerciseIndex: LiveData<Int> = _exerciseIndex
 
-
     fun setFinishFlag(value: Boolean) {
         _isTimerFinished.value = value
         _isTimerFinished.value = false
@@ -35,7 +34,7 @@ class TrainingFragmentViewModel : ViewModel() {
     }
 
     fun incrementExerciseIndex() {
-        var index: Int = _exerciseIndex.value!!
+        val index: Int = _exerciseIndex.value!!
         _exerciseIndex.value = index + 1
     }
 
@@ -64,7 +63,6 @@ class TrainingFragmentViewModel : ViewModel() {
             )
         }
     }
-
 
     fun workingWithTime(): Boolean {
         val exercise = exerciseList.value?.get(exerciseIndex.value!!)
@@ -102,18 +100,18 @@ class TrainingFragmentViewModel : ViewModel() {
 
     fun isServiceStart(): Boolean {
         val exercise = getExercise()
-        return if (exercise.repeats == 0 && !timerIsStopped()) true else false
+        return exercise.repeats == 0 && !timerIsStopped()
     }
 
     fun isServiceStop(): Boolean {
         val exercise = getExercise()
-        return if (exercise.repeats == 0 && timerIsStopped()) true else false
+        return exercise.repeats == 0 && timerIsStopped()
     }
 
     fun isStartFinishFragment(): Boolean {
         val exerciseIndex = getExerciseIndex()
         val exerciseLiseSize = getExerciseListSize()
 
-        return if (exerciseIndex >= exerciseLiseSize - 1) true else false
+        return exerciseIndex >= exerciseLiseSize - 1
     }
 }

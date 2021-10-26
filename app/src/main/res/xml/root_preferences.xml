@@ -1,0 +1,40 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <PreferenceCategory app:title="@string/personalInformation">
+
+        <EditTextPreference
+            android:key="userName"
+            android:summary="@string/summeryName"
+            android:title="@string/settingsUserName" />
+
+        <EditTextPreference
+            android:key="userSurname"
+            android:summary="@string/summerySurname"
+            android:title="@string/settingsUserSurname" />
+        <EditTextPreference
+            android:key="userEmail"
+            android:summary="@string/summeryEmail"
+            android:title="@string/settingsEmail" />
+        <EditTextPreference
+            android:key="userWeight"
+            android:summary="@string/summeryWeight"
+            android:title="@string/settingsWeight" />
+        <ListPreference
+            android:entries="@array/gender_entries"
+            android:entryValues="@array/gender_values"
+            android:key="userGender"
+            android:title="@string/settingsGender" />
+        <EditTextPreference
+            android:key="userHeight"
+            android:summary="@string/summeryHeight"
+            android:title="@string/settingsHeight" />
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/settingsNotification">
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="sendNotification"
+            android:title="@string/settingsRemindNotify" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

@@ -10,6 +10,7 @@ class PreferencesClientImpl(
 
     companion object {
         const val USER_NAME = "userName"
+        const val USER_SURNAME = "userSurname"
         const val USER_EMAIL = "userEmail"
         const val PASSWORD = "password"
         const val USER_GENDER = "userGender"
@@ -21,6 +22,7 @@ class PreferencesClientImpl(
 
     override fun getUsersSettings(context: Context): Settings {
         val userName = sharedPreferencesClient.getString(context, USER_NAME, "NAME")
+        val userSurname = sharedPreferencesClient.getString(context, USER_SURNAME, "SURNAME")
         val userEmail = sharedPreferencesClient.getString(context, USER_EMAIL, "EMAIL")
         val password = sharedPreferencesClient.getString(context, PASSWORD, "PASSWORD")
         val userGender = sharedPreferencesClient.getString(context, USER_GENDER, "MALE")
@@ -31,6 +33,7 @@ class PreferencesClientImpl(
 
         return Settings(
             userName!!,
+            userSurname!!,
             userEmail!!,
             password!!,
             Gender.valueOf(userGender!!),
@@ -43,6 +46,14 @@ class PreferencesClientImpl(
 
     override fun setNewEmail(context: Context, email: String) {
         sharedPreferencesClient.saveString(context, USER_EMAIL, email)
+    }
+
+    override fun setNewName(context: Context, name: String) {
+        sharedPreferencesClient.saveString(context, USER_EMAIL, name)
+    }
+
+    override fun setNewSurname(context: Context, surname: String) {
+        sharedPreferencesClient.saveString(context, USER_EMAIL, surname)
     }
 
     override fun setNewPassword(context: Context, password: String) {
@@ -60,4 +71,5 @@ class PreferencesClientImpl(
     override fun setNotificationFlag(context: Context, flag: Boolean) {
         sharedPreferencesClient.saveBoolean(context, SEND_NOTIFICATION, flag)
     }
+
 }

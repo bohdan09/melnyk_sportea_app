@@ -9,12 +9,7 @@
         android:id="@+id/profileFragment"
         android:icon="@drawable/profile_icon"
         android:title="@string/profile_name_button" />
-
-    <item
-        android:id="@+id/settingsFragment"
-        android:icon="@drawable/settings_icon"
-        android:title="@string/settings_name_button" />
-
+    
     <item
         android:id="@+id/historyFragment"
         android:icon="@drawable/statistics_icon"

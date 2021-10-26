@@ -1,10 +1,7 @@
 package com.example.melnyk_sportea_app.di.module
 
 import android.app.Application
-import com.example.melnyk_sportea_app.domain.usecase.AddTrainingUseCase
-import com.example.melnyk_sportea_app.domain.usecase.ClearTrainingJournalUseCase
-import com.example.melnyk_sportea_app.domain.usecase.GetTrainingJournalLiveDataUseCase
-import com.example.melnyk_sportea_app.domain.usecase.GetTrainingProgramListUseCase
+import com.example.melnyk_sportea_app.domain.usecase.*
 import com.example.melnyk_sportea_app.repository.TrainingJournalRepository
 import com.example.melnyk_sportea_app.repository.TrainingProgramsRepository
 import dagger.Module
@@ -40,4 +37,10 @@ class UseCaseModule(val application: Application) {
         return ClearTrainingJournalUseCase(trainingJournalRepository)
     }
 
+    @Provides
+    fun provideCacheTrainingProgramsUseCase(
+        trainingProgramsRepository: TrainingProgramsRepository
+    ) : CacheTrainingProgramsUseCase{
+        return CacheTrainingProgramsUseCase(trainingProgramsRepository)
+    }
 }

@@ -18,34 +18,19 @@ class TrainingProgramsRepository(
         val connection = internetConnection.checkConnection(context)
         return if (connection) {
             remoteDataSourceImpl.getTrainingProgramList()
-        } else{
+        } else {
             Log.d("TAG", "disconnect")
             localDataSourceImpl.getTrainingProgramLiveData()
         }
     }
 
-//    private suspend fun chooseDataSource() : LiveData<List<TrainingProgram>>{
-//        return if(checkProgramsAvailability()){
-//            localDataSourceImpl.getTrainingProgramLiveData()
-//        }else {
-//            val programs = remoteDataSourceImpl.getTrainingProgramList().value
-//            cacheProgramsToDB(programList = programs)
-//            localDataSourceImpl.getTrainingProgramLiveData()
+    suspend fun cacheProgramsToDb(programs: List<TrainingProgram>) {
+//        if (localDataSourceImpl.getTrainingProgramLiveData().value == null) {
+//            for (i in programs.indices) {
+//                localDataSourceImpl.addTrainingProgram(programs[i])
+//            }
 //        }
-//    }
-//
-//    private fun checkProgramsAvailability() : Boolean{
-//        val programs = localDataSourceImpl.getTrainingProgramLiveData().value
-//        return programs != null
-//    }
-//
-//
-//    suspend fun cacheProgramsToDB(programList: List<TrainingProgram>){
-//        for (i in programList.indices){
-//            Log.d("TAG", "Repository cache")
-//            localDataSourceImpl.addTrainingProgram(programList[i])
-//        }
-//    }
+    }
 
 
 }

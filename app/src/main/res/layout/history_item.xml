@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
-        android:textColor="@color/gray"
+        style="@style/small_text_color"
         android:textSize="11sp"
         app:layout_constraintStart_toEndOf="@+id/historyItem"
         app:layout_constraintTop_toTopOf="parent" />
@@ -55,7 +55,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:layout_marginTop="12dp"
-        android:textColor="@color/gray"
+        style="@style/small_text_color"
         android:textSize="11sp"
         app:layout_constraintStart_toEndOf="@+id/timeIV"
         app:layout_constraintTop_toBottomOf="@+id/programName" />
@@ -76,19 +76,19 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:layout_marginTop="12dp"
-        android:textColor="@color/gray"
+        style="@style/small_text_color"
         android:textSize="11sp"
         app:layout_constraintStart_toEndOf="@+id/kcalIV"
         app:layout_constraintTop_toBottomOf="@+id/programName" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/kcall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="2dp"
         android:layout_marginTop="12dp"
         android:text="@string/kcal"
-        android:textColor="@color/gray"
+        style="@style/small_text_color"
         android:textSize="11sp"
         app:layout_constraintStart_toEndOf="@+id/kcalHistory"
         app:layout_constraintTop_toBottomOf="@+id/programName" />

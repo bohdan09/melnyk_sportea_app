@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
-import com.example.melnyk_sportea_app.db.room.Constants.QUOTE_TABLE_NAME
+import com.example.melnyk_sportea_app.db.room.Constant.QUOTE_TABLE_NAME
 import com.example.melnyk_sportea_app.model.Quote
 
 @Dao

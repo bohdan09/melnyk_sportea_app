@@ -5,18 +5,18 @@
     <string name="times">times</string>
     <string name="sec">sec</string>
     <!--  Navigation button name  -->
-    <string name="home_name_button">Home</string>
-    <string name="profile_name_button">Profile</string>
-    <string name="settings_name_button">Settings</string>
-    <string name="history_name_button">History</string>
+    <string name="home_name_button">Дом</string>
+    <string name="profile_name_button">Профиль</string>
+    <string name="settings_name_button">Настройки</string>
+    <string name="history_name_button">История</string>
     <!--  Toolbar name  -->
-    <string name="home_toolbar">Home</string>
-    <string name="profile_toolbar">Profile</string>
-    <string name="statistics_toolbar">Statistics</string>
+    <string name="home_toolbar">Программы</string>
+    <string name="profile_toolbar">Прфиль</string>
+    <string name="statistics_toolbar">История</string>
     <string name="maps_toolbar">Maps</string>
     <string name="program_toolbar">Programs</string>
-    <string name="exercises_toolbar">Exercises</string>
-    <string name="description_toolbar">Exercise description</string>
+    <string name="exercises_toolbar">Упражнения</string>
+    <string name="description_toolbar">Описания упражнений</string>
     <!--  Gender enum  -->
     <string name="female">Female</string>
     <string name="male">Male</string>
@@ -48,14 +48,53 @@
     <!--  Notification channels -->
     <string name="trainingChannel">Тренировки</string>
     <string name="reminderChannel">Напоминание</string>
-    <!-- remind notification -->
+    <!-- Remind notification -->
     <string name="reminderTitle">Напоминание</string>
     <string name="reminderContent">Вы давно не тренировались! Нужно это исправить) </string>
+    <!-- Settings fragment -->
+    <string name="settingsNotification">Уведомления</string>
+    <string name="settingsRemindNotify">Напоминание</string>
+    <string name="settingsUserName">Имя</string>
+    <string name="settings">Настройки</string>
+    <string name="settingsUserSurname">Фамилия</string>
+    <string name="settingsGender">Пол</string>
+    <string name="settingsWeight">Вес</string>
+    <string name="settingsHeight">Рост</string>
+    <string name="settingsEmail">Ел. почта</string>
 
+    <string name="summeryName">Установить имя</string>
+    <string name="summerySurname">Установить фамилию</string>
+    <string name="summeryGender">Установить пол</string>
+    <string name="summeryWeight">Установить вес</string>
+    <string name="summeryHeight">Установить рост</string>
+    <string name="summeryEmail">Установить ел. почту</string>
 
+    <string name="mockName">Ваше имя</string>
+    <string name="mockGender">Мужчина</string>
+    <string name="mockWeight">Ваш вес</string>
+    <string name="mockHeight">Ваш рост</string>
+    <string name="mockEmail">Ваша ел. почта</string>
 
+    <string name="personalInformation">Персональная информация</string>
+
+    <!-- Storage permission -->
+    <string name="storagePermission">Для выбора фотографии нужен доступ к хранилищу</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
 
 </resources>
