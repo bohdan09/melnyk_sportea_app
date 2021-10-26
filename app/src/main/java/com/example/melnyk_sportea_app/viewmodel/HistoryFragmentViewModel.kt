@@ -13,7 +13,6 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class HistoryFragmentViewModel @Inject constructor(
-    getTrainingProgramListUseCase: GetTrainingProgramListUseCase,
     getTrainingJournalLiveDataUseCase: GetTrainingJournalLiveDataUseCase,
     private val clearTrainingJournalUseCase: ClearTrainingJournalUseCase
 ) : ViewModel() {
@@ -21,10 +20,9 @@ class HistoryFragmentViewModel @Inject constructor(
     var trainingJournal: LiveData<List<TrainingJournal>> =
         getTrainingJournalLiveDataUseCase.execute()
 
-//    var trainingProgram: LiveData<List<TrainingProgram>> = getTrainingProgramListUseCase.execute()
 
-    fun clearHistory(){
-        viewModelScope.launch(Dispatchers.IO){
+    fun clearHistory() {
+        viewModelScope.launch(Dispatchers.IO) {
             clearTrainingJournalUseCase.execute()
         }
     }

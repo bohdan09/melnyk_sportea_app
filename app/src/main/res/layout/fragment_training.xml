@@ -6,30 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".presentation.navigation.fragments.home.TrainingFragment">
 
-    <ImageView
-        android:id="@+id/trainingIV"
-        android:layout_width="350dp"
-        android:layout_height="350dp"
-        android:layout_marginTop="24dp"
-        android:src="@drawable/ic_launcher_background"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/trainingNameTV"
+        style="@style/text_color"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:fontFamily="sans-serif-condensed-medium"
         android:gravity="center"
-        style="@style/text_color"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/trainingIV" />
+        app:layout_constraintTop_toBottomOf="@+id/trainingCardView" />
 
     <ProgressBar
         android:id="@+id/trainingPB"
@@ -65,11 +54,11 @@
 
     <Button
         android:id="@+id/pauseFinishB"
+        style="@style/bottom_style"
         android:layout_width="210dp"
         android:layout_height="60dp"
         android:fontFamily="sans-serif-condensed-medium"
         android:text="@string/pause"
-        style="@style/bottom_style"
         android:textSize="20sp"
         android:textStyle="bold"
         android:visibility="visible"
@@ -78,16 +67,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/trainingIV"
-        app:layout_constraintVertical_bias="0.844" />
+        app:layout_constraintTop_toBottomOf="@+id/trainingPB"
+        app:layout_constraintVertical_bias="0.26" />
 
     <Button
         android:id="@+id/startB"
+        style="@style/bottom_style"
         android:layout_width="210dp"
         android:layout_height="60dp"
         android:fontFamily="sans-serif-condensed-medium"
         android:text="@string/continueB"
-        style="@style/bottom_style"
         android:textSize="20sp"
         android:textStyle="bold"
         android:visibility="gone"
@@ -96,7 +85,23 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/trainingIV"
-        app:layout_constraintVertical_bias="0.844" />
+        app:layout_constraintTop_toBottomOf="@+id/trainingPB"
+        app:layout_constraintVertical_bias="0.26" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/trainingCardView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        app:cardCornerRadius="7dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/trainingIV"
+            android:layout_width="350dp"
+            android:layout_height="350dp" />
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

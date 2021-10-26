@@ -15,19 +15,11 @@
             android:key="userEmail"
             android:summary="@string/summeryEmail"
             android:title="@string/settingsEmail" />
-        <EditTextPreference
-            android:key="userWeight"
-            android:summary="@string/summeryWeight"
-            android:title="@string/settingsWeight" />
         <ListPreference
             android:entries="@array/gender_entries"
             android:entryValues="@array/gender_values"
             android:key="userGender"
             android:title="@string/settingsGender" />
-        <EditTextPreference
-            android:key="userHeight"
-            android:summary="@string/summeryHeight"
-            android:title="@string/settingsHeight" />
     </PreferenceCategory>
 
     <PreferenceCategory app:title="@string/settingsNotification">

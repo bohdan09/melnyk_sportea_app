@@ -8,7 +8,6 @@ import com.example.melnyk_sportea_app.model.Statistics
 
 @Dao
 interface StatisticsDao {
-
     @Insert
     suspend fun addStatisticsRecord(statisticsRecord: Statistics)
 

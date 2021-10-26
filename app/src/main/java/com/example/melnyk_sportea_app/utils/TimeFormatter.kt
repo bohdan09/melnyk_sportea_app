@@ -19,7 +19,7 @@ class TimeFormatter {
     }
 
     @SuppressLint("SimpleDateFormat")
-    fun getDate(time: Long): String{
+    fun getDate(time: Long): String {
         val formatter = SimpleDateFormat("dd-MM-yyyy  HH:mm")
         val date = Date(time)
         return formatter.format(date)

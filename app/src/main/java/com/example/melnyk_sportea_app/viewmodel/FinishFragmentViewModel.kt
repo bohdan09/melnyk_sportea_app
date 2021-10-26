@@ -16,8 +16,8 @@ class FinishFragmentViewModel @Inject constructor(
 ) : ViewModel() {
     val trainingJournal: LiveData<List<TrainingJournal>> = getTrainingJournal.execute()
 
-    fun addTraining(training: TrainingJournal){
-        viewModelScope.launch(Dispatchers.IO){
+    fun addTraining(training: TrainingJournal) {
+        viewModelScope.launch(Dispatchers.IO) {
             addTrainingUseCase.execute(training)
         }
     }

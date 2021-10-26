@@ -66,7 +66,7 @@ class RestFragment : Fragment() {
     }
 
     private fun startTimer() {
-        viewModel.startTimer(2000, restTimerTV, restPB)
+        viewModel.startTimer(viewModel.getExercise().restTime!!, restTimerTV, restPB)
     }
 
     private fun startTraining() {

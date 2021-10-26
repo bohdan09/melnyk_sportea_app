@@ -15,5 +15,4 @@ interface TrainingProgramDao {
 
     @Query("SELECT * FROM $TRAINING_PROGRAM_TABLE_NAME")
     fun getTrainingProgramLiveData(): LiveData<List<TrainingProgram>>
-
 }

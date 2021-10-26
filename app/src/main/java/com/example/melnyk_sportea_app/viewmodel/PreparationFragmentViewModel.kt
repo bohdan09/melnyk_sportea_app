@@ -6,9 +6,9 @@ import androidx.lifecycle.ViewModel
 
 class PreparationFragmentViewModel : ViewModel() {
     private val _isTimerFinished = MutableLiveData<Boolean>()
-    val isTimerFinished : LiveData<Boolean> = _isTimerFinished
+    val isTimerFinished: LiveData<Boolean> = _isTimerFinished
 
-    fun setFinishFlag(value : Boolean){
+    fun setFinishFlag(value: Boolean) {
         _isTimerFinished.value = value
     }
 }

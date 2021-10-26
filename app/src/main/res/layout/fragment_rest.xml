@@ -71,11 +71,11 @@
         <TextView
             android:id="@+id/nextExerciseTV"
             style="@style/text_color"
-            android:layout_width="280dp"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="44dp"
-            android:layout_marginEnd="10dp"
+            android:layout_marginTop="48dp"
+            android:layout_marginEnd="20dp"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@+id/nextExerciseIV"
@@ -99,7 +99,6 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginEnd="10dp"
-            android:src="@drawable/ic_launcher_background"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

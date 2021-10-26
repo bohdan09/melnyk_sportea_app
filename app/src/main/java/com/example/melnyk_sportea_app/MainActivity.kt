@@ -7,12 +7,16 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
+import androidx.preference.PreferenceManager
+import androidx.work.Data
 import com.example.melnyk_sportea_app.databinding.ActivityMainBinding
 import com.example.melnyk_sportea_app.model.wrapper.Quotes
 import com.example.melnyk_sportea_app.mvp.MainPresenter
 import com.example.melnyk_sportea_app.mvp.MainViewInterface
 import com.example.melnyk_sportea_app.utils.Reminder
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import java.util.*
+import kotlin.random.Random
 
 class MainActivity : AppCompatActivity(), MainViewInterface {
 
@@ -31,8 +35,6 @@ class MainActivity : AppCompatActivity(), MainViewInterface {
 
         setupMVP()
         getQuotes()
-        startReminder()
-
     }
 
     private fun bottomNavigationViewVisibility(
@@ -58,8 +60,15 @@ class MainActivity : AppCompatActivity(), MainViewInterface {
         bottomNavigationView.visibility = View.GONE
     }
 
-    private fun startReminder(){
-        Reminder.periodicRequest(this)
+    private fun startReminder(data: Data){
+        Reminder.periodicRequest(this, data)
+    }
+
+    private fun stopReminder(){
+        val prefs = PreferenceManager.getDefaultSharedPreferences(this)
+        val notification = prefs.getBoolean("sendNotification", true)
+        Log.d("TAG", "stopReminder: $notification")
+        Reminder.cancelWork(this,flag = notification)
     }
 
     private fun setupMVP() {
@@ -71,7 +80,9 @@ class MainActivity : AppCompatActivity(), MainViewInterface {
     }
 
     override fun displayQuotes(quotes: Quotes) {
-        Log.d("TAG", quotes.toString())
+        val data = Data.Builder().putString("quote", quotes[Random.nextInt(200)].text).build()
+        startReminder(data)
+        stopReminder()
     }
 
     override fun displayError(s: String?) {

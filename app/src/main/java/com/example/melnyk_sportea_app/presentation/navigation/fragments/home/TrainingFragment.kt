@@ -3,6 +3,7 @@ package com.example.melnyk_sportea_app.presentation.navigation.fragments.home
 import android.animation.ObjectAnimator
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -53,6 +54,7 @@ class TrainingFragment : Fragment() {
     override fun onPause() {
         super.onPause()
         if (viewModel.isServiceStart()) {
+            Log.d("TAG", "onPause: ")
             pauseTimerWork()
             startForegroundService()
         }
@@ -68,16 +70,27 @@ class TrainingFragment : Fragment() {
         }
     }
 
+    override fun onDetach() {
+        super.onDetach()
+        Intent(requireContext(), TrainingService::class.java).also {
+            it.action = "trainingService"
+            activity?.stopService(it)
+        }
+    }
+
     private fun startForegroundService() {
         Intent(requireContext(), TrainingService::class.java).also {
-            val exercise = viewModel.getExercise()
-            it.action = "trainingService"
-            it.putExtra("exerciseName", exercise.name)
-            it.putExtra("imageUrl", exercise.imageUrl)
-            Glide.with(this).load(exercise.imageUrl)
-                .into(notificationBinding?.notificationIV!!)
+            fillIntentExtras(it)
             ContextCompat.startForegroundService(requireContext(), it)
         }
+    }
+
+    private fun fillIntentExtras(it: Intent) {
+        val exercise = viewModel.getExercise()
+        it.action = "trainingService"
+        it.putExtra("exerciseName", exercise.name)
+        it.putExtra("exerciseNumber", exercise.id)
+        it.putExtra("generalExerciseNumber", viewModel.getExerciseListSize())
     }
 
     override fun onDestroy() {

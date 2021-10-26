@@ -15,9 +15,9 @@ class ProfileViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _avatarUri = MutableLiveData<Uri>()
-    val avatarUri : LiveData<Uri> = _avatarUri
+    val avatarUri: LiveData<Uri> = _avatarUri
 
-    fun setAvatarUri(uri: Uri){
+    fun setAvatarUri(uri: Uri) {
         _avatarUri.value = uri
     }
 

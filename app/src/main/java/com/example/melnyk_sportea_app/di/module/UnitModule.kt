@@ -8,12 +8,12 @@ import dagger.Provides
 @Module
 class UnitModule {
     @Provides
-    fun provideTimer() : Timer{
+    fun provideTimer(): Timer {
         return Timer()
     }
 
     @Provides
-    fun provideTimeFormatter() : TimeFormatter{
+    fun provideTimeFormatter(): TimeFormatter {
         return TimeFormatter()
     }
 }

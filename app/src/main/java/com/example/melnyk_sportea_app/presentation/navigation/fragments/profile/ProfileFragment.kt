@@ -24,7 +24,6 @@ class ProfileFragment : Fragment() {
     }
     private lateinit var activityLauncher: ActivityResultLauncher<String>
     private var binding: FragmentProfileBinding? = null
-    private lateinit var url : String
     private lateinit var toolbar: Toolbar
     private var permission = registerForActivityResult(
         ActivityResultContracts.RequestPermission()
@@ -76,14 +75,8 @@ class ProfileFragment : Fragment() {
     private fun loadPersonalInformation() {
         val settings = model.getSettings(requireContext())
         binding?.nickname?.text = "${settings.userName} ${settings.userSurname}"
-        binding?.emailTV?.text =
-            "${resources.getString(R.string.settingsEmail)}: ${settings.userEmail}"
-        binding?.genderTV?.text =
-            "${resources.getString(R.string.settingsGender)}:  ${settings.userGender.name.lowercase()}"
-        binding?.heightTV?.text =
-            "${resources.getString(R.string.settingsHeight)}: ${settings.userHeight}"
-        binding?.weightTV?.text =
-            "${resources.getString(R.string.settingsWeight)}: ${settings.userWeight}"
+        binding?.emailTV?.text = settings.userEmail
+        binding?.genderTV?.text = settings.userGender.name.lowercase()
     }
 
     private fun setAvatar() {
@@ -92,7 +85,7 @@ class ProfileFragment : Fragment() {
         ) {
             model.setAvatarUri(uri = it)
         }
-        model.avatarUri.observe(viewLifecycleOwner){
+        model.avatarUri.observe(viewLifecycleOwner) {
             Glide.with(this).load(it).centerCrop().into(binding?.avatar!!)
         }
 

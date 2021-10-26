@@ -1,8 +1,7 @@
-package com.example.melnyk_sportea_app.db.room
+package com.example.melnyk_sportea_app.db.room.converters
 
 import androidx.room.TypeConverter
 import com.example.melnyk_sportea_app.model.Exercise
-import com.example.melnyk_sportea_app.utils.ProgramLevel
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
