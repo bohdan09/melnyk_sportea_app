@@ -63,6 +63,7 @@ class ExerciseListFragment : Fragment(), ExerciseAdapter.OnItemClickListener {
 
     private fun startTraining() {
         binding?.startTrainingB?.setOnClickListener {
+            Log.d("TAG", "startTraining: ")
             findNavController().navigate(
                 R.id.action_exerciseListFragment_to_preparationFragment,
                 getExerciseListBundle()

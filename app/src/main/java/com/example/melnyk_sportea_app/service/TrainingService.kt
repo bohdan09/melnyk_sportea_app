@@ -2,6 +2,7 @@ package com.example.melnyk_sportea_app.service
 
 import android.annotation.SuppressLint
 import android.app.Notification
+import android.app.PendingIntent
 import android.app.Service
 import android.content.Intent
 import android.os.IBinder
@@ -9,8 +10,8 @@ import android.util.Log
 import android.widget.RemoteViews
 import androidx.core.app.NotificationCompat
 import com.example.melnyk_sportea_app.App
+import com.example.melnyk_sportea_app.MainActivity
 import com.example.melnyk_sportea_app.R
-import com.example.melnyk_sportea_app.presentation.navigation.fragments.home.TrainingFragment
 
 
 class TrainingService : Service() {
@@ -25,7 +26,7 @@ class TrainingService : Service() {
         val imageUrl = intent?.getStringExtra("imageUrl")
 
 
-        val intent = Intent(this, TrainingFragment::class.java)
+
 
         startForeground(FOREGROUND_ID, getNotification(name = exerciseName!!, url = imageUrl!!))
         return START_STICKY
@@ -45,12 +46,15 @@ class TrainingService : Service() {
         Log.d("TAG", name!!)
         notificationLayoutExpanded.setTextViewText(R.id.notificationName, name)
         // notificationLayoutExpanded.setBitmap()
-
+        val intent = Intent(this, MainActivity::class.java)
+        val pendingIntent =
+            PendingIntent.getActivity(this, 1, intent, PendingIntent.FLAG_UPDATE_CURRENT)
 
         val notification = NotificationCompat.Builder(this, App.TRAINING_CHANNEL_ID)
             .setSmallIcon(R.drawable.home_icon)
             .setCustomContentView(notificationLayoutSimple)
             .setCustomBigContentView(notificationLayoutExpanded)
+            .setContentIntent(pendingIntent)
             .setStyle(NotificationCompat.DecoratedCustomViewStyle())
             .build()
         return notification

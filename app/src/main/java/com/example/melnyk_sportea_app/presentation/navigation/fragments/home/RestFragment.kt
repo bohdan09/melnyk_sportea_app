@@ -5,37 +5,25 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.bumptech.glide.Glide
-import com.example.melnyk_sportea_app.App
 import com.example.melnyk_sportea_app.R
 import com.example.melnyk_sportea_app.databinding.FragmentRestBinding
 import com.example.melnyk_sportea_app.model.Exercise
 import com.example.melnyk_sportea_app.utils.TimeFormatter
-import com.example.melnyk_sportea_app.utils.Timer
 import com.example.melnyk_sportea_app.viewmodel.RestFragmentViewModel
 import kotlinx.android.synthetic.main.fragment_rest.*
-import javax.inject.Inject
 
 class RestFragment : Fragment() {
-    @Inject
-    lateinit var timer: Timer
     private val viewModel: RestFragmentViewModel by activityViewModels()
     private val timeFormatter = TimeFormatter()
     private var binding: FragmentRestBinding? = null
-    private lateinit var exercise: Exercise
-    private var listSize = 0
-    private var index = 0
 
-    //add viewModel for getting setting shared pref(restTime)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        (activity?.application as App).getAppComponent().inject(this)
         binding = FragmentRestBinding.inflate(inflater)
         addAnimation()
         return binding?.root
@@ -48,15 +36,17 @@ class RestFragment : Fragment() {
         setExerciseInfo()
         startTimer()
         startTraining()
-        //handleBackPress()
-
     }
 
     private fun getBundle(arguments: Bundle) {
-        exercise =
+        val exercise: Exercise =
             arguments.getParcelable(TrainingFragment.EXERCISE)!!
-        listSize = arguments.getInt(TrainingFragment.LIST_SIZE)
-        index = arguments.getInt(TrainingFragment.INDEX) + 1
+        val index = arguments.getInt(TrainingFragment.INDEX) + 1
+        val listSize = arguments.getInt(TrainingFragment.LIST_SIZE)
+
+        viewModel.setExercise(exercise)
+        viewModel.setExerciseIndex(index)
+        viewModel.setExerciseListSize(size = listSize)
     }
 
     override fun onDestroy() {
@@ -65,8 +55,8 @@ class RestFragment : Fragment() {
     }
 
     private fun setExerciseInfo() {
-        restTimerTV.text = "3" // will change to restTime in prefs
-        indexExerciseTV.text = "$index/$listSize"
+        val exercise = viewModel.getExercise()
+        indexExerciseTV.text = "${viewModel.getExerciseIndex()}/${viewModel.getExerciseListSize()}"
         nextExerciseTV.text = exercise.name
         Glide.with(this).load(exercise.imageUrl).centerCrop().into(nextExerciseIV)
 
@@ -76,12 +66,7 @@ class RestFragment : Fragment() {
     }
 
     private fun startTimer() {
-        timer.startTimer(
-            time = 1000,
-            timerText = binding?.restTimerTV,
-            setFlag = ::setFinishFlag,
-            progressBar = binding?.restPB!!
-        )
+        viewModel.startTimer(2000, restTimerTV, restPB)
     }
 
     private fun startTraining() {
@@ -90,18 +75,6 @@ class RestFragment : Fragment() {
                 activity?.onBackPressed()
             }
         }
-    }
-
-    private fun setFinishFlag(flag: Boolean) {
-        viewModel.setFinishFlag(flag)
-    }
-
-    private fun handleBackPress() {
-        activity?.onBackPressedDispatcher?.addCallback(object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                Toast.makeText(requireContext(), "sdkjfnsdkjnv", Toast.LENGTH_SHORT).show()
-            }
-        })
     }
 
     private fun addAnimation() {

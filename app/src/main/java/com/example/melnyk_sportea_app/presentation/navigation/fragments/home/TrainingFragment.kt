@@ -3,12 +3,9 @@ package com.example.melnyk_sportea_app.presentation.navigation.fragments.home
 import android.animation.ObjectAnimator
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.activity.OnBackPressedCallback
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -21,21 +18,15 @@ import com.example.melnyk_sportea_app.databinding.FragmentTrainingBinding
 import com.example.melnyk_sportea_app.model.Exercise
 import com.example.melnyk_sportea_app.model.TrainingProgram
 import com.example.melnyk_sportea_app.service.TrainingService
-import com.example.melnyk_sportea_app.utils.Timer
 import com.example.melnyk_sportea_app.viewmodel.TrainingFragmentViewModel
 import kotlinx.android.synthetic.main.fragment_training.*
 import kotlinx.coroutines.*
-import javax.inject.Inject
 
 class TrainingFragment : Fragment() {
-    @Inject
-    lateinit var timer: Timer
     private val viewModel: TrainingFragmentViewModel by activityViewModels()
+    private val startTime = System.currentTimeMillis()
     private var binding: FragmentTrainingBinding? = null
     private var notificationBinding: ExpandNotificationBinding? = null
-    private lateinit var exerciseList: List<Exercise>
-    private var exerciseIndex = 0;
-    private val startTime = System.currentTimeMillis()
     private lateinit var trainingProgram: TrainingProgram
 
     override fun onCreateView(
@@ -54,14 +45,14 @@ class TrainingFragment : Fragment() {
         deriveBundle(bundle = requireArguments())
 
         startDoingExercises()
+        navigationToFragments()
         workInRepeats()
         continueTimerWork()
     }
 
     override fun onPause() {
         super.onPause()
-        val exercise = exerciseList[exerciseIndex]
-        if (exercise.repeats == 0 && !timer.isStopped) {
+        if (viewModel.isServiceStart()) {
             pauseTimerWork()
             startForegroundService()
         }
@@ -69,8 +60,7 @@ class TrainingFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        val exercise = exerciseList[exerciseIndex]
-        if (exercise.repeats == 0 && timer.isStopped) {
+        if (viewModel.isServiceStop()) {
             Intent(requireContext(), TrainingService::class.java).also {
                 it.action = "trainingService"
                 activity?.stopService(it)
@@ -78,20 +68,16 @@ class TrainingFragment : Fragment() {
         }
     }
 
-    fun startForegroundService() {
+    private fun startForegroundService() {
         Intent(requireContext(), TrainingService::class.java).also {
+            val exercise = viewModel.getExercise()
             it.action = "trainingService"
-            it.putExtra("exerciseName", exerciseList[exerciseIndex].name)
-            it.putExtra("imageUrl", exerciseList[exerciseIndex].imageUrl)
-            Glide.with(this).load(exerciseList[exerciseIndex].imageUrl)
+            it.putExtra("exerciseName", exercise.name)
+            it.putExtra("imageUrl", exercise.imageUrl)
+            Glide.with(this).load(exercise.imageUrl)
                 .into(notificationBinding?.notificationIV!!)
             ContextCompat.startForegroundService(requireContext(), it)
         }
-    }
-
-    override fun onStop() {
-        super.onStop()
-        Log.d("TAG", "onStop: ")
     }
 
     override fun onDestroy() {
@@ -100,8 +86,8 @@ class TrainingFragment : Fragment() {
         notificationBinding = null
     }
 
-    private fun setExerciseInfo(index: Int) {
-        val exercise = exerciseList[index]
+    private fun setExerciseInfo() {
+        val exercise = viewModel.getExercise()
         with(binding) {
             Glide.with(this@TrainingFragment).load(exercise.imageUrl).centerCrop()
                 .into(this?.trainingIV!!)
@@ -117,65 +103,56 @@ class TrainingFragment : Fragment() {
                 "x${exercise.repeats}"
             }
         }
-
     }
 
     private fun deriveBundle(bundle: Bundle) {
-        exerciseList =
+        val exerciseList =
             bundle.getParcelableArrayList<Exercise>(PreparationFragment.EXERCISES) as List<Exercise>
+        viewModel.setExerciseList(list = exerciseList)
         trainingProgram = bundle.getParcelable(PROGRAM)!!
     }
 
     private fun startDoingExercises() {
-        val exercise = exerciseList[exerciseIndex]
-        setExerciseInfo(index = exerciseIndex)
-        workInTime(exercise)
+        setExerciseInfo()
+        viewModel.startDoingExercise(timeRepeatsTV, trainingPB)
     }
 
-    //managing when exercise have workTime field
-    private fun workInTime(exercise: Exercise) {
-        if (exercise.repeats == 0) {
-            Log.d("TAG", exercise.workTime!!.toString())
-            startTimer(durationTime = exercise.workTime)
-            //startDoingExercises()
-        }
+    private fun navigationToFragments() {
         // if timer is finished rest fragment starts
+        // if exercises finished finish fragment starts
         viewModel.isTimerFinished.observe(viewLifecycleOwner) {
             if (it) {
-                if (exerciseIndex >= exerciseList.size - 1) {
-                    trainingFinish()
-                } else startRestFragment(exerciseBundle = getExerciseBundle())
+                chooseNextNavigationFragment()
             }
         }
     }
 
-    //managing when exercise have repeats field
-    /////shit
+    // choose which fragment to use according to condition
+    private fun chooseNextNavigationFragment() {
+        if (viewModel.isStartFinishFragment()) {
+            viewModel.setExerciseIndex(index = 0)
+            trainingFinish()
+        } else startRestFragment(exerciseBundle = getExerciseBundle())
+    }
+
     private fun workInRepeats() {
         pauseFinishB.setOnClickListener {
-            val exercise = exerciseList[exerciseIndex]
-            if (exercise.repeats == 0) {
+            if (viewModel.workingWithTime()) {
                 pauseTimerWork()
-                // timer.pauseTimer()
-                //timer.resetTimer()
             } else {
                 binding?.trainingPB?.progress = 100
-                if (exerciseIndex >= exerciseList.size - 1) {
-                    trainingFinish()
-                } else startRestFragment(exerciseBundle = getExerciseBundle())
+                chooseNextNavigationFragment()
             }
         }
     }
-
 
     private fun trainingFinish() {
         val bundle = getTrainingResultBundle()
         findNavController().navigate(R.id.action_trainingFragment_to_finishTrainingFragment, bundle)
     }
 
-
     private fun pauseTimerWork() {
-        timer.pauseTimer()
+        viewModel.pauseTimerWork()
         pauseFinishB.visibility = View.GONE
         startB.visibility = View.VISIBLE
     }
@@ -183,72 +160,47 @@ class TrainingFragment : Fragment() {
     //start work of timer after pause
     private fun continueTimerWork() {
         startB.setOnClickListener {
-            val exercise = exerciseList[exerciseIndex]
-            startTimer(exercise.workTime!!)
+            viewModel.continueTimerWork(timeRepeats = timeRepeatsTV, trainingPB = trainingPB)
             startB.visibility = View.GONE
             pauseFinishB.visibility = View.VISIBLE
         }
     }
 
-    private fun startTimer(durationTime: Long) {
-        timer.startTimer(
-            time = durationTime,
-            timerText = binding?.timeRepeatsTV,
-            setFlag = ::setFinishFlag,
-            progressBar = binding?.trainingPB!!
-        )
-    }
-
-    private fun pauseTimer() {
-        timer.pauseTimer()
-    }
-
-    private fun setFinishFlag(flag: Boolean) {
-        viewModel.setFinishFlag(flag)
-    }
-
     private fun getExerciseBundle(): Bundle {
+        val exerciseIndex = viewModel.getExerciseIndex()
+        val exerciseListSize = viewModel.getExerciseListSize()
+        val exerciseList = viewModel.exerciseList.value
+
         val bundle = Bundle()
-        bundle.putInt(LIST_SIZE, exerciseList.size)
+        bundle.putInt(LIST_SIZE, exerciseListSize)
         bundle.putInt(INDEX, exerciseIndex + 1)
         bundle.putParcelable(
             EXERCISE,
-            exerciseList[exerciseIndex + 1]
+            exerciseList!![exerciseIndex + 1]
         )
-        exerciseIndex++
 
+        viewModel.incrementExerciseIndex()
         return bundle
     }
 
     private fun startRestFragment(exerciseBundle: Bundle) {
-
         findNavController().navigate(R.id.action_trainingFragment_to_restFragment, exerciseBundle)
     }
 
     private fun getTrainingResultBundle(): Bundle {
+        val exerciseListSize = viewModel.getExerciseListSize()
+
         val bundle = Bundle()
         bundle.putLong(CURRENT_DATE, System.currentTimeMillis())
         bundle.putLong(DURATION, System.currentTimeMillis() - startTime)
         bundle.putParcelable(PROGRAM, trainingProgram)
-        bundle.putInt(EXERCISE_COUNT, exerciseList.size)
+        bundle.putInt(EXERCISE_COUNT, exerciseListSize)
         bundle.putInt(KCAL_COUNT, getGeneralKcal())
         return bundle
     }
 
-    fun getGeneralKcal(): Int {
-        var kcal = 0
-        for (i in exerciseList.indices) {
-            kcal += exerciseList[i].kcal!!
-        }
-        return kcal
-    }
-
-    private fun handleBackPress() {
-        activity?.onBackPressedDispatcher?.addCallback(object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                Toast.makeText(requireContext(), "sdkjfnsdkjnv", Toast.LENGTH_SHORT).show()
-            }
-        })
+    private fun getGeneralKcal(): Int {
+        return viewModel.getGeneralKcal()
     }
 
     private fun addAnimation() {
