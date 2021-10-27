@@ -27,8 +27,8 @@ class ProfileViewModel @Inject constructor(
         val surname = prefs.getString("userSurname", "")
         val email = prefs.getString("userEmail", "")
         val gender = prefs.getString("userGender", "")
-        val weight = prefs.getString("userWeight", "")
-        val height = prefs.getString("userHeight", "")
+        val weight = prefs.getString("userWeight", "0")
+        val height = prefs.getString("userHeight", "0")
         val notification = prefs.getBoolean("sendNotification", true)
 
         Log.d("TAG", "getSettings: $gender")
