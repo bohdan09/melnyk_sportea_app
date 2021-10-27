@@ -31,7 +31,7 @@
             android:fontFamily="sans-serif-black"
             android:gravity="left"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.125"
+            app:layout_constraintHorizontal_bias="0.085"
             app:layout_constraintStart_toEndOf="@+id/exerciseIV"
             app:layout_constraintTop_toTopOf="parent" />
 

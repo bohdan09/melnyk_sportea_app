@@ -26,7 +26,7 @@ class ProfileViewModel @Inject constructor(
         val name = prefs.getString("userName", "")!!
         val surname = prefs.getString("userSurname", "")
         val email = prefs.getString("userEmail", "")
-        val gender = prefs.getString("userGender", "")
+        val gender = prefs.getString("userGender", "MALE")
         val weight = prefs.getString("userWeight", "0")
         val height = prefs.getString("userHeight", "0")
         val notification = prefs.getBoolean("sendNotification", true)
