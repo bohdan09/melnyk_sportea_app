@@ -23,9 +23,9 @@ class ProfileViewModel @Inject constructor(
 
     fun getSettings(context: Context): Settings {
         val prefs = PreferenceManager.getDefaultSharedPreferences(context)
-        val name = prefs.getString("userName", "")!!
-        val surname = prefs.getString("userSurname", "")
-        val email = prefs.getString("userEmail", "")
+        val name = prefs.getString("userName", "Имя")!!
+        val surname = prefs.getString("userSurname", "Фамилия")
+        val email = prefs.getString("userEmail", "Ел.почта")
         val gender = prefs.getString("userGender", "MALE")
         val weight = prefs.getString("userWeight", "0")
         val height = prefs.getString("userHeight", "0")

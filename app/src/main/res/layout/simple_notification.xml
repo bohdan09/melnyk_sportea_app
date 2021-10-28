@@ -7,6 +7,7 @@
     android:orientation="vertical">
 
     <TextView
+        style="@style/TextAppearance.Compat.Notification.Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
