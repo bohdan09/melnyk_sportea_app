@@ -10,6 +10,9 @@ import com.example.melnyk_sportea_app.di.module.ApiModule
 import com.example.melnyk_sportea_app.di.module.DataModule
 import com.example.melnyk_sportea_app.di.module.UnitModule
 import com.example.melnyk_sportea_app.di.module.UseCaseModule
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class App : Application() {
     private lateinit var appComponent: AppComponent

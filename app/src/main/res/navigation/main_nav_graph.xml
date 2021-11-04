@@ -16,6 +16,10 @@
             app:exitAnim="@android:anim/fade_out"
             app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_profileFragment_to_authActivity"
+            app:destination="@id/authActivity"
+            app:launchSingleTop="false" />
     </fragment>
     <fragment
         android:id="@+id/historyFragment"
@@ -158,6 +162,11 @@
             app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@android:anim/fade_out" />
     </fragment>
+    <activity
+        android:id="@+id/authActivity"
+        android:name="com.example.melnyk_sportea_app.AuthActivity"
+        android:label="activity_auth"
+        tools:layout="@layout/activity_auth" />
 
 
 </navigation>

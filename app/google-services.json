@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "1082237857700-bc7uastbrlpdbdnm070nvmd0fed66be5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.melnyk_sportea_app",
+            "certificate_hash": "13b0d7639d09816d35d9a80ed5a301647427e1cc"
+          }
+        },
+        {
           "client_id": "1082237857700-eonibvur2kot1g8qns9h8k0qqsk2uo25.apps.googleusercontent.com",
           "client_type": 3
         }

@@ -8,7 +8,10 @@ import com.example.melnyk_sportea_app.data.source.local.LocalDataSourceImpl
 import com.example.melnyk_sportea_app.data.source.remote.RemoteDataSourceImpl
 import com.example.melnyk_sportea_app.repository.QuotesRepository
 import com.example.melnyk_sportea_app.repository.TrainingProgramsRepository
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
+import com.google.firebase.ktx.Firebase
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
@@ -65,5 +68,10 @@ class ApiModule(var context: Context) {
     @Provides
     fun provideInternetConnection(): InternetConnection {
         return InternetConnection()
+    }
+
+    @Provides
+    fun provideFirebaseAuth() : FirebaseAuth{
+        return Firebase.auth
     }
 }
