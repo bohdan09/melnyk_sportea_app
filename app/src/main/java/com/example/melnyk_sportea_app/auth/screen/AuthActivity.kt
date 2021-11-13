@@ -1,38 +1,41 @@
-package com.example.melnyk_sportea_app
+package com.example.melnyk_sportea_app.auth.screen
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
-import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.example.melnyk_sportea_app.App
+import com.example.melnyk_sportea_app.MainActivity
+import com.example.melnyk_sportea_app.R
 import com.example.melnyk_sportea_app.databinding.ActivityAuthBinding
 import com.example.melnyk_sportea_app.viewmodel.AuthViewModel
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
+import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 import javax.inject.Inject
 
-class AuthActivity() : AppCompatActivity() {
-    private val model: AuthViewModel by viewModels()
-    private lateinit var binding: ActivityAuthBinding
-
+class AuthActivity : AppCompatActivity() {
     @Inject
     lateinit var mAuth: FirebaseAuth
+    private val model: AuthViewModel by viewModels()
+    private lateinit var binding: ActivityAuthBinding
+    private lateinit var pagerAdapter: PagerAdapter
     private lateinit var launcher: ActivityResultLauncher<Intent>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        (application as App).getAppComponent()
+        (application as App).getAppComponent().inject(this)
         binding = ActivityAuthBinding.inflate(layoutInflater).also { setContentView(it.root) }
+        initPagerAdapter()
 
-        mAuth = Firebase.auth
+        // mAuth = Firebase.auth
         // if user sign in immediately start mainActivity
         if (mAuth.currentUser != null) {
             startMainActivity()
@@ -53,28 +56,12 @@ class AuthActivity() : AppCompatActivity() {
         binding.googleAuth.setOnClickListener {
             signInGoogle()
         }
-
-        binding.signinB.setOnClickListener {
-            signInWithEmailAndPassword()
-        }
-
-        binding.loginB.setOnClickListener {
-            loginWithEmailAndPassword()
-        }
     }
 
     private fun initViewModelGoogle() {
         mAuth.currentUser?.let { model.setCurrentUser(it) }
         model.currentUser.observe(this) {
             model.setUserPersonalInformationFromGoogle(this)
-            startMainActivity()
-        }
-    }
-
-    private fun initViewModel() {
-        mAuth.currentUser?.let { model.setCurrentUser(it) }
-        model.currentUser.observe(this) {
-            model.setUserInformationEmailAndPassword(this)
             startMainActivity()
         }
     }
@@ -111,35 +98,14 @@ class AuthActivity() : AppCompatActivity() {
         startActivity(Intent(this, MainActivity::class.java))
     }
 
-
-    private fun signInWithEmailAndPassword() {
-        val email = binding.email.text.toString()
-        val password = binding.password.text.toString()
-        mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this) {
-            if (it.isSuccessful) {
-                initViewModel()
-                startMainActivity()
-            } else {
-                Toast.makeText(
-                    this,
-                    resources.getString(R.string.account_exists),
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-        }
+    private fun initPagerAdapter() {
+        pagerAdapter = PagerAdapter(this, listOf(SignInFragment(), LoginFragment()))
+        binding.pager.adapter = pagerAdapter
+        TabLayoutMediator(binding.tabLayout, binding.pager) { tab, position ->
+            if (position == 1) {
+                tab.text = resources.getString(R.string.login)
+            } else tab.text = resources.getString(R.string.sign_in)
+        }.attach()
     }
-
-
-    private fun loginWithEmailAndPassword() {
-        val email = binding.email.text.toString()
-        val password = binding.password.text.toString()
-        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this) {
-            if (it.isSuccessful) {
-                initViewModel()
-                startMainActivity()
-            }
-        }
-    }
-
 
 }

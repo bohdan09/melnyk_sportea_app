@@ -14,7 +14,7 @@
         android:theme="@style/Theme.Custom" >
 
         <activity
-            android:name=".AuthActivity"
+            android:name=".auth.screen.AuthActivity"
             android:exported="true"
             android:screenOrientation="portrait" >
             <intent-filter>

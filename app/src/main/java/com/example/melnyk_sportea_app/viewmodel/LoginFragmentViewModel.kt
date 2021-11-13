@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.preference.PreferenceManager
 import com.google.firebase.auth.FirebaseUser
 
-class AuthViewModel : ViewModel() {
+class LoginFragmentViewModel : ViewModel() {
     private val _currentUser = MediatorLiveData<FirebaseUser?>()
     val currentUser: LiveData<FirebaseUser?> = _currentUser
 
@@ -32,17 +32,14 @@ class AuthViewModel : ViewModel() {
         }.apply()
     }
 
-    fun setUserPersonalInformationFromGoogle(context: Context) {
+    fun setUserPersonalInformation(context: Context) {
         val user = currentUser.value
         user?.let {
-            val space = user.displayName!!.indexOf(' ')
-            val name  = user.displayName?.substring(0,space )
-            val surname = user.displayName?.substring(space, user.displayName!!.length)
+//            val space = user.displayName!!.indexOf(' ')
+//            val name  = user.displayName?.substring(0,space )
+//            val surname = user.displayName?.substring(space, user.displayName!!.length)
             setUserPersonalInformationFromGoogle(
                 email = user.email,
-                name = name,
-                surname = surname,
-                imageUrl = user.photoUrl.toString(),
                 context = context
             )
         }
