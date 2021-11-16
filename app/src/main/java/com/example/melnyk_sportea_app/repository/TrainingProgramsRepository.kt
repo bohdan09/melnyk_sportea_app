@@ -31,4 +31,8 @@ class TrainingProgramsRepository(
         }
     }
 
+    fun getTrainingProgramById(id: Int): LiveData<TrainingProgram> {
+        return localDataSourceImpl.getTrainingProgramById(id)
+    }
+
 }
