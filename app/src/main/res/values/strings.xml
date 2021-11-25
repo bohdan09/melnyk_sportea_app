@@ -108,5 +108,6 @@
     <string name="empty_fields">Заполните поля</string>
     <string name="account_exists">Аккаунт существует или данные введены неправильно</string>
     <string name="incorrect_data">Данные введены некорректно</string>
+    <string name="no_account">Выберете аккаунт для входа</string>
 
 </resources>

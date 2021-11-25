@@ -48,7 +48,7 @@ class ApiModule(var context: Context) {
         remoteDataSourceImpl: RemoteDataSourceImpl,
         localDataSourceImpl: LocalDataSourceImpl,
     ): QuotesRepository {
-        return QuotesRepository(remoteDataSourceImpl, localDataSourceImpl, context)
+        return QuotesRepository(remoteDataSourceImpl, localDataSourceImpl)
     }
 
     @Provides

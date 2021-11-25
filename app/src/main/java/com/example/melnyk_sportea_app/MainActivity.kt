@@ -15,36 +15,33 @@ import com.example.melnyk_sportea_app.mvp.MainPresenter
 import com.example.melnyk_sportea_app.mvp.MainViewInterface
 import com.example.melnyk_sportea_app.utils.Reminder
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import java.util.*
 import kotlin.random.Random
 
 class MainActivity : AppCompatActivity(), MainViewInterface {
 
     private lateinit var binding: ActivityMainBinding
-    private lateinit var decorView: View
-    private lateinit var navigationController: NavController
     lateinit var mainPresenter: MainPresenter
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater).also { setContentView(it.root) }
 
-        navigationController = findNavController(R.id.nav_controller)
+        val navigationController = findNavController(R.id.nav_controller)
         val bottomNavigationView = binding.navView
-        decorView = window.decorView
 
-        bottomNavigationViewVisibility(bottomNavigationView)
+        bottomNavigationViewVisibility(navigationController, bottomNavigationView)
         bottomNavigationView.setupWithNavController(navigationController)
 
         setupMVP()
         getQuotes()
-        // hideBottomNavigationBar(navigationController)
-
     }
 
     private fun bottomNavigationViewVisibility(
+        navController: NavController,
         bottomNavigation: BottomNavigationView
     ) {
-        navigationController.addOnDestinationChangedListener { _, destination, _ ->
+        navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
                 R.id.homeFragment,
                 R.id.settingsFragment,
@@ -63,15 +60,15 @@ class MainActivity : AppCompatActivity(), MainViewInterface {
         bottomNavigationView.visibility = View.GONE
     }
 
-    private fun startReminder(data: Data) {
+    private fun startReminder(data: Data){
         Reminder.periodicRequest(this, data)
     }
 
-    private fun stopReminder() {
+    private fun stopReminder(){
         val prefs = PreferenceManager.getDefaultSharedPreferences(this)
         val notification = prefs.getBoolean("sendNotification", true)
         Log.d("TAG", "stopReminder: $notification")
-        Reminder.cancelWork(this, flag = notification)
+        Reminder.cancelWork(this,flag = notification)
     }
 
     private fun setupMVP() {
@@ -92,27 +89,5 @@ class MainActivity : AppCompatActivity(), MainViewInterface {
         Log.d("TAG", s!!)
     }
 
-    private fun hideBottomNavigationBar() {
-        navigationController.addOnDestinationChangedListener { _, destination, _ ->
-            when (destination.id) {
-                R.id.restFragment,
-                R.id.trainingFragment,
-                R.id.preparationFragment -> {
-                    val ui_Options = (View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                            or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                            or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                            or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                            or View.SYSTEM_UI_FLAG_FULLSCREEN
-                            or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
 
-                    decorView.systemUiVisibility = ui_Options
-                }
-
-                else -> {
-                    decorView.systemUiVisibility = View.VISIBLE
-                }
-            }
-        }
-
-    }
 }

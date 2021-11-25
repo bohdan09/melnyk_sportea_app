@@ -2,7 +2,9 @@ package com.example.melnyk_sportea_app.auth.screen
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
@@ -34,6 +36,7 @@ class AuthActivity : AppCompatActivity() {
         (application as App).getAppComponent().inject(this)
         binding = ActivityAuthBinding.inflate(layoutInflater).also { setContentView(it.root) }
         initPagerAdapter()
+        handleBackPressed()
 
         // mAuth = Firebase.auth
         // if user sign in immediately start mainActivity
@@ -49,7 +52,7 @@ class AuthActivity : AppCompatActivity() {
                     signInFirebase(account.idToken)
                 }
             } catch (e: ApiException) {
-                Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, resources.getString(R.string.no_account), Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -68,10 +71,10 @@ class AuthActivity : AppCompatActivity() {
 
     private fun chooseAnAccount(): GoogleSignInClient {
         val gso = GoogleSignInOptions
-            .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.default_web_client_id))
-            .requestEmail()
-            .build()
+                .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build()
 
         return GoogleSignIn.getClient(this, gso)
     }
@@ -89,7 +92,7 @@ class AuthActivity : AppCompatActivity() {
                 startMainActivity()
             } else {
                 Toast.makeText(this, resources.getString(R.string.unsuccessful), Toast.LENGTH_SHORT)
-                    .show()
+                        .show()
             }
         }
     }
@@ -108,4 +111,14 @@ class AuthActivity : AppCompatActivity() {
         }.attach()
     }
 
+
+    private fun handleBackPressed(){
+        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true){
+            override fun handleOnBackPressed() {
+                Log.d("TAG", "handleOnBackPressed: ")
+            finishAndRemoveTask()
+            }
+
+        })
+    }
 }
