@@ -55,7 +55,6 @@ class ExerciseListFragment : Fragment(), ExerciseAdapter.OnItemClickListener {
 
     private fun deriveBundle(bundle: Bundle) {
         trainingProgram = bundle.getParcelable(PROGRAM)!!
-        Log.d("TAG", "trainingProgram: ${trainingProgram}")
         exerciseList =
             arguments?.getParcelableArrayList<Exercise>(HomeFragment.EXERCISE_LIST) as List<Exercise>
 

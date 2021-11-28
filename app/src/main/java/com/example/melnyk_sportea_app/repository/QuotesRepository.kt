@@ -1,32 +1,30 @@
 package com.example.melnyk_sportea_app.repository
 
-import android.content.Context
-import com.example.melnyk_sportea_app.data.source.local.LocalDataSourceImpl
-import com.example.melnyk_sportea_app.data.source.remote.RemoteDataSourceImpl
+import com.example.melnyk_sportea_app.data.source.LocalDataSource
+import com.example.melnyk_sportea_app.data.source.RemoteDataSource
 import com.example.melnyk_sportea_app.model.Quote
 import com.example.melnyk_sportea_app.model.wrapper.Quotes
 import io.reactivex.Observable
 
 class QuotesRepository(
-    private val remoteDataSourceImpl: RemoteDataSourceImpl,
-    private val localDataSourceImpl: LocalDataSourceImpl,
-    private val context: Context
+        private val remoteDataSource: RemoteDataSource,
+        private val localDataSource: LocalDataSource,
 ) {
 
     fun getQuotesListFromApi(): Observable<Quotes> {
-        return remoteDataSourceImpl.getQuotes()
+        return remoteDataSource.getQuotes()
     }
 
     fun getQuotesListFromDB(): List<Quote> {
-        return localDataSourceImpl.getQuotes()
+        return localDataSource.getQuotes()
     }
 
     suspend fun addQuote(quote: Quote) {
-        localDataSourceImpl.addQuote(quote)
+        localDataSource.addQuote(quote)
     }
 
     suspend fun removeQuote(quote: Quote) {
-        localDataSourceImpl.removeQuote(quote)
+        localDataSource.removeQuote(quote)
     }
 
 }

@@ -11,5 +11,6 @@ data class Settings(
     val userYearBirth: Int,
     val userWeight: Float,
     val userHeight: Int,
-    val sendNotifications: Boolean
+    val sendNotifications: Boolean,
+    val imageUrl : String
 )

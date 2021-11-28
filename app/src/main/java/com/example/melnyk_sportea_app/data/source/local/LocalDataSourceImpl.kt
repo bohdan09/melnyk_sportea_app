@@ -62,4 +62,8 @@ class LocalDataSourceImpl(
     override fun getTrainingProgramLiveData(): LiveData<List<TrainingProgram>> {
         return trainingProgramDao.getTrainingProgramLiveData()
     }
+
+    override fun getTrainingProgramById(id: Int): LiveData<TrainingProgram> {
+        return trainingProgramDao.getTrainingProgramByIdLiveData(id)
+    }
 }

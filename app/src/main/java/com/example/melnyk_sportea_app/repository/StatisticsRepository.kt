@@ -1,24 +1,24 @@
 package com.example.melnyk_sportea_app.repository
 
-import com.example.melnyk_sportea_app.data.source.local.LocalDataSourceImpl
+import com.example.melnyk_sportea_app.data.source.LocalDataSource
 import com.example.melnyk_sportea_app.model.Statistics
 
 class StatisticsRepository(
-    private val localDataSourceImpl: LocalDataSourceImpl
+        private val localDataSource: LocalDataSource
 ) {
 
     suspend fun addStatisticsRecord(statisticsRecord: Statistics) {
-        localDataSourceImpl.addStatisticsRecord(statisticsRecord)
+        localDataSource.addStatisticsRecord(statisticsRecord)
     }
 
     suspend fun clearAllStatistics() {
-        localDataSourceImpl.clearAllStatistics()
+        localDataSource.clearAllStatistics()
     }
 
     fun getAllStatisticsRecords(): List<Statistics> =
-        localDataSourceImpl.getAllStatisticsRecords()
+            localDataSource.getAllStatisticsRecords()
 
     suspend fun getStatisticsRecordByName(name: String): Statistics {
-        return localDataSourceImpl.getStatisticsRecordByName(name)
+        return localDataSource.getStatisticsRecordByName(name)
     }
 }

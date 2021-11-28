@@ -14,12 +14,6 @@ import javax.inject.Inject
 class ProfileViewModel @Inject constructor(
 ) : ViewModel() {
 
-    private val _avatarUri = MutableLiveData<Uri>()
-    val avatarUri: LiveData<Uri> = _avatarUri
-
-    fun setAvatarUri(uri: Uri) {
-        _avatarUri.value = uri
-    }
 
     fun getSettings(context: Context): Settings {
         val prefs = PreferenceManager.getDefaultSharedPreferences(context)
@@ -30,8 +24,8 @@ class ProfileViewModel @Inject constructor(
         val weight = prefs.getString("userWeight", "0")
         val height = prefs.getString("userHeight", "0")
         val notification = prefs.getBoolean("sendNotification", true)
+        val imageUrl = prefs.getString("imageUrl", "")
 
-        Log.d("TAG", "getSettings: $gender")
         return Settings(
             userName = name,
             userSurname = surname!!,
@@ -41,7 +35,8 @@ class ProfileViewModel @Inject constructor(
             userYearBirth = 0,
             userWeight = weight!!.toFloat(),
             userHeight = height!!.toInt(),
-            sendNotifications = notification
+            sendNotifications = notification,
+            imageUrl = imageUrl!!
         )
     }
 }

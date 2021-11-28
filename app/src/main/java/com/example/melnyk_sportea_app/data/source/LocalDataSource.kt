@@ -30,4 +30,6 @@ interface LocalDataSource {
     suspend fun addTrainingProgram(program: TrainingProgram)
 
     fun getTrainingProgramLiveData(): LiveData<List<TrainingProgram>>
+
+    fun getTrainingProgramById(id: Int): LiveData<TrainingProgram>
 }

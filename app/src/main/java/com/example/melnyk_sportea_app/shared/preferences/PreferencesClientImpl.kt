@@ -18,6 +18,7 @@ class PreferencesClientImpl(
         const val USER_WEIGHT = "userWeight"
         const val USER_HEIGHT = "userHeight"
         const val SEND_NOTIFICATION = "sendNotification"
+        const val IMAGE_URL = "imageUrl"
     }
 
     override fun getUsersSettings(context: Context): Settings {
@@ -30,6 +31,7 @@ class PreferencesClientImpl(
         val userWeight = sharedPreferencesClient.getFloat(context, USER_WEIGHT, -1F)
         val userHeight = sharedPreferencesClient.getInteger(context, USER_HEIGHT, -1)
         val sendNotifications = sharedPreferencesClient.getBoolean(context, SEND_NOTIFICATION, true)
+        val imageUrl = sharedPreferencesClient.getString(context, IMAGE_URL, "")
 
         return Settings(
             userName!!,
@@ -40,7 +42,8 @@ class PreferencesClientImpl(
             userYearBirth,
             userWeight,
             userHeight,
-            sendNotifications
+            sendNotifications,
+            imageUrl!!
         )
     }
 

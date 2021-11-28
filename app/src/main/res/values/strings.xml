@@ -97,5 +97,17 @@
     <string name="attachment_summary_on">Automatically download attachments for incoming emails
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="title_activity_maps">MapsActivity</string>
+
+    <string name="unsuccessful">Неудачная попытка</string>
+    <string name="password">Пароль</string>
+    <string name="login">Войти</string>
+    <string name="sign_in">Зарегестрироваться</string>
+    <string name="sign_in_with">Войти с помощью</string>
+    <string name="welcome">Добро пожаловать в Sportea</string>
+    <string name="empty_fields">Заполните поля</string>
+    <string name="account_exists">Аккаунт существует или данные введены неправильно</string>
+    <string name="incorrect_data">Данные введены некорректно</string>
+    <string name="no_account">Выберете аккаунт для входа</string>
 
 </resources>

@@ -24,4 +24,8 @@
 
     <color name="start_night_color">#6E6E70</color>
     <color name="end_night_color">#2A2A2E</color>
+
+    <color name="textTabLayout">#FF000000</color>
+    <color name="textSelectedTabLayout">#FFFFFF</color>
+    <color name="tabIndicator">#FF000000</color>
 </resources>

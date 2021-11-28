@@ -15,4 +15,7 @@ interface TrainingProgramDao {
 
     @Query("SELECT * FROM $TRAINING_PROGRAM_TABLE_NAME")
     fun getTrainingProgramLiveData(): LiveData<List<TrainingProgram>>
+
+    @Query("SELECT * FROM $TRAINING_PROGRAM_TABLE_NAME WHERE id = :id")
+    fun getTrainingProgramByIdLiveData(id: Int): LiveData<TrainingProgram>
 }

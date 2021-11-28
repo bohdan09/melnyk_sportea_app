@@ -36,6 +36,7 @@
 
     <TextView
         android:id="@+id/congratulations"
+        style="@style/text_color"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -43,86 +44,95 @@
         android:text="@string/congrats"
         android:textSize="24sp"
         android:textStyle="bold"
-        style="@style/text_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/congratsIV" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
+    <androidx.gridlayout.widget.GridLayout
+        android:id="@+id/hi"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-        tools:layout_editor_absoluteX="1dp">
+        app:columnCount="3"
+        app:layout_constraintBottom_toTopOf="@+id/homeB"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/congratulations"
+        app:layout_constraintVertical_bias="0.158"
+        app:rowCount="2">
+
+        <TextView
+            android:id="@+id/exerciseValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:gravity="center"
+            android:textSize="20sp"
+            app:layout_columnWeight="1"
+            app:layout_gravity="center"
+            app:layout_rowWeight="1" />
+
+        <TextView
+            android:id="@+id/kcalValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:gravity="center"
+            android:textSize="20sp"
+            app:layout_columnWeight="1"
+            app:layout_gravity="center"
+            app:layout_rowWeight="1" />
+
+        <TextView
+            android:id="@+id/durationValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:gravity="center"
+            android:textSize="20sp"
+            app:layout_columnWeight="1"
+            app:layout_gravity="center"
+            app:layout_rowWeight="1" />
 
         <TextView
             android:id="@+id/exerciseCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:fontFamily="sans-serif-condensed-medium"
             android:gravity="center"
             android:text="@string/exercise"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            app:layout_columnWeight="1"
+            app:layout_gravity="center"
+            app:layout_rowWeight="1" />
 
         <TextView
             android:id="@+id/kcalCount"
-            android:layout_width="wrap_content"
+            android:layout_width="45dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:fontFamily="sans-serif-condensed-medium"
             android:gravity="center"
             android:text="@string/kcal"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            app:layout_columnWeight="1"
+            app:layout_gravity="center"
+            app:layout_rowWeight="1" />
 
         <TextView
             android:id="@+id/durationCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+
             android:fontFamily="sans-serif-condensed-medium"
             android:gravity="center"
             android:text="@string/duration"
-            android:textSize="16sp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/congratulations"
-        tools:layout_editor_absoluteX="1dp">
-
-        <TextView
-            android:id="@+id/exerciseValue"
-            android:layout_width="40dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:fontFamily="sans-serif-condensed-medium"
-            android:gravity="center"
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/kcalValue"
-            android:layout_width="40dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:fontFamily="sans-serif-condensed-medium"
-            android:gravity="center"
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/durationValue"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:fontFamily="sans-serif-condensed-medium"
-            android:gravity="center"
-            android:textSize="20sp" />
-    </LinearLayout>
+            android:textSize="16sp"
+            app:layout_columnWeight="1"
+            app:layout_gravity="center"
+            app:layout_rowWeight="1" />
+    </androidx.gridlayout.widget.GridLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -43,4 +43,11 @@ class UseCaseModule(val application: Application) {
     ): CacheTrainingProgramsUseCase {
         return CacheTrainingProgramsUseCase(trainingProgramsRepository)
     }
+
+    @Provides
+    fun provideGetTrainingProgramByIdUseCase(
+        trainingProgramsRepository: TrainingProgramsRepository
+    ): GetTrainingProgramByIdLiveDataUseCase {
+        return GetTrainingProgramByIdLiveDataUseCase(trainingProgramsRepository)
+    }
 }

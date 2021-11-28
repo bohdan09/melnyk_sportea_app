@@ -12,6 +12,12 @@
         <item name="android:background">@color/night_window_background</item>
     </style>
 
+    <style name="background_style_auth">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:backgroundTint">@color/night_window_background</item>
+    </style>
+
     <style name="item_list_color">
         <item name="android:background">@color/night_700</item>
     </style>

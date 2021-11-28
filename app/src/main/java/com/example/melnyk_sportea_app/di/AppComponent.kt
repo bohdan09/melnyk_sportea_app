@@ -1,6 +1,9 @@
 package com.example.melnyk_sportea_app.di
 
 import com.example.melnyk_sportea_app.MainActivity
+import com.example.melnyk_sportea_app.auth.screen.AuthActivity
+import com.example.melnyk_sportea_app.auth.screen.LoginFragment
+import com.example.melnyk_sportea_app.auth.screen.SignInFragment
 import com.example.melnyk_sportea_app.di.module.ApiModule
 import com.example.melnyk_sportea_app.di.module.DataModule
 import com.example.melnyk_sportea_app.di.module.UnitModule
@@ -31,10 +34,13 @@ import javax.inject.Singleton
 )
 interface AppComponent {
     fun inject(mainActivity: MainActivity)
+    fun inject(authActivity: AuthActivity)
     fun inject(homeFragment: HomeFragment)
     fun inject(preparationFragment: PreparationFragment)
     fun inject(trainingFragment: TrainingFragment)
     fun inject(restFragment: RestFragment)
+    fun inject(loginFragment: LoginFragment)
+    fun inject(signInFragment: SignInFragment)
 
     fun trainingProgramViewModel(): TrainingProgramFragmentViewModel
     fun trainingJournalViewModel(): FinishFragmentViewModel

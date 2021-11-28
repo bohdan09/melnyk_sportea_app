@@ -1,10 +1,12 @@
 package com.example.melnyk_sportea_app.presentation.navigation.fragments.profile
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.addCallback
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.widget.Toolbar
@@ -16,7 +18,11 @@ import com.example.melnyk_sportea_app.App
 import com.example.melnyk_sportea_app.R
 import com.example.melnyk_sportea_app.databinding.FragmentProfileBinding
 import com.example.melnyk_sportea_app.viewmodel.ProfileViewModel
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_profile.*
+import javax.inject.Inject
 
 class ProfileFragment : Fragment() {
     private val model: ProfileViewModel by activityViewModels {
@@ -44,7 +50,7 @@ class ProfileFragment : Fragment() {
         setToolbar()
         onItemMenuListener()
         loadPersonalInformation()
-        setAvatar()
+        logOut()
 
         return binding?.root
     }
@@ -77,18 +83,9 @@ class ProfileFragment : Fragment() {
         binding?.nickname?.text = "${settings.userName} ${settings.userSurname}"
         binding?.emailTV?.text = settings.userEmail
         binding?.genderTV?.text = settings.userGender.name.lowercase()
-    }
-
-    private fun setAvatar() {
-        activityLauncher = registerForActivityResult(
-            ActivityResultContracts.GetContent()
-        ) {
-            model.setAvatarUri(uri = it)
-        }
-        model.avatarUri.observe(viewLifecycleOwner) {
-            Glide.with(this).load(it).centerCrop().into(binding?.avatar!!)
-        }
-
+        val imageUrl = settings.imageUrl
+        Glide.with(this).load(imageUrl).placeholder(R.drawable.profile_icon).centerCrop()
+            .into(binding?.avatar!!)
     }
 
     private fun getPermissionAccept() {
@@ -104,4 +101,12 @@ class ProfileFragment : Fragment() {
             Toast.LENGTH_SHORT
         ).show()
     }
+
+    private fun logOut() {
+        binding?.logOut?.setOnClickListener {
+            Firebase.auth.signOut()
+            findNavController().navigate(R.id.action_profileFragment_to_authActivity)
+        }
+    }
+
 }

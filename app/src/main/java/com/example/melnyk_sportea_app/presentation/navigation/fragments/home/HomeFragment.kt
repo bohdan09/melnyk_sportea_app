@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.example.melnyk_sportea_app.App
 import com.example.melnyk_sportea_app.R
 import com.example.melnyk_sportea_app.databinding.FragmentHomeBinding
@@ -38,6 +39,7 @@ class HomeFragment : Fragment(), TrainingProgramAdapter.OnItemClickListener {
         setToolbar()
         adapter = TrainingProgramAdapter(requireContext(), this)
         setAdapters()
+        Glide.with(this).load(R.drawable.loading).into(binding?.loadingIcon!!)
     }
 
     private fun observeTrainingPrograms() {
@@ -45,7 +47,14 @@ class HomeFragment : Fragment(), TrainingProgramAdapter.OnItemClickListener {
             adapter.setProgramList(it)
             programList = it
             model.cacheTrainingPrograms(it)
+            hideLoadingIcon()
         }
+    }
+
+    private fun hideLoadingIcon() {
+        binding?.loadingIcon?.visibility = View.GONE
+        binding?.programRecycler?.visibility = View.VISIBLE
+
     }
 
     override fun onDestroy() {
